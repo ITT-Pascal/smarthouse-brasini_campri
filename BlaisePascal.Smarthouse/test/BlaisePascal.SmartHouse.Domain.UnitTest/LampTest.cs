@@ -1,6 +1,6 @@
 namespace BlaisePascal.SmartHouse.Domain.UnitTest
 {
-    public class UnitTest1
+    public class LampTest
     {
         [Fact]
         public void Test1()
