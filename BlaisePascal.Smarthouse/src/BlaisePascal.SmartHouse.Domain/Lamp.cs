@@ -29,12 +29,12 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void increaseBrightness()
         {
-            Brightness = Math.Min(Brightness ++, MaxBrightness);         
+            Brightness = Math.Min(Brightness + 1, MaxBrightness);         
         }
 
-        public void decreaseBirghtness()
-        {
-            Brightness = Math.Max(Brightness --, MinBrightness);
+        public void decreaseBrightness()
+        {            
+            Brightness = Math.Max(Brightness - 1, MinBrightness);
         }
     }
 }
