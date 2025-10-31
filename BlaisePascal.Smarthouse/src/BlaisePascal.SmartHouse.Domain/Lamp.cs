@@ -19,7 +19,7 @@ namespace BlaisePascal.SmartHouse.Domain
         }
 
         //Methods
-        public void switchOnOff()
+        public void SwitchOnOff()
         {
             if(IsOn) 
                 IsOn = false;
@@ -27,14 +27,25 @@ namespace BlaisePascal.SmartHouse.Domain
                 IsOn = true;
         }
 
-        public void increaseBrightness()
+        public void IncreaseBrightness()
         {
             Brightness = Math.Min(Brightness + 1, MaxBrightness);         
         }
 
-        public void decreaseBrightness()
+        public void DecreaseBrightness()
         {            
             Brightness = Math.Max(Brightness - 1, MinBrightness);
+        }
+
+        public void ChangeBrightness(int brightness)
+        {
+            if(brightness > MinBrightness &&  brightness < MaxBrightness)
+            {
+                Brightness = brightness;
+            } else
+            {
+                throw new ArgumentOutOfRangeException("Brightness cannot be below 1 or over 10 ");
+            }
         }
     }
 }
