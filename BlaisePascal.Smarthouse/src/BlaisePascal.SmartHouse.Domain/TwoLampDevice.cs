@@ -8,7 +8,7 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class TwoLampDevice
     {
-        //Attributes
+        //Properties
         public LampModel Lamp1 { get; private set; }
         public LampModel Lamp2 { get; private set; }
 

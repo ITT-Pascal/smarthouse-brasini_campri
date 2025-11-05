@@ -11,12 +11,15 @@ namespace BlaisePascal.SmartHouse.Domain
         const int MinBrightness = 1;
         const int MaxBrightness = 5;
 
+        //Constructor
         public EcoLamp()
         {
             IsOn = false;
             Brightness = MaxBrightness;
 
         }
+
+        //Methods
         public override void SwitchOnOff()
         {
             IsOn = !IsOn;
