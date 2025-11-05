@@ -9,66 +9,67 @@ namespace BlaisePascal.SmartHouse.Domain
     public class TwoLampDevice
     {
         //Attributes
-        Lamp lamp1;
-        Lamp lamp2;
+        public LampModel Lamp1 { get; private set; }
+        public LampModel Lamp2 { get; private set; }
 
         //Constructor
-        public TwoLampDevice()
+        public TwoLampDevice(LampModel lamp1, LampModel lamp2)
         {
-            lamp1 = new Lamp();
-            lamp2 = new Lamp();
+            Lamp1 = lamp1;
+            Lamp2 = lamp2;
         }
+
 
         //Methods
         public void SwitchOneLamp(int lamp)
         {
             if(lamp == 1)
             {
-                lamp1.SwitchOnOff();
+                Lamp1.SwitchOnOff();
             }
             else if(lamp == 2)
             {
-                lamp2.SwitchOnOff();
+                Lamp2.SwitchOnOff();
             }
         }
 
         public void TurnBothOn()
         {
-            if (!lamp1.IsOn)
-                lamp1.SwitchOnOff();
-            if (!lamp2.IsOn)
-                lamp2.SwitchOnOff();
+            if (!Lamp1.IsOn)
+                Lamp1.SwitchOnOff();
+            if (!Lamp2.IsOn)
+                Lamp2.SwitchOnOff();
         }
 
         public void TurnBothOff()
         {
-            if (lamp1.IsOn)
-                lamp1.SwitchOnOff();
-            if (lamp2.IsOn)
-                lamp2.SwitchOnOff();
+            if (Lamp1.IsOn)
+                Lamp1.SwitchOnOff();
+            if (Lamp2.IsOn)
+                Lamp2.SwitchOnOff();
         }
 
         public void IncreaseBothBrightness()
         {
-            lamp1.IncreaseBrightness();
-            lamp2.IncreaseBrightness();
+            Lamp1.IncreaseBrightness();
+            Lamp2.IncreaseBrightness();
         }
 
         public void DecreaseBothBrightness()
         {
-            lamp1.DecreaseBrightness();
-            lamp2.DecreaseBrightness();
+            Lamp1.DecreaseBrightness();
+            Lamp2.DecreaseBrightness();
         }
 
         public void IncreaseOneBrightness(int lamp)
         {
             if (lamp == 1)
             {
-                lamp1.IncreaseBrightness();
+                Lamp1.IncreaseBrightness();
             }
             else if (lamp == 2)
             {
-                lamp2.IncreaseBrightness();
+                Lamp2.IncreaseBrightness();
             }
         }
 
@@ -76,20 +77,20 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             if (lamp == 1)
             {
-                lamp1.DecreaseBrightness();
+                Lamp1.DecreaseBrightness();
             }
             else if (lamp == 2)
             {
-                lamp2.DecreaseBrightness();
+                Lamp2.DecreaseBrightness();
             }
         }
 
         public void ChangeOneBrightness(int lamp, int newBrightness)
         {
             if (lamp == 1)
-                lamp1.ChangeBrightness(newBrightness);
+                Lamp1.ChangeBrightness(newBrightness);
             else if (lamp == 2)
-                lamp2.ChangeBrightness(newBrightness);
+                Lamp2.ChangeBrightness(newBrightness);
         }
     }
 }

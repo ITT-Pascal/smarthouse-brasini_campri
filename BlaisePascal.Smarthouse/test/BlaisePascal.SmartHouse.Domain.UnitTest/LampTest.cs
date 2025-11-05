@@ -3,6 +3,15 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
     public class LampTest
     {
         [Fact]
+        public void LampConstructor_WhenTheConstructorIsCalled_IsOnIsFalseAndBrightnessIsEqualToMaxBrightness()
+        {
+            Lamp lamp = new Lamp();
+            Assert.False(lamp.IsOn);
+            Assert.Equal(10, lamp.Brightness);
+
+        }
+ 
+        [Fact]
         public void switchIsOnOff_WhenIsOnIsFalse_ItChangesItToTrue()
         {
             Lamp lamp = new Lamp();

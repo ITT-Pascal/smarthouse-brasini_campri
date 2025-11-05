@@ -9,21 +9,15 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
     public class EcoLampTest
     {
         [Fact]
-        public void constructor_WhenLampIsCreated_IsOnIsFalse()
+        public void constructor_WhenLampIsCreated_IsOnIsFalseAndBrightnessIsHisMaxValue()
         {
             EcoLamp lamp = new EcoLamp();
             Assert.False(lamp.IsOn);
-        }
-
-        [Fact]
-        public void constructor_WhenLampIsCreated_BrightnessIsHisMaxValue()
-        {
-            EcoLamp lamp = new EcoLamp();
             Assert.Equal(5, lamp.Brightness);
         }
 
         [Fact]
-        public void switchIsOnOff_WhenIsOnIsFalse_ItChangesItToTrue()
+        public void switchOnOff_WhenIsOnIsFalse_ItChangesItToTrue()
         {
             EcoLamp lamp = new EcoLamp();
             lamp.SwitchOnOff();
@@ -31,7 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         }
 
         [Fact]
-        public void switchIsOnOff_WhenIsOnIsTrue_ItChangesItToFalse()
+        public void switchOnOff_WhenIsOnIsTrue_ItChangesItToFalse()
         {
             EcoLamp lamp = new EcoLamp();
             lamp.SwitchOnOff();
@@ -58,7 +52,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         }
 
         [Fact]
-        public void decreaseBrightness_WhenBrightnessIsMoreThanMin_ItDecreasesByOne()
+        public void decreaseBrightness_WhenBrightnessIsMoreThanMinBrightness_ItDecreasesByOne()
         {
             EcoLamp lamp = new EcoLamp();
             lamp.DecreaseBrightness();
