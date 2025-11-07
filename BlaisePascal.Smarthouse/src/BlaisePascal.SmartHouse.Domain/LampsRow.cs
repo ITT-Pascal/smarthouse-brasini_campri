@@ -46,7 +46,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void SwitchAllOff()
         {
-            for (int i = 0; i > Lamps.Count; i++)
+            for (int i = 0; i < Lamps.Count; i++)
             {
                 if (Lamps[i].IsOn)
                     Lamps[i].SwitchOnOff();

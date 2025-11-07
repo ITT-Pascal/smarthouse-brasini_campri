@@ -50,5 +50,140 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 Assert.True(lampsrow.Lamps[i].IsOn);
             }
         }
+
+        [Fact]
+        public void SwitchAllOff_AfterTurningAllOff_EveryLampISOff()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.SwitchAllOn();
+            lampsrow.SwitchAllOff();
+            //Assert
+            for(int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.False(lampsrow.Lamps[i].IsOn);
+            }
+        }
+
+        [Fact]
+        public void SwitchOneLampOnOff_WhenChosenLampIsOff_ItTurnsOn()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.SwitchOneLampOnOff(lampsrow.Lamps[2].ID);
+            //Assert
+            Assert.True(lampsrow.Lamps[2].IsOn);
+        }
+
+        [Fact]
+        public void SwitchOneLampOnOff_WhenChosenLampIsOn_ItTurnsOff()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.SwitchAllOn();
+            lampsrow.SwitchOneLampOnOff(lampsrow.Lamps[2].ID);
+            //Assert
+            Assert.False(lampsrow.Lamps[2].IsOn);
+        }
+
+        [Fact]
+        public void IncreaseAllBrightness_WhenAllBrightnessAreNotTheMax_TheyIncreaseByOne()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.DecreaseeAllBrightness();
+            lampsrow.DecreaseeAllBrightness();
+            lampsrow.IncreaseAllBrightness();
+            //Assert
+            for(int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(9, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void IncreaseAllBrightness_WhenAllBrightnessAreMax_TheyDoNotIncrease()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.IncreaseAllBrightness();
+            //Assert
+            for(int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void IncreaseAllBrightness_WhenLastLampBrightnessIsTheOnlyOneNotMax_OnlyLastLampIncreases()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 8);
+            lampsrow.IncreaseAllBrightness();
+            //Assert
+            for(int i = 0; i < lampsrow.Lamps.Count - 1; i++)
+            {
+                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
+            }
+            Assert.Equal(9, lampsrow.Lamps[4].Brightness);
+        }
+
+        [Fact]
+        public void DecreaseAllBrightness_WhenAllLampsBrightnessAreNotMin_TheyAllDecrease()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.DecreaseeAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(9, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void DecreaseAllBrightness_WhenAllBrightnessAreMin_TheyDoNotDecrease()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            for(int i = 0; i < 11; i++)
+            {
+                lampsrow.DecreaseeAllBrightness();
+            }
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(1, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void DecreaseAllBrightness_WhenLastLampBrightnessIsTheOnlyOneNotMin_OnlyLastLampDecreases()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            for (int i = 0; i < 11; i++)
+            {
+                lampsrow.DecreaseeAllBrightness();
+            }
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 6);
+            lampsrow.DecreaseeAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
+            {
+                Assert.Equal(1, lampsrow.Lamps[i].Brightness);
+            }
+            Assert.Equal(5, lampsrow.Lamps[4].Brightness);
+        }
     }
 }
