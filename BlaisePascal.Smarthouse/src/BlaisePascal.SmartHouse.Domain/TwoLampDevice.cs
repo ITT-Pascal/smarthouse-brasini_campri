@@ -21,13 +21,13 @@ namespace BlaisePascal.SmartHouse.Domain
 
 
         //Methods
-        public void SwitchOneLamp(int lamp)
+        public void SwitchOneLamp(Guid Id)
         {
-            if(lamp == 1)
+            if(Lamp1.ID == Id)
             {
                 Lamp1.SwitchOnOff();
             }
-            else if(lamp == 2)
+            else if(Lamp2.ID == Id)
             {
                 Lamp2.SwitchOnOff();
             }
@@ -61,35 +61,35 @@ namespace BlaisePascal.SmartHouse.Domain
             Lamp2.DecreaseBrightness();
         }
 
-        public void IncreaseOneBrightness(int lamp)
+        public void IncreaseOneBrightness(Guid Id)
         {
-            if (lamp == 1)
+            if (Lamp1.ID == Id)
             {
                 Lamp1.IncreaseBrightness();
             }
-            else if (lamp == 2)
+            else if (Lamp2.ID == Id)
             {
                 Lamp2.IncreaseBrightness();
             }
         }
 
-        public void DecreaseOneBrightness(int lamp)
+        public void DecreaseOneBrightness(Guid Id)
         {
-            if (lamp == 1)
+            if (Lamp1.ID == Id)
             {
                 Lamp1.DecreaseBrightness();
             }
-            else if (lamp == 2)
+            else if (Lamp2.ID == Id)
             {
                 Lamp2.DecreaseBrightness();
             }
         }
 
-        public void ChangeOneBrightness(int lamp, int newBrightness)
+        public void ChangeOneBrightness(Guid Id, int newBrightness)
         {
-            if (lamp == 1)
+            if (Lamp1.ID == Id)
                 Lamp1.ChangeBrightness(newBrightness);
-            else if (lamp == 2)
+            else if (Lamp2.ID == Id)
                 Lamp2.ChangeBrightness(newBrightness);
         }
     }
