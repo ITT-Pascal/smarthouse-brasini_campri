@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.Dom
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2781DF71-E8F0-4233-BA79-D32FBEA209BB}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Downloads\Documentazione SmartHouse.pdf = ..\..\..\..\Downloads\Documentazione SmartHouse.pdf
+		docs\Documentazione SmartHouse (1).pdf = docs\Documentazione SmartHouse (1).pdf
 	EndProjectSection
 EndProject
 Global
