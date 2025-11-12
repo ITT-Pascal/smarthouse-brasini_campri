@@ -185,5 +185,29 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             }
             Assert.Equal(5, lampsrow.Lamps[4].Brightness);
         }
+
+        [Fact]
+        public void ChangeOneLampBrightness_WhenChangingOneLampBrightness_OnlyThatLampChanges()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 3);
+            //Assert
+            Assert.Equal(3, lampsrow.Lamps[4].Brightness);
+            for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
+            {
+                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void ChangeOneLampBrightness_WhenChangingBrightnessToAnIncorrectValue_ThrowsOutOfRangeException()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow(5);
+            //Act & Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID,11));
+        }
     }
 }
