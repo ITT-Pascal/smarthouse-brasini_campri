@@ -33,7 +33,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             Assert.False(lamp.IsOn);
         }
 
-
         [Fact]
         public void increaseBrightness_WhenBrightnessIsMax_ItDoesNotIncrease()
         {
@@ -93,7 +92,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             Assert.Equal(3, lamp.Brightness);
         }
 
-
-
+   
     }
 }

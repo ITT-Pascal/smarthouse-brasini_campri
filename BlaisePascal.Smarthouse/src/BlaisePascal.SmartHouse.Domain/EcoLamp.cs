@@ -17,6 +17,7 @@ namespace BlaisePascal.SmartHouse.Domain
             IsOn = false;
             Brightness = MaxBrightness;
             ID = Guid.NewGuid();
+            
         }
 
         public EcoLamp(Guid newID)
@@ -24,6 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain
             IsOn = false;
             Brightness = MaxBrightness;
             ID = newID;
+
         }
 
         //Methods
@@ -31,6 +33,7 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             IsOn = !IsOn;
         }
+
         public override void IncreaseBrightness()
         {
             Brightness = Math.Min(Brightness + 1, MaxBrightness);

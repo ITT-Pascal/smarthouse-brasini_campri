@@ -64,6 +64,8 @@ namespace BlaisePascal.SmartHouse.Domain
             }
         }
 
+        
+
         public void IncreaseAllBrightness()
         {
             for (int i = 0; i < Lamps.Count; i++)
@@ -88,8 +90,6 @@ namespace BlaisePascal.SmartHouse.Domain
                     Lamps[i].ChangeBrightness(newBrightness);
             }
         }
-
-
     }
 }
 
