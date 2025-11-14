@@ -11,12 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain
        
 
         //Constructor
-        public Lamp()
-        {
-            IsOn = false;
-            Brightness = MaxBrightness;
-            ID = Guid.NewGuid();
-        }
+        
         public Lamp(string name)
         {
             IsOn = false;
