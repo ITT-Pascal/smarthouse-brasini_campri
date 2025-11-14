@@ -33,6 +33,18 @@ namespace BlaisePascal.SmartHouse.Domain
             }
         }
 
+        public void SwitchOneLamp(string name)
+        {
+            if (Lamp1.Name == name)
+            {
+                Lamp1.SwitchOnOff();
+            }
+            else if (Lamp2.Name == name)
+            {
+                Lamp2.SwitchOnOff();
+            }
+        }
+
         public void TurnBothOn()
         {
             if (!Lamp1.IsOn)
@@ -73,6 +85,18 @@ namespace BlaisePascal.SmartHouse.Domain
             }
         }
 
+        public void IncreaseOneBrightness(string name)
+        {
+            if (Lamp1.Name == name)
+            {
+                Lamp1.IncreaseBrightness();
+            }
+            else if (Lamp2.Name == name)
+            {
+                Lamp2.IncreaseBrightness();
+            }
+        }
+
         public void DecreaseOneBrightness(Guid Id)
         {
             if (Lamp1.ID == Id)
@@ -85,11 +109,31 @@ namespace BlaisePascal.SmartHouse.Domain
             }
         }
 
+        public void DecreaseOneBrightness(string name)
+        {
+            if (Lamp1.Name == name)
+            {
+                Lamp1.IncreaseBrightness();
+            }
+            else if (Lamp2.Name == name)
+            {
+                Lamp2.IncreaseBrightness();
+            }
+        }
+
         public void ChangeOneBrightness(Guid Id, int newBrightness)
         {
             if (Lamp1.ID == Id)
                 Lamp1.ChangeBrightness(newBrightness);
             else if (Lamp2.ID == Id)
+                Lamp2.ChangeBrightness(newBrightness);
+        }
+
+        public void ChangeOneBrightness(string name, int newBrightness)
+        {
+            if (Lamp1.Name == name)
+                Lamp1.ChangeBrightness(newBrightness);
+            else if (Lamp2.Name == name)
                 Lamp2.ChangeBrightness(newBrightness);
         }
     }

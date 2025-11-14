@@ -7,8 +7,8 @@ namespace BlaisePascal.SmartHouse.Domain
         const int MinBrightness = 1;
         const int MaxBrightness = 10;
 
-        //Properties
-        public string Name { get; private set; }
+     
+       
 
         //Constructor
         public Lamp()
