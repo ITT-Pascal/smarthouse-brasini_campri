@@ -347,7 +347,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void ChangeOneBrightness_WhenParameterIs1_ChangesLamp1Brightness()
         {
             // Arrange
-            LampModel lamp1 = new EcoLamp(  );
+            LampModel lamp1 = new EcoLamp("a");
             LampModel lamp2 = new Lamp();
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act

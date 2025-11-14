@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void Constructor_WhenCreateNewLampsRow_ItIsEmpty()
         {
             //Arrange & Act
-            LampsRow lampsRow = new LampsRow("a");
+            LampsRow lampsRow = new LampsRow();
             //Assert
             Assert.Empty(lampsRow.Lamps);
         }
