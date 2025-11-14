@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow();
             //Act
-            lampsrow.AddLamp(new EcoLamp());
+            lampsrow.AddLamp(new EcoLamp("a"));
             //Assert
             Assert.Equal(1, lampsrow.Lamps.Count);
         }
