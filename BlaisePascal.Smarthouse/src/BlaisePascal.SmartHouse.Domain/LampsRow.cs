@@ -10,14 +10,15 @@ namespace BlaisePascal.SmartHouse.Domain
     {
         //Properties
         public List<LampModel> Lamps { get; private set; }
-
+        
         //Constructor
-        public LampsRow()
+        public LampsRow(string name)
         {
             Lamps = new List<LampModel>();
+            
         }
 
-        public LampsRow(int numLamp)
+        /*public LampsRow(int numLamp, string name)
         {
             Lamps = new List<LampModel>();
             for (int i = 0; i < numLamp; i++)
@@ -25,7 +26,8 @@ namespace BlaisePascal.SmartHouse.Domain
 
                 Lamps.Add(new Lamp());
             }
-        }
+            
+        }*/
 
         //Methods
         public void AddLamp(LampModel lamp)
@@ -90,6 +92,13 @@ namespace BlaisePascal.SmartHouse.Domain
                     Lamps[i].ChangeBrightness(newBrightness);
             }
         }
+
+        public void RemoveLampInPoosition(int position)
+        {
+            if(position >= 0 && position < Lamps.Count)
+                Lamps.RemoveAt(position);
+        }
+
     }
 }
 

@@ -7,6 +7,8 @@ namespace BlaisePascal.SmartHouse.Domain
         const int MinBrightness = 1;
         const int MaxBrightness = 10;
 
+        //Properties
+        public string Name { get; private set; }
 
         //Constructor
         public Lamp()
@@ -15,12 +17,20 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = MaxBrightness;
             ID = Guid.NewGuid();
         }
+        public Lamp(string name)
+        {
+            IsOn = false;
+            Brightness = MaxBrightness;
+            ID = Guid.NewGuid();
+            Name = name;
+        }
 
-        public Lamp(Guid newID)
+        public Lamp(Guid newID, string name)
         {
             IsOn = false;
             Brightness = MaxBrightness;
             ID = newID;
+            Name = name;
         }
 
         //Methods

@@ -10,22 +10,22 @@ namespace BlaisePascal.SmartHouse.Domain
     {
         const int MinBrightness = 1;
         const int MaxBrightness = 5;
-
+        public string Name { get; private set; }
         //Constructor
-        public EcoLamp()
+        public EcoLamp(string name )
         {
             IsOn = false;
             Brightness = MaxBrightness;
             ID = Guid.NewGuid();
-            
+            Name = name;
         }
 
-        public EcoLamp(Guid newID)
+        public EcoLamp(Guid newID, string name)
         {
             IsOn = false;
             Brightness = MaxBrightness;
             ID = newID;
-
+            Name = name;
         }
 
         //Methods
