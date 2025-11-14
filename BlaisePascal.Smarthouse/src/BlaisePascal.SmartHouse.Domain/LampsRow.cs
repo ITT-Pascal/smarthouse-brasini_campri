@@ -12,22 +12,22 @@ namespace BlaisePascal.SmartHouse.Domain
         public List<LampModel> Lamps { get; private set; }
         
         //Constructor
-        public LampsRow(string name)
+        public LampsRow()
         {
             Lamps = new List<LampModel>();
             
         }
 
-        /*public LampsRow(int numLamp, string name)
+        public LampsRow(int numLamp)
         {
             Lamps = new List<LampModel>();
             for (int i = 0; i < numLamp; i++)
             {
 
-                Lamps.Add(new Lamp());
+                Lamps.Add(new Lamp($"Lamp{i + 1}"));
             }
             
-        }*/
+        }
 
         //Methods
         public void AddLamp(LampModel lamp)
