@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void constructor_WhenLampIsCreated_IsOnIsFalseAndBrightnessIsHisMaxValue()
         {
             EcoLamp lamp = new EcoLamp("a");
-            Assert.False(lamp.IsOn);
+            Assert.Equal(DeviceStatus.Off, lamp.Status);
             Assert.Equal(5, lamp.Brightness);
         }
 
@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         {
             EcoLamp lamp = new EcoLamp("a");
             lamp.SwitchOnOff();
-            Assert.True(lamp.IsOn);
+            Assert.Equal(DeviceStatus.On, lamp.Status);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             EcoLamp lamp = new EcoLamp("a");
             lamp.SwitchOnOff();
             lamp.SwitchOnOff();
-            Assert.False(lamp.IsOn);
+            Assert.Equal(DeviceStatus.Off, lamp.Status);
         }
 
         [Fact]

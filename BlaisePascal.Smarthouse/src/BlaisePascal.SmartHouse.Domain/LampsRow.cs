@@ -40,7 +40,7 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             for (int i = 0; i < Lamps.Count; i++)
             {
-                if (!Lamps[i].IsOn)
+                if (Lamps[i].Status == DeviceStatus.Off)
                     Lamps[i].SwitchOnOff();
 
             }
@@ -50,7 +50,7 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             for (int i = 0; i < Lamps.Count; i++)
             {
-                if (Lamps[i].IsOn)
+                if (Lamps[i].Status == DeviceStatus.On)
                     Lamps[i].SwitchOnOff();
             }
         }

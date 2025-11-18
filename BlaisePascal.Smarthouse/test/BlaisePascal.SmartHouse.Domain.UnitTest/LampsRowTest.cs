@@ -47,7 +47,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.True(lampsrow.Lamps[i].IsOn);
+                Assert.Equal(DeviceStatus.On, lampsrow.Lamps[i].Status);
             }
         }
 
@@ -62,7 +62,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Assert
             for(int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.False(lampsrow.Lamps[i].IsOn);
+                Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[i].Status);
             }
         }
 
@@ -74,7 +74,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Act
             lampsrow.SwitchOneLampOnOff(lampsrow.Lamps[2].ID);
             //Assert
-            Assert.True(lampsrow.Lamps[2].IsOn);
+            Assert.Equal(DeviceStatus.On, lampsrow.Lamps[2].Status);
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             lampsrow.SwitchAllOn();
             lampsrow.SwitchOneLampOnOff(lampsrow.Lamps[2].ID);
             //Assert
-            Assert.False(lampsrow.Lamps[2].IsOn);
+            Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[2].Status);
         }
 
         [Fact]

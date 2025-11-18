@@ -9,10 +9,12 @@ namespace BlaisePascal.SmartHouse.Domain
     public abstract class LampModel
     {
         //Properties
-        public bool IsOn { get; protected set; }
+        public DeviceStatus Status { get; protected set; } = DeviceStatus.Unkwnown;
         public int Brightness { get; protected set; }
         public Guid ID { get; protected set; }
         public string Name { get; protected set; }
+        public DateTime CreatedAtUtc { get; protected set; }
+        public DateTime LastModifiedAtUtc { get; protected set; }
 
         //Methods
         public abstract void SwitchOnOff();

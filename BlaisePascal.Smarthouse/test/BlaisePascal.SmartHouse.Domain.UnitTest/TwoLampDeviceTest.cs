@@ -32,8 +32,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             device.SwitchOneLamp(lamp1.ID);
             // Assert
-            Assert.True(lamp1.IsOn);
-            Assert.False(lamp2.IsOn);
+            Assert.Equal(DeviceStatus.On, lamp1.Status);
+            Assert.Equal(DeviceStatus.Off, lamp2.Status);
         }
 
         [Fact]
@@ -46,8 +46,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             device.SwitchOneLamp(lamp2.ID);
             // Assert
-            Assert.False(lamp1.IsOn);
-            Assert.True(lamp2.IsOn);
+            Assert.Equal(DeviceStatus.Off, lamp1.Status);
+            Assert.Equal(DeviceStatus.On, lamp2.Status);
         }
 
         [Fact]
@@ -61,8 +61,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             device.SwitchOneLamp(guid);
             // Assert
-            Assert.False(lamp1.IsOn);
-            Assert.False(lamp2.IsOn);
+            Assert.Equal(DeviceStatus.Off, lamp1.Status);
+            Assert.Equal(DeviceStatus.Off, lamp2.Status);
         }
 
         [Fact]
@@ -75,8 +75,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             device.TurnBothOn();
             // Assert
-            Assert.True(lamp1.IsOn);
-            Assert.True(lamp2.IsOn);
+            Assert.Equal(DeviceStatus.On, lamp1.Status);
+            Assert.Equal(DeviceStatus.On, lamp2.Status);
 
         }
 
@@ -90,8 +90,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             device.TurnBothOff();
             // Assert
-            Assert.False(lamp1.IsOn);
-            Assert.False(lamp2.IsOn);
+            Assert.Equal(DeviceStatus.Off, lamp1.Status);
+            Assert.Equal(DeviceStatus.Off, lamp2.Status);
         }
 
         [Fact]

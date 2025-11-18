@@ -47,17 +47,17 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void TurnBothOn()
         {
-            if (!Lamp1.IsOn)
+            if (Lamp1.Status == DeviceStatus.Off)
                 Lamp1.SwitchOnOff();
-            if (!Lamp2.IsOn)
+            if (Lamp2.Status == DeviceStatus.Off)
                 Lamp2.SwitchOnOff();
         }
 
         public void TurnBothOff()
         {
-            if (Lamp1.IsOn)
+            if (Lamp1.Status == DeviceStatus.On)
                 Lamp1.SwitchOnOff();
-            if (Lamp2.IsOn)
+            if (Lamp2.Status == DeviceStatus.On)
                 Lamp2.SwitchOnOff();
         }
 

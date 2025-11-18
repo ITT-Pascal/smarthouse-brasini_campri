@@ -7,22 +7,20 @@ namespace BlaisePascal.SmartHouse.Domain
         const int MinBrightness = 1;
         const int MaxBrightness = 10;
 
-     
-       
-
         //Constructor
         
         public Lamp(string name)
         {
-            IsOn = false;
+            Status = DeviceStatus.Off;
             Brightness = MaxBrightness;
             ID = Guid.NewGuid();
             Name = name;
+
         }
 
         public Lamp(Guid newID, string name)
         {
-            IsOn = false;
+            Status = DeviceStatus.Off;
             Brightness = MaxBrightness;
             ID = newID;
             Name = name;
@@ -31,7 +29,10 @@ namespace BlaisePascal.SmartHouse.Domain
         //Methods
         public override void SwitchOnOff()
         {
-            IsOn = !IsOn;
+            if (Status == DeviceStatus.Off)
+                Status = DeviceStatus.On;
+            else if (Status == DeviceStatus.On)
+                Status = DeviceStatus.Off;
         }
 
         public override void IncreaseBrightness()

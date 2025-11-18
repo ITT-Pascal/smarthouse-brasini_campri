@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain
         //Constructor
         public EcoLamp(string name )
         {
-            IsOn = false;
+            Status = DeviceStatus.Off;
             Brightness = MaxBrightness;
             ID = Guid.NewGuid();
             Name = name;
@@ -22,7 +22,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public EcoLamp(Guid newID, string name)
         {
-            IsOn = false;
+            Status = DeviceStatus.Off;
             Brightness = MaxBrightness;
             ID = newID;
             Name = name;
@@ -31,7 +31,10 @@ namespace BlaisePascal.SmartHouse.Domain
         //Methods
         public override void SwitchOnOff()
         {
-            IsOn = !IsOn;
+            if (Status == DeviceStatus.Off)
+                Status = DeviceStatus.On;
+            else if (Status == DeviceStatus.On)
+                Status = DeviceStatus.Off;
         }
 
         public override void IncreaseBrightness()
