@@ -21,44 +21,44 @@ namespace BlaisePascal.SmartHouse.Domain
 
 
         //Methods
-        public void SwitchOneLamp(Guid Id)
+        public void ToggleOneLamp(Guid Id)
         {
             if(Lamp1.ID == Id)
             {
-                Lamp1.SwitchOnOff();
+                Lamp1.Toggle();
             }
             else if(Lamp2.ID == Id)
             {
-                Lamp2.SwitchOnOff();
+                Lamp2.Toggle();
             }
         }
 
-        public void SwitchOneLamp(string name)
+        public void ToggleOneLamp(string name)
         {
             if (Lamp1.Name == name)
             {
-                Lamp1.SwitchOnOff();
+                Lamp1.Toggle();
             }
             else if (Lamp2.Name == name)
             {
-                Lamp2.SwitchOnOff();
+                Lamp2.Toggle();
             }
         }
 
         public void TurnBothOn()
         {
             if (Lamp1.Status == DeviceStatus.Off)
-                Lamp1.SwitchOnOff();
+                Lamp1.Toggle();
             if (Lamp2.Status == DeviceStatus.Off)
-                Lamp2.SwitchOnOff();
+                Lamp2.Toggle();
         }
 
         public void TurnBothOff()
         {
             if (Lamp1.Status == DeviceStatus.On)
-                Lamp1.SwitchOnOff();
+                Lamp1.Toggle();
             if (Lamp2.Status == DeviceStatus.On)
-                Lamp2.SwitchOnOff();
+                Lamp2.Toggle();
         }
 
         public void IncreaseBothBrightness()

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,14 +19,58 @@ namespace BlaisePascal.SmartHouse.Domain
         public DateTime CreatedAtUtc { get; protected set; }
         public DateTime LastModifiedAtUtc { get; protected set; }
 
+        public abstract int MaxBrightness { get; }
+        public abstract int MinBrightness { get; }
+
+
         //Methods
-        public abstract void SwitchOnOff();
+        public void Toggle()
+        {
+            if (Status == DeviceStatus.Off)
+                Status = DeviceStatus.On;
+            else if (Status == DeviceStatus.On)
+                Status = DeviceStatus.Off;
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
 
-        public abstract void IncreaseBrightness();
+        public void SwitchOn()
+        {
+            if (Status == DeviceStatus.On)
+                throw new Exception("The Lamp is already on");
+            Status = DeviceStatus.On;
+        }
 
-        public abstract void DecreaseBrightness();
+        public void SwitchOff()
+        {
+            if (Status == DeviceStatus.Off)
+                throw new Exception("The lamp is already off");
+            Status = DeviceStatus.Off;
+        }
 
-        public abstract void ChangeBrightness(int brightness);
+        public void IncreaseBrightness()
+        {
+            Brightness = Math.Min(Brightness + 1, MaxBrightness);
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
+
+        public  void DecreaseBrightness()
+        {
+            Brightness = Math.Max(Brightness - 1, MinBrightness);
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
+
+        public void ChangeBrightness(int brightness)
+        {
+            if (brightness > MinBrightness && brightness < MaxBrightness)
+            {
+                Brightness = brightness;
+                LastModifiedAtUtc = DateTime.UtcNow;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException($"Brightness cannot be below {MinBrightness} or above {MaxBrightness}");
+            }
+        }
 
 
     }

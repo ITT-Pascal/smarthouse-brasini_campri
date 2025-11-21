@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void switchOnOff_WhenIsOnIsFalse_ItChangesItToTrue()
         {
             EcoLamp lamp = new EcoLamp("a");
-            lamp.SwitchOnOff();
+            lamp.Toggle();
             Assert.Equal(DeviceStatus.On, lamp.Status);
         }
 
@@ -28,8 +28,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void switchOnOff_WhenIsOnIsTrue_ItChangesItToFalse()
         {
             EcoLamp lamp = new EcoLamp("a");
-            lamp.SwitchOnOff();
-            lamp.SwitchOnOff();
+            lamp.Toggle();
+            lamp.Toggle();
             Assert.Equal(DeviceStatus.Off, lamp.Status);
         }
 

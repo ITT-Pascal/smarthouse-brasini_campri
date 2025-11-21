@@ -8,8 +8,14 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class EcoLamp: LampModel
     {
-        const int MinBrightness = 1;
-        const int MaxBrightness = 5;
+        //Const
+        private const int EcoMax = 5;
+        private const int EcoMin = 1;
+
+        //Properties
+        public override int MaxBrightness => EcoMax;
+        public override int MinBrightness => EcoMin;
+
 
         //Constructor
         public EcoLamp(string name )
@@ -18,6 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = MaxBrightness;
             ID = Guid.NewGuid();
             Name = name;
+            CreatedAtUtc = DateTime.UtcNow;
         }
 
         public EcoLamp(Guid newID, string name)
@@ -26,36 +33,8 @@ namespace BlaisePascal.SmartHouse.Domain
             Brightness = MaxBrightness;
             ID = newID;
             Name = name;
+            CreatedAtUtc = DateTime.UtcNow;
         }
 
-        //Methods
-        public override void SwitchOnOff()
-        {
-            if (Status == DeviceStatus.Off)
-                Status = DeviceStatus.On;
-            else if (Status == DeviceStatus.On)
-                Status = DeviceStatus.Off;
-        }
-
-        public override void IncreaseBrightness()
-        {
-            Brightness = Math.Min(Brightness + 1, MaxBrightness);
-        }
-
-        public override void DecreaseBrightness()
-        {
-            Brightness = Math.Max(Brightness - 1, MinBrightness);
-        }
-        public override void ChangeBrightness(int brightness)
-        {
-            if (brightness > MinBrightness && brightness < MaxBrightness)
-            {
-                Brightness = brightness;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException($"Brightness cannot be below {MinBrightness} or above {MaxBrightness}" );
-            }
-        }
     }
 }

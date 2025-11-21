@@ -30,7 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
-            device.SwitchOneLamp(lamp1.ID);
+            device.ToggleOneLamp(lamp1.ID);
             // Assert
             Assert.Equal(DeviceStatus.On, lamp1.Status);
             Assert.Equal(DeviceStatus.Off, lamp2.Status);
@@ -44,7 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
-            device.SwitchOneLamp(lamp2.ID);
+            device.ToggleOneLamp(lamp2.ID);
             // Assert
             Assert.Equal(DeviceStatus.Off, lamp1.Status);
             Assert.Equal(DeviceStatus.On, lamp2.Status);
@@ -59,7 +59,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             Guid guid = Guid.NewGuid();
             // Act
-            device.SwitchOneLamp(guid);
+            device.ToggleOneLamp(guid);
             // Assert
             Assert.Equal(DeviceStatus.Off, lamp1.Status);
             Assert.Equal(DeviceStatus.Off, lamp2.Status);

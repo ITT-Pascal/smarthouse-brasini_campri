@@ -72,7 +72,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
-            lampsrow.SwitchOneLampOnOff(lampsrow.Lamps[2].ID);
+            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
             //Assert
             Assert.Equal(DeviceStatus.On, lampsrow.Lamps[2].Status);
         }
@@ -84,7 +84,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampsRow lampsrow = new LampsRow(5);
             //Act
             lampsrow.SwitchAllOn();
-            lampsrow.SwitchOneLampOnOff(lampsrow.Lamps[2].ID);
+            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
             //Assert
             Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[2].Status);
         }
