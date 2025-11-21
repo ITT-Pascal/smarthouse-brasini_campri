@@ -8,6 +8,10 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class LampsRow
     {
+        
+
+
+
         //Properties
         public List<LampModel> Lamps { get; private set; }
         

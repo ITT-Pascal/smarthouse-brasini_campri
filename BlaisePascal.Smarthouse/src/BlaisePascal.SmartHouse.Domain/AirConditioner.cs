@@ -94,6 +94,14 @@ namespace BlaisePascal.SmartHouse.Domain
             Mode = AirMode.Dry;
         }
 
+        public void SetMode(AirMode mode)
+        {
+            OnValidator();
+            if (Mode == mode)
+                throw new ArgumentException($"The mode is already: {Mode}");
+            Mode = mode;
+        }
+
 
         public void SetDegrees(int value)
         {
