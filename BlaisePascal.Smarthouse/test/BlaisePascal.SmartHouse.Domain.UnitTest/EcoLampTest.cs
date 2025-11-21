@@ -37,6 +37,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void increaseBrightness_WhenBrightnessIsMax_ItDoesNotIncrease()
         {
             EcoLamp lamp = new EcoLamp("a");
+            lamp.SwitchOn();
             lamp.IncreaseBrightness();
             Assert.Equal(5, lamp.Brightness);
         }
@@ -45,6 +46,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void increaseBrightness_WhenBrightnessIsLessThanMax_ItIncreasesByOne()
         {
             EcoLamp lamp = new EcoLamp("a");
+            lamp.SwitchOn();
             lamp.DecreaseBrightness();
             lamp.IncreaseBrightness();
             Assert.Equal(5, lamp.Brightness);
@@ -54,6 +56,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void decreaseBrightness_WhenBrightnessIsMoreThanMinBrightness_ItDecreasesByOne()
         {
             EcoLamp lamp = new EcoLamp("a");
+            lamp.SwitchOn();
             lamp.DecreaseBrightness();
             Assert.Equal(4, lamp.Brightness);
         }
@@ -62,7 +65,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void decreaseBrightness_WhenBrightnessIsMin_ItDoesNotDecrease()
         {
             EcoLamp lamp = new EcoLamp("a");
-            for(int i = 0; i < 5; i++)
+            lamp.SwitchOn();
+            for (int i = 0; i < 5; i++)
             {
                 lamp.DecreaseBrightness();
             }
@@ -74,6 +78,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void changeBrightness_WhenNewBrightnessIsMoreThanMax_ThrowError()
         {
             EcoLamp lamp = new EcoLamp("a");
+            lamp.SwitchOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(6));
         }
 
@@ -81,6 +86,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void changeBrightness_WhenNewBrightnessIsLessThanMin_ThrowError()
         {
             EcoLamp lamp = new EcoLamp("a");
+            lamp.SwitchOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(0));
         }
 
@@ -88,6 +94,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void changeBrightness_WhenNewBrightnessIsInsideTheRange_AssignBightnessCorrectly()
         {
             EcoLamp lamp = new EcoLamp("a");
+            lamp.SwitchOn();
             lamp.ChangeBrightness(3);
             Assert.Equal(3, lamp.Brightness);
         }

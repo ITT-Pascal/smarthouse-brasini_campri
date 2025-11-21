@@ -102,6 +102,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseBothBrightness();
             device.DecreaseBothBrightness();
             device.IncreaseBothBrightness();
@@ -118,6 +119,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseBothBrightness();
             // Assert
             Assert.Equal(4, lamp1.Brightness);
@@ -132,6 +134,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.IncreaseBothBrightness();
             // Assert
             Assert.Equal(10, lamp1.Brightness);
@@ -146,6 +149,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new EcoLamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             for (int i = 0; i <= 6; i++)
             {
                 device.DecreaseBothBrightness();
@@ -163,6 +167,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(lamp1.ID);
             device.DecreaseOneBrightness(lamp1.ID);
             device.IncreaseBothBrightness();
@@ -179,6 +184,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(lamp2.ID);
             device.DecreaseOneBrightness(lamp2.ID);
             device.IncreaseBothBrightness();
@@ -195,6 +201,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             for (int i = 0; i < 10; i++)
             {
                 device.DecreaseOneBrightness(lamp2.ID);
@@ -214,6 +221,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             for (int i = 0; i < 6; i++)
             {
                 device.DecreaseOneBrightness(lamp1.ID);
@@ -232,6 +240,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(lamp1.ID);
             device.DecreaseOneBrightness(lamp1.ID);
             device.IncreaseOneBrightness(lamp1.ID);
@@ -247,6 +256,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(lamp2.ID);
             device.DecreaseOneBrightness(lamp2.ID);
             device.IncreaseOneBrightness(lamp2.ID);
@@ -262,6 +272,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(lamp1.ID);
             // Assert
             Assert.Equal(4, lamp1.Brightness);
@@ -275,6 +286,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(lamp2.ID);
             // Assert
             Assert.Equal(9, lamp2.Brightness);
@@ -289,6 +301,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             Guid guid = Guid.NewGuid();
             // Act
+            device.TurnBothOn();
             device.DecreaseOneBrightness(guid);
             // Assert
             Assert.Equal(5, lamp1.Brightness);
@@ -304,6 +317,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             Guid guid = Guid.NewGuid();
             // Act
+            device.TurnBothOn();
             device.IncreaseOneBrightness(guid);
             // Assert
             Assert.Equal(5, lamp1.Brightness);
@@ -318,6 +332,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.IncreaseOneBrightness(lamp1.ID);
             device.IncreaseOneBrightness(lamp2.ID);
             // Assert
@@ -333,6 +348,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new EcoLamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             for (int i = 0; i <= 6; i++)
             {
                 device.DecreaseOneBrightness(lamp1.ID);
@@ -351,6 +367,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.ChangeOneBrightness(lamp1.ID, 4);
             // Assert
             Assert.Equal(4, lamp1.Brightness);
@@ -364,6 +381,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
+            device.TurnBothOn();
             device.ChangeOneBrightness(lamp2.ID, 6);
             // Assert
             Assert.Equal(6, lamp2.Brightness);
@@ -378,6 +396,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             Guid guid = Guid.NewGuid();
             // Act
+            device.TurnBothOn();
             device.ChangeOneBrightness(guid, 7);
             // Assert
             Assert.Equal(5, lamp1.Brightness);
@@ -392,6 +411,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             LampModel lamp2 = new Lamp("b");
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act & Assert
+            device.TurnBothOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => device.ChangeOneBrightness(lamp1.ID, 0));
             Assert.Throws<ArgumentOutOfRangeException>(() => device.ChangeOneBrightness(lamp2.ID, 11));
         }

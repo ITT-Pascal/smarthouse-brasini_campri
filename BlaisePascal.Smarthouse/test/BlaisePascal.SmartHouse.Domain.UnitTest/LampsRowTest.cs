@@ -95,6 +95,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
+            lampsrow.SwitchAllOn();
             lampsrow.DecreaseeAllBrightness();
             lampsrow.DecreaseeAllBrightness();
             lampsrow.IncreaseAllBrightness();
@@ -111,6 +112,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
+            lampsrow.SwitchAllOn();
             lampsrow.IncreaseAllBrightness();
             //Assert
             for(int i = 0; i < lampsrow.Lamps.Count; i++)
@@ -125,6 +127,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
+            lampsrow.SwitchAllOn();
             lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 8);
             lampsrow.IncreaseAllBrightness();
             //Assert
@@ -141,6 +144,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
+            lampsrow.SwitchAllOn();
             lampsrow.DecreaseeAllBrightness();
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
@@ -155,7 +159,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
-            for(int i = 0; i < 11; i++)
+            lampsrow.SwitchAllOn();
+            for (int i = 0; i < 11; i++)
             {
                 lampsrow.DecreaseeAllBrightness();
             }
@@ -172,6 +177,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
+            lampsrow.SwitchAllOn();
             for (int i = 0; i < 11; i++)
             {
                 lampsrow.DecreaseeAllBrightness();
@@ -192,6 +198,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act
+            lampsrow.SwitchAllOn();
             lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 3);
             //Assert
             Assert.Equal(3, lampsrow.Lamps[4].Brightness);
@@ -207,6 +214,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             //Arrange
             LampsRow lampsrow = new LampsRow(5);
             //Act & Assert
+            lampsrow.SwitchAllOn();
             Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID,11));
         }
     }

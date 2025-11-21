@@ -49,18 +49,24 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void IncreaseBrightness()
         {
+            if (Status == DeviceStatus.Off)
+                throw new Exception("Cannot increase brightness: the lamp is off");
             Brightness = Math.Min(Brightness + 1, MaxBrightness);
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public  void DecreaseBrightness()
         {
+            if (Status == DeviceStatus.Off)
+                throw new Exception("Cannot decrease brightness: the lamp is off");
             Brightness = Math.Max(Brightness - 1, MinBrightness);
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
         public void ChangeBrightness(int brightness)
         {
+            if (Status == DeviceStatus.Off)
+                throw new Exception("Cannot change brightness: the lamp is off");
             if (brightness > MinBrightness && brightness < MaxBrightness)
             {
                 Brightness = brightness;
