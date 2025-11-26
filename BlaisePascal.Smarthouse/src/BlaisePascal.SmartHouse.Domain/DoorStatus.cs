@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public enum AirMode
+    public enum DoorStatus
     {
-        Fan,
-        Dry,
-        Normal,
-        NoMode
+        Unknown,
+        Closed,
+        Open,
+        Locked,
+        OpeningLimiter,
     }
 }

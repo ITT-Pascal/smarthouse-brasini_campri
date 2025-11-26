@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain
+namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
 {
     public class AirConditioner
     {
         //Const
-        private const double DefultDegrees = 20.0;
+        private const double DefaultDegrees = 20.0;
         private const double MaxDegrees = 27.0;
         private const double MinDegrees = 16.0;
         private const double DegreeStep = 0.5;
@@ -58,7 +58,7 @@ namespace BlaisePascal.SmartHouse.Domain
                 throw new Exception("The conditioner is already On");
             Status = DeviceStatus.On;
             Mode = AirMode.Normal;
-            Degrees = DefultDegrees;
+            Degrees = DefaultDegrees;
         }
 
         public void SwitchOff()
