@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    public enum DoorStatus
-    {
-        Closed,
-        Open, 
+    public enum DoorLockingStatus
+    {   
+        Locked,
+        Unlocked,
     }
 }

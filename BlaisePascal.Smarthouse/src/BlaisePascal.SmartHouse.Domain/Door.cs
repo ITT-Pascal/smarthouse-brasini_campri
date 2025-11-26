@@ -10,12 +10,16 @@ namespace BlaisePascal.SmartHouse.Domain
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public DoorStatus Status { get; set; } = DoorStatus.Unknown;
+        public DoorStatus Status { get; set; }
+        public DoorLockingStatus LockingStatus { get; set; }
+        public DeviceStatus FunctioningStatus { get; set; }  
 
         public Door() 
         {
             Id = Guid.NewGuid();
             Status = DoorStatus.Closed;
+            LockingStatus = DoorLockingStatus.Unlocked;
+            FunctioningStatus = DeviceStatus.On;
         }
 
         public Door(string name)
@@ -23,6 +27,8 @@ namespace BlaisePascal.SmartHouse.Domain
             Name = name;
             Id = Guid.NewGuid();
             Status = DoorStatus.Closed;
+            LockingStatus = DoorLockingStatus.Unlocked;
+            FunctioningStatus = DeviceStatus.On;
         }
 
         public void OpenTheDoor()
