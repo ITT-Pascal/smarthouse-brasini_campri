@@ -103,7 +103,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
         }
 
 
-        public void SetDegrees(int value)
+        public void SetDegrees(double value)
         {
             if (value < MinDegrees || value > MaxDegrees)
                 throw new ArgumentOutOfRangeException($"Cannot set degrees to {value}: out of range");
