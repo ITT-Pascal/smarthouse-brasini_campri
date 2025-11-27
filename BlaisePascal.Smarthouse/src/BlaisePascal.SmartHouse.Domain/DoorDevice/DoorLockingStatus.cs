@@ -8,7 +8,9 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public enum DoorLockingStatus
     {   
+        Unknown,
         Locked,
         Unlocked,
+        LockingChain,
     }
 }
