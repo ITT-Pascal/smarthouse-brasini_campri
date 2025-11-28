@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
+﻿namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 {
     public class LampsRow
     {
@@ -102,6 +96,128 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             if(position >= 0 && position < Lamps.Count)
                 Lamps.RemoveAt(position);
         }
+
+        public LampModel? FindLampWithMaxBrightness()
+        {
+            LampModel? maxLamp = null;
+            int maxBrightness = 0;
+
+            foreach(LampModel l in Lamps)
+            {
+                if(maxBrightness < l.Brightness)
+                {
+                    maxBrightness = l.Brightness;
+                    maxLamp = l;
+                }
+            }
+
+            return maxLamp;
+        }
+
+        public LampModel? FindLampWithMinBrightness()
+        {
+            LampModel? minLamp = null;
+            int minBrightness = 0;
+
+            foreach(LampModel l in Lamps)
+            {
+                if(minBrightness == 0 || minBrightness > l.Brightness)
+                {
+                    minBrightness = l.Brightness;
+                    minLamp = l;
+                }
+            }
+
+            return minLamp;
+        }
+
+        public List<LampModel> FindLampsByIntensityRange(int min, int max)
+        {
+            List<LampModel> lamps = new List<LampModel>();
+
+            foreach(LampModel l in Lamps)
+            {
+                if(l.Brightness >= min && l.Brightness <= max)
+                {
+                    lamps.Add(l);
+                }
+            }
+
+            return lamps;
+        }
+
+        public List<LampModel> FindAllOn()
+        {
+            List<LampModel> lamps = new List<LampModel>();
+
+            foreach(LampModel l in Lamps)
+            {
+                if(l.Status == DeviceStatus.On)
+                {
+                    lamps.Add(l);
+                }
+            }
+
+            return lamps;
+        }
+
+        public List<LampModel> FindAllOff()
+        {
+            List<LampModel> lamps = new List<LampModel>();
+
+            foreach(LampModel l in Lamps)
+            {
+                if(l.Status == DeviceStatus.Off)
+                {
+                    lamps.Add(l);
+                }
+            }
+
+            return lamps;
+        }
+
+        public LampModel? FindLampById(Guid id)
+        {
+            LampModel? lamp = null;
+            foreach(LampModel l in Lamps)
+            {
+                if(l.ID == id)
+                {
+                    lamp = l;
+                }
+            }
+
+            return lamp;
+        }
+
+        public List<LampModel> SortByBrightness(bool descending)
+        {
+            List<LampModel> sortedLamps = new List<LampModel>();
+            LampModel? lampToRemove = null;
+
+            if (descending)
+            {
+                while(Lamps.Count != 0)
+                {
+                    lampToRemove = FindLampWithMaxBrightness();
+                    Lamps.Remove(lampToRemove);
+                    sortedLamps.Add(lampToRemove);
+                }
+            }
+            else
+            {
+                while(Lamps.Count != 0)
+                {
+                    lampToRemove = FindLampWithMinBrightness();
+                    Lamps.Remove(lampToRemove);
+                    sortedLamps.Add(lampToRemove);
+                }
+            }
+
+            Lamps = sortedLamps;
+            return Lamps;
+        }
+
 
     }
 }

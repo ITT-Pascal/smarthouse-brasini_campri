@@ -33,8 +33,9 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 
         public void OpenTheDoor()
         {
-            if (Status == DoorStatus.Closed || LockingStatus == DoorLockingStatus.Unlocked)
+            if (Status == DoorStatus.Closed && LockingStatus == DoorLockingStatus.Unlocked)
                 Status = DoorStatus.Open;
+   
             else
                 throw new Exception("cannot open the door");
 
@@ -47,8 +48,10 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 
         public void LockTheDoor()
         {
-            if(LockingStatus == DoorLockingStatus.Unlocked || Status == DoorStatus.Closed)
+            if (LockingStatus == DoorLockingStatus.Unlocked && Status == DoorStatus.Closed)
+            {
                 LockingStatus = DoorLockingStatus.Locked;
+            }
             else
                 throw new Exception("cannot lock the door");
         }
