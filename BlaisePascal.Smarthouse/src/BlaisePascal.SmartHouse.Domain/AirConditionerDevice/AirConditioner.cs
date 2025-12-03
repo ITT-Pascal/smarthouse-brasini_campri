@@ -26,6 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
         public AirConditioner()
         {
             Status = DeviceStatus.Off;
+            Id = Guid.NewGuid();
             Degrees = null;
             Mode = AirMode.NoMode;
         }

@@ -11,6 +11,5 @@ namespace BlaisePascal.SmartHouse.Domain
         Unknown,
         Locked,
         Unlocked,
-        LockingChain,
     }
 }

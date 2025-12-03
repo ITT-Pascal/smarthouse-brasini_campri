@@ -117,11 +117,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         }
 
         [Fact]
-        public void TurnOn_WhenFunctioningStatusIsOn_StatusDoesNotChange()
+        public void TurnOn_WhenFunctioningStatusIsOn_ThrowAnException()
         {
             Door door = new Door("Front Door");
-            door.TurnOn();
-            Assert.Equal(DeviceStatus.On, door.FunctioningStatus);
+            Assert.Throws<Exception>(() => door.TurnOn());
         }
 
         [Fact]
@@ -129,8 +128,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         {
             Door door = new Door("Front Door");
             door.TurnOff();
-            door.TurnOff();
-            Assert.Equal(DeviceStatus.Off, door.FunctioningStatus);
+            Assert.Throws<Exception>(() => door.TurnOff());
         }
 
         [Fact]
@@ -161,24 +159,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             Door door = new Door("Front Door");
             Assert.Throws<Exception>(() => door.SetNewName("Front Door"));
         }
-
-        [Fact]
-        public void SetLockingChain_WhenDoorIsLocked_ItChangesLockingStatusToLockingChain()
-        {
-            Door door = new Door("Front Door");
-            door.LockTheDoor();
-            door.SetLockingChain();
-            Assert.Equal(DoorLockingStatus.LockingChain, door.LockingStatus);
-        }
-
-        [Fact]
-        public void SetLockingChain_WhenDoorIsNotLocked_ItThrowsException()
-        {
-            Door door = new Door("Front Door");
-            Assert.Throws<Exception>(() => door.SetLockingChain());
-        }
-
-
 
     }
 }

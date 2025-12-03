@@ -12,9 +12,9 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
         public string Name { get; private set; }
         public DoorStatus Status { get; set; }
         public DoorLockingStatus LockingStatus { get; set; }
-        public DeviceStatus FunctioningStatus { get; set; }  
+        public DeviceStatus FunctioningStatus { get; set; }
 
-        public Door() 
+        public Door()
         {
             Id = Guid.NewGuid();
             Status = DoorStatus.Closed;
@@ -31,11 +31,17 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
             FunctioningStatus = DeviceStatus.On;
         }
 
+        private void OnValidator()
+        {
+            if (FunctioningStatus == DeviceStatus.Off)
+                throw new Exception("The door is off");
+        }
         public void OpenTheDoor()
         {
+            OnValidator();
             if (Status == DoorStatus.Closed && LockingStatus == DoorLockingStatus.Unlocked)
                 Status = DoorStatus.Open;
-   
+
             else
                 throw new Exception("cannot open the door");
 
@@ -43,11 +49,13 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 
         public void CloseTheDoor()
         {
+            OnValidator();
             Status = DoorStatus.Closed;
         }
 
         public void LockTheDoor()
         {
+            OnValidator();
             if (LockingStatus == DoorLockingStatus.Unlocked && Status == DoorStatus.Closed)
             {
                 LockingStatus = DoorLockingStatus.Locked;
@@ -58,6 +66,7 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 
         public void UnlockTheDoor()
         {
+            OnValidator();
             if (LockingStatus == DoorLockingStatus.Locked)
                 LockingStatus = DoorLockingStatus.Unlocked;
             else
@@ -66,17 +75,24 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 
         public void TurnOff()
         {
+            if (FunctioningStatus == DeviceStatus.Off)
+                throw new Exception("The door is already On");
             FunctioningStatus = DeviceStatus.Off;
+            LockingStatus = DoorLockingStatus.Unknown;
         }
 
         public void TurnOn()
         {
+            if (FunctioningStatus == DeviceStatus.On)
+                throw new Exception("The door is already On");
             FunctioningStatus = DeviceStatus.On;
+            LockingStatus = DoorLockingStatus.Unlocked;
+            Status = DoorStatus.Closed;
         }
 
         public void SetNewName(string newName)
         {
-            if(string.IsNullOrWhiteSpace(newName))
+            if (string.IsNullOrWhiteSpace(newName))
                 throw new Exception("name cannot be empty");
             else if (newName == Name)
             {
@@ -84,17 +100,5 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
             }
             Name = newName;
         }
-
-        public void SetLockingChain()
-        {
-            if(LockingStatus == DoorLockingStatus.Locked)
-                LockingStatus = DoorLockingStatus.LockingChain;
-            else
-                throw new Exception("cannot set the locking chain");
-        }
-
-
-
-
     }
 }
