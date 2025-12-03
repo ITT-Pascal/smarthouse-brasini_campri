@@ -200,7 +200,6 @@
                 while(Lamps.Count != 0)
                 {
                     lampToRemove = FindLampWithMaxBrightness();
-                    Lamps.Remove(lampToRemove);
                     sortedLamps.Add(lampToRemove);
                 }
             }
@@ -209,13 +208,10 @@
                 while(Lamps.Count != 0)
                 {
                     lampToRemove = FindLampWithMinBrightness();
-                    Lamps.Remove(lampToRemove);
                     sortedLamps.Add(lampToRemove);
                 }
             }
-
-            Lamps = sortedLamps;
-            return Lamps;
+            return sortedLamps;
         }
 
 

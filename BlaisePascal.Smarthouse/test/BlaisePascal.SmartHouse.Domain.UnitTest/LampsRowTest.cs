@@ -9,454 +9,467 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
 {
     public class LampsRowTest
     {
-        
-            [Fact]
-            public void Constructor_WhenCreateNewLampsRow_ItIsEmpty()
-            {
-                //Arrange & Act
-                LampsRow lampsRow = new LampsRow();
-                //Assert
-                Assert.Empty(lampsRow.Lamps);
-            }
 
-            [Fact]
-            public void Constructor_WhenCreateNewLampsRowWith4Lamps_ItHas4NormalLamps()
-            {
-                //Arrange & Act
-                LampsRow lampsrow = new LampsRow();
-                for (int i = 0; i < 4; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                //Assert
-                Assert.Equal(4, lampsrow.Lamps.Count);
-            }
+        [Fact]
+        public void Constructor_WhenCreateNewLampsRow_ItIsEmpty()
+        {
+            //Arrange & Act
+            LampsRow lampsRow = new LampsRow();
+            //Assert
+            Assert.Empty(lampsRow.Lamps);
+        }
 
-            [Fact]
-            public void AddLamp_WhenANewEcoLampIsAdded_ItIsAddedInTheFirstFreePosition()
+        [Fact]
+        public void Constructor_WhenCreateNewLampsRowWith4Lamps_ItHas4NormalLamps()
+        {
+            //Arrange & Act
+            LampsRow lampsrow = new LampsRow();
+            for (int i = 0; i < 4; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                lampsrow.AddLamp(new EcoLamp("a"));
-                //Assert
-                Assert.Equal(1, lampsrow.Lamps.Count);
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
             }
+            //Assert
+            Assert.Equal(4, lampsrow.Lamps.Count);
+        }
 
-            [Fact]
-            public void SwitchAllOn_AfterTurningAllOn_EveryLampIsOn()
+        [Fact]
+        public void AddLamp_WhenANewEcoLampIsAdded_ItIsAddedInTheFirstFreePosition()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            lampsrow.AddLamp(new EcoLamp("a"));
+            //Assert
+            Assert.Equal(1, lampsrow.Lamps.Count);
+        }
+
+        [Fact]
+        public void SwitchAllOn_AfterTurningAllOn_EveryLampIsOn()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 4; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 4; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count; i++)
-                {
-                    Assert.Equal(DeviceStatus.On, lampsrow.Lamps[i].Status);
-                }
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
             }
-
-            [Fact]
-            public void SwitchAllOff_AfterTurningAllOff_EveryLampISOff()
+            lampsrow.SwitchAllOn();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 4; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                lampsrow.SwitchAllOff();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count; i++)
-                {
-                    Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[i].Status);
-                }
+                Assert.Equal(DeviceStatus.On, lampsrow.Lamps[i].Status);
             }
+        }
 
-            [Fact]
-            public void SwitchOneLampOnOff_WhenChosenLampIsOff_ItTurnsOn()
+        [Fact]
+        public void SwitchAllOff_AfterTurningAllOff_EveryLampISOff()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 4; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 4; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
-                //Assert
-                Assert.Equal(DeviceStatus.On, lampsrow.Lamps[2].Status);
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
             }
-
-            [Fact]
-            public void SwitchOneLampOnOff_WhenChosenLampIsOn_ItTurnsOff()
+            lampsrow.SwitchAllOn();
+            lampsrow.SwitchAllOff();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 4; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
-                //Assert
-                Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[2].Status);
+                Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[i].Status);
             }
+        }
 
-            [Fact]
-            public void IncreaseAllBrightness_WhenAllBrightnessAreNotTheMax_TheyIncreaseByOne()
+        [Fact]
+        public void SwitchOneLampOnOff_WhenChosenLampIsOff_ItTurnsOn()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 4; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
+            //Assert
+            Assert.Equal(DeviceStatus.On, lampsrow.Lamps[2].Status);
+        }
+
+        [Fact]
+        public void SwitchOneLampOnOff_WhenChosenLampIsOn_ItTurnsOff()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 4; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
+            //Assert
+            Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[2].Status);
+        }
+
+        [Fact]
+        public void IncreaseAllBrightness_WhenAllBrightnessAreNotTheMax_TheyIncreaseByOne()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            lampsrow.DecreaseeAllBrightness();
+            lampsrow.DecreaseeAllBrightness();
+            lampsrow.IncreaseAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(9, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void IncreaseAllBrightness_WhenAllBrightnessAreMax_TheyDoNotIncrease()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            lampsrow.IncreaseAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void IncreaseAllBrightness_WhenLastLampBrightnessIsTheOnlyOneNotMax_OnlyLastLampIncreases()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 8);
+            lampsrow.IncreaseAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
+            {
+                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
+            }
+            Assert.Equal(9, lampsrow.Lamps[4].Brightness);
+        }
+
+        [Fact]
+        public void DecreaseAllBrightness_WhenAllLampsBrightnessAreNotMin_TheyAllDecrease()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            lampsrow.DecreaseeAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(9, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void DecreaseAllBrightness_WhenAllBrightnessAreMin_TheyDoNotDecrease()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            for (int i = 0; i < 11; i++)
+            {
                 lampsrow.DecreaseeAllBrightness();
+            }
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count; i++)
+            {
+                Assert.Equal(1, lampsrow.Lamps[i].Brightness);
+            }
+        }
+
+        [Fact]
+        public void DecreaseAllBrightness_WhenLastLampBrightnessIsTheOnlyOneNotMin_OnlyLastLampDecreases()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
+            {
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
+            }
+            lampsrow.SwitchAllOn();
+            for (int i = 0; i < 11; i++)
+            {
                 lampsrow.DecreaseeAllBrightness();
-                lampsrow.IncreaseAllBrightness();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count; i++)
-                {
-                    Assert.Equal(9, lampsrow.Lamps[i].Brightness);
-                }
             }
-
-            [Fact]
-            public void IncreaseAllBrightness_WhenAllBrightnessAreMax_TheyDoNotIncrease()
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 6);
+            lampsrow.DecreaseeAllBrightness();
+            //Assert
+            for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                lampsrow.IncreaseAllBrightness();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count; i++)
-                {
-                    Assert.Equal(10, lampsrow.Lamps[i].Brightness);
-                }
+                Assert.Equal(1, lampsrow.Lamps[i].Brightness);
             }
+            Assert.Equal(5, lampsrow.Lamps[4].Brightness);
+        }
 
-            [Fact]
-            public void IncreaseAllBrightness_WhenLastLampBrightnessIsTheOnlyOneNotMax_OnlyLastLampIncreases()
+        [Fact]
+        public void ChangeOneLampBrightness_WhenChangingOneLampBrightness_OnlyThatLampChanges()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 8);
-                lampsrow.IncreaseAllBrightness();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
-                {
-                    Assert.Equal(10, lampsrow.Lamps[i].Brightness);
-                }
-                Assert.Equal(9, lampsrow.Lamps[4].Brightness);
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
             }
-
-            [Fact]
-            public void DecreaseAllBrightness_WhenAllLampsBrightnessAreNotMin_TheyAllDecrease()
+            lampsrow.SwitchAllOn();
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 3);
+            //Assert
+            Assert.Equal(3, lampsrow.Lamps[4].Brightness);
+            for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                lampsrow.DecreaseeAllBrightness();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count; i++)
-                {
-                    Assert.Equal(9, lampsrow.Lamps[i].Brightness);
-                }
+                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
             }
+        }
 
-            [Fact]
-            public void DecreaseAllBrightness_WhenAllBrightnessAreMin_TheyDoNotDecrease()
+        [Fact]
+        public void ChangeOneLampBrightness_WhenChangingBrightnessToAnIncorrectValue_ThrowsOutOfRangeException()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            for (int i = 0; i < 4; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                for (int i = 0; i < 11; i++)
-                {
-                    lampsrow.DecreaseeAllBrightness();
-                }
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count; i++)
-                {
-                    Assert.Equal(1, lampsrow.Lamps[i].Brightness);
-                }
+                Lamp lamp = new Lamp("A");
+                lampsrow.AddLamp(lamp);
             }
+            //Act & Assert
+            lampsrow.SwitchAllOn();
+            Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 11));
+        }
 
-            [Fact]
-            public void DecreaseAllBrightness_WhenLastLampBrightnessIsTheOnlyOneNotMin_OnlyLastLampDecreases()
+        [Fact]
+        public void FindLampWithMaxBrightness_WhenThereAreNoLamps_ReturnNull()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act & Assert
+            Assert.Null(lampsrow.FindLampWithMaxBrightness());
+        }
+
+        [Fact]
+        public void FindLampWithMaxBrightness_BetweenToLampWith5And6_ReturnTheSecondOne()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            lampsrow.AddLamp(new Lamp("a"));
+            lampsrow.AddLamp(new Lamp("b"));
+            lampsrow.SwitchAllOn();
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 5);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].ID, 6);
+            //Assert
+            Assert.Equal(lampsrow.Lamps[1], lampsrow.FindLampWithMaxBrightness());
+        }
+
+        [Fact]
+        public void FindLampWithMinBrightness_WhenThereAreNoLamps_ReturnNull()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act & Assert
+            Assert.Null(lampsrow.FindLampWithMinBrightness());
+        }
+
+        [Fact]
+        public void FindLampWithMinBrightness_BetweenToLampWith4And6_ReturnTheFirstOne()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            lampsrow.AddLamp(new EcoLamp("a"));
+            lampsrow.AddLamp(new Lamp("b"));
+            lampsrow.SwitchAllOn();
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 4);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].ID, 6);
+            //Assert
+            Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampWithMinBrightness());
+        }
+
+        [Fact]
+        public void FindAllOn_WhenAllLampsAreOn_ReturnTheEntireList()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                for (int i = 0; i < 11; i++)
-                {
-                    lampsrow.DecreaseeAllBrightness();
-                }
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 6);
-                lampsrow.DecreaseeAllBrightness();
-                //Assert
-                for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
-                {
-                    Assert.Equal(1, lampsrow.Lamps[i].Brightness);
-                }
-                Assert.Equal(5, lampsrow.Lamps[4].Brightness);
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
+            lampsrow.SwitchAllOn();
+            //Assert
+            Assert.Equal(lampsrow.Lamps, lampsrow.FindAllOn());
+        }
 
-            [Fact]
-            public void ChangeOneLampBrightness_WhenChangingOneLampBrightness_OnlyThatLampChanges()
+        [Fact]
+        public void FindAllOn_WhenAllLampsAreOff_ReturnEmptyList()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                lampsrow.SwitchAllOn();
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 3);
-                //Assert
-                Assert.Equal(3, lampsrow.Lamps[4].Brightness);
-                for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
-                {
-                    Assert.Equal(10, lampsrow.Lamps[i].Brightness);
-                }
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
+            //Assert
+            Assert.Equal(new List<LampModel>(), lampsrow.FindAllOn());
+        }
 
-            [Fact]
-            public void ChangeOneLampBrightness_WhenChangingBrightnessToAnIncorrectValue_ThrowsOutOfRangeException()
+        [Fact]
+        public void FindAllOn_When3LampsAreOn_ReturnAListOf3Lamps()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                for (int i = 0; i < 4; i++)
-                {
-                    Lamp lamp = new Lamp("A");
-                    lampsrow.AddLamp(lamp);
-                }
-                //Act & Assert
-                lampsrow.SwitchAllOn();
-                Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 11));
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
 
-            [Fact]
-            public void FindLampWithMaxBrightness_WhenThereAreNoLamps_ReturnNull()
+            for (int i = 0; i < 3; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act & Assert
-                Assert.Null(lampsrow.FindLampWithMaxBrightness());
+                lampsrow.ToggleOneLamp(lampsrow.Lamps[i].ID);
             }
+            //Assert
+            Assert.Equal(3, lampsrow.FindAllOn().Count);
+        }
 
-            [Fact]
-            public void FindLampWithMaxBrightness_BetweenToLampWith5And6_ReturnTheSecondOne()
+        [Fact]
+        public void FindAllOff_WhenAllLampsAreOff_ReturnTheEntireList()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                lampsrow.AddLamp(new Lamp("a"));
-                lampsrow.AddLamp(new Lamp("b"));
-                lampsrow.SwitchAllOn();
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 5);
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].ID, 6);
-                //Assert
-                Assert.Equal(lampsrow.Lamps[1], lampsrow.FindLampWithMaxBrightness());
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
+            //Assert
+            Assert.Equal(lampsrow.Lamps, lampsrow.FindAllOff());
+        }
 
-            [Fact]
-            public void FindLampWithMinBrightness_WhenThereAreNoLamps_ReturnNull()
+        [Fact]
+        public void FindAllOff_WhenAllLampsAreOn_ReturnEmptyList()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act & Assert
-                Assert.Null(lampsrow.FindLampWithMinBrightness());
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
+            lampsrow.SwitchAllOn();
+            //Assert
+            Assert.Equal(new List<LampModel>(), lampsrow.FindAllOff());
+        }
 
-            [Fact]
-            public void FindLampWithMinBrightness_BetweenToLampWith4And6_ReturnTheFirstOne()
+        [Fact]
+        public void FindAllOff_When3LampsAreOff_ReturnAListOf3Lamps()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                lampsrow.AddLamp(new EcoLamp("a"));
-                lampsrow.AddLamp(new Lamp("b"));
-                lampsrow.SwitchAllOn();
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 4);
-                lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].ID, 6);
-                //Assert
-                Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampWithMinBrightness());
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
 
-            [Fact]
-            public void FindAllOn_WhenAllLampsAreOn_ReturnTheEntireList()
+            for (int i = 0; i < 2; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-                lampsrow.SwitchAllOn();
-                //Assert
-                Assert.Equal(lampsrow.Lamps, lampsrow.FindAllOn());
+                lampsrow.ToggleOneLamp(lampsrow.Lamps[i].ID);
             }
+            //Assert
+            Assert.Equal(3, lampsrow.FindAllOff().Count);
+        }
 
-            [Fact]
-            public void FindAllOn_WhenAllLampsAreOff_ReturnEmptyList()
+        [Fact]
+        public void FindLampById_WhenThereIsNotALampWithTheIdSelected_ReturnNull()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act & Assert
+            Assert.Null(lampsrow.FindLampById(Guid.NewGuid()));
+
+        }
+
+        [Fact]
+        public void FindLampById_WhenIdIsFound_ReturnTheLampWithTheId()
+        {
+            //Arrange
+            LampsRow lampsrow = new LampsRow();
+            //Act
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-                //Assert
-                Assert.Equal(new List<LampModel>(), lampsrow.FindAllOn());
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
             }
 
-            [Fact]
-            public void FindAllOn_When3LampsAreOn_ReturnAListOf3Lamps()
+            //Assert
+            Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampById(lampsrow.Lamps[0].ID));
+        }
+
+        [Fact]
+        public void SortByBrightness_WhenTheFunctionIsCalled_ItReturnsAListInDescendingOrGrowingOrderBasedOnTheChoice()
+        {
+            LampsRow lampsrow = new LampsRow();
+            LampsRow newList = new LampsRow();
+            for (int i = 0; i < 5; i++)
             {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-
-                for (int i = 0; i < 3; i++)
-                {
-                    lampsrow.ToggleOneLamp(lampsrow.Lamps[i].ID);
-                }
-                //Assert
-                Assert.Equal(3, lampsrow.FindAllOn().Count);
+                lampsrow.AddLamp(new Lamp($"{i + 1}"));
+                lampsrow.Lamps[i].ChangeBrightness(i);
             }
 
-            [Fact]
-            public void FindAllOff_WhenAllLampsAreOff_ReturnTheEntireList()
-            {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-                //Assert
-                Assert.Equal(lampsrow.Lamps, lampsrow.FindAllOff());
-            }
 
-            [Fact]
-            public void FindAllOff_WhenAllLampsAreOn_ReturnEmptyList()
-            {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-                lampsrow.SwitchAllOn();
-                //Assert
-                Assert.Equal(new List<LampModel>(), lampsrow.FindAllOff());
-            }
-
-            [Fact]
-            public void FindAllOff_When3LampsAreOff_ReturnAListOf3Lamps()
-            {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-
-                for (int i = 0; i < 2; i++)
-                {
-                    lampsrow.ToggleOneLamp(lampsrow.Lamps[i].ID);
-                }
-                //Assert
-                Assert.Equal(3, lampsrow.FindAllOff().Count);
-            }
-
-            [Fact]
-            public void FindLampById_WhenThereIsNotALampWithTheIdSelected_ReturnNull()
-            {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act & Assert
-                Assert.Null(lampsrow.FindLampById(Guid.NewGuid()));
-
-            }
-
-            [Fact]
-            public void FindLampById_WhenIdIsFound_ReturnTheLampWithTheId()
-            {
-                //Arrange
-                LampsRow lampsrow = new LampsRow();
-                //Act
-                for (int i = 0; i < 5; i++)
-                {
-                    lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                }
-
-                //Assert
-                Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampById(lampsrow.Lamps[0].ID));
-            }
-
+            
+        }
 
     }
-
 }
 
 
