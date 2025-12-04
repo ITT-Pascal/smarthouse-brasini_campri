@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void Constructor_AfterCreating_TheCctvIsOff()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Equal(DeviceStatus.Off, cctv.Status);
             Assert.Equal(CCTVMode.NoMode, cctv.Mode);
@@ -25,7 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void TurnOn_WhenCctvIsOff_TurnItOn()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             //Assert
@@ -36,7 +36,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void TurnOn_WhenCctvIsOn_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             //Assert
@@ -48,7 +48,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void TurnOff_WhenCctvIsOn_TurnItOn()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.TurnOff();
@@ -60,7 +60,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void TurnOff_WhenCctvIsOff_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Throws<Exception>(() => cctv.TurnOff());
         }
@@ -69,7 +69,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNormalMode_WhenCctvIsOff_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Throws<Exception>(() => cctv.SetNormalMode());
         }
@@ -78,7 +78,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNormalMode_WhenModeIsAlreadyNormal_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             //Assert
@@ -89,7 +89,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNormalMode_WhenModeNotNormal_SetItToNormal()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.SetNightMode();
@@ -102,7 +102,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNightMode_WhenCctvIsOff_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Throws<Exception>(() => cctv.SetNightMode());
         }
@@ -111,7 +111,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNightMode_WhenModeIsAlreadyNight_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.SetNightMode();
@@ -123,7 +123,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNightMode_WhenModeNotNight_SetItToNight()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.SetNightMode();
@@ -135,7 +135,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetMode_WhenCctvIsOff_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Throws<Exception>(() => cctv.SetMode(CCTVMode.Normal));
         }
@@ -144,7 +144,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetMode_WhenCctvIsOnTheModeChoosed_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             //Assert
@@ -155,7 +155,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetMode_WhenCctvIsNotOnTheModeChoosed_ChangeMode()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.SetMode(CCTVMode.Night);
@@ -167,7 +167,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void StartRecording_WhenCctvIsOff_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Throws<Exception>(() => cctv.StartRecording());
         }
@@ -176,7 +176,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void StartRecording_WhenCctvIsAlreadyRecording_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.StartRecording();
@@ -188,7 +188,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void StartRecording_WhenCctvIsNotRecording_StartTheRecording()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.StartRecording();
@@ -200,7 +200,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void StopRecording_WhenCctvIsOff_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act & Assert
             Assert.Throws<Exception>(() => cctv.StopRecording());
         }
@@ -209,7 +209,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void StopRecording_WhenCctvIsNotRecording_ThrowError()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             //Assert
@@ -220,7 +220,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void StopRecording_WhenCctvIsRecording_StopTheRecording()
         {
             //Arrange
-            CCTV cctv = new CCTV();
+            CCTV cctv = new CCTV("a");
             //Act
             cctv.TurnOn();
             cctv.StartRecording();

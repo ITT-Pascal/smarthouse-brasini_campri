@@ -6,43 +6,21 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.CctvDevice
 {
-    public class CCTV
+    public class CCTV: AbstractDevice
     {
         //Properties
-
-        public string Name { get; private set; }
-        public Guid Id { get; private set; }
-        public DeviceStatus Status { get; private set; }
         public CCTVMode Mode { get; private set; }
-        public DateTime LastModifiedAtUtc { get; private set; }
-        public DateTime CreatedAtUtf { get; private set; }
         public bool isRecording { get; private set; }
 
         //Constructor
-        public CCTV()
+        public CCTV(string name): base(name)
         {
-            Id = Guid.NewGuid();
-            Status = DeviceStatus.Off;
             Mode = CCTVMode.NoMode;
-            CreatedAtUtf = DateTime.UtcNow;
             isRecording = false;
         }
-        public CCTV(string name)
+        public CCTV(string name, Guid id): base(id, name)
         {
-            Name = name;
-            Id = Guid.NewGuid();
-            Status = DeviceStatus.Off;
             Mode = CCTVMode.NoMode;
-            CreatedAtUtf = DateTime.UtcNow;
-            isRecording = false;
-        }
-        public CCTV(string name, Guid id)
-        {
-            Name = name;
-            Id = id;
-            Status = DeviceStatus.Off;
-            Mode = CCTVMode.NoMode;
-            CreatedAtUtf = DateTime.UtcNow;
             isRecording = false;
         }
 
@@ -55,7 +33,7 @@ namespace BlaisePascal.SmartHouse.Domain.CctvDevice
 
 
 
-        public void TurnOn()
+        public override void TurnOn()
         {
             if (Status == DeviceStatus.On)
                 throw new Exception("The CCTV is already on");
@@ -65,7 +43,7 @@ namespace BlaisePascal.SmartHouse.Domain.CctvDevice
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public void TurnOff()
+        public override void TurnOff()
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("The CCTV is already off");
