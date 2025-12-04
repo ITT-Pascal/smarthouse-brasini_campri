@@ -1,4 +1,5 @@
 ﻿using BlaisePascal.SmartHouse.Domain.CctvDevice;
+using BlaisePascal.SmartHouse.Domain.Device;
 using System;
 using System.Collections.Generic;
 using System.Linq;

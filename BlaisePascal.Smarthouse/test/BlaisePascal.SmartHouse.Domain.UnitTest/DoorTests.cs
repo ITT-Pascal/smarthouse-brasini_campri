@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.DoorDevice;
+﻿using BlaisePascal.SmartHouse.Domain.Device;
+using BlaisePascal.SmartHouse.Domain.DoorDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.CctvDevice
 {
@@ -25,14 +26,6 @@ namespace BlaisePascal.SmartHouse.Domain.CctvDevice
         }
 
         //Methods
-        private void OnValidator()
-        {
-            if (Status == DeviceStatus.Off)
-                throw new Exception("The device is off");
-        }
-
-
-
         public override void TurnOn()
         {
             if (Status == DeviceStatus.On)

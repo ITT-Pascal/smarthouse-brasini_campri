@@ -1,4 +1,6 @@
-﻿namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
+﻿using BlaisePascal.SmartHouse.Domain.Device;
+
+namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 {
     public class LampsRow
     {

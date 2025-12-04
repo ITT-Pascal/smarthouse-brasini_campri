@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 {
@@ -28,12 +29,6 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
             Status = DeviceStatus.On;
         }
 
-        private void OnValidator()
-        {
-            if (Status == DeviceStatus.Off)
-                throw new Exception("The door is off");
-            LastModifiedAtUtc = DateTime.Now;
-        }
         public void OpenTheDoor()
         {
             OnValidator();

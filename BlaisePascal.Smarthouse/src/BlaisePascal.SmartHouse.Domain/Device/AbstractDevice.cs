@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain
+namespace BlaisePascal.SmartHouse.Domain.Device
 {
     public abstract class AbstractDevice
     {
@@ -32,6 +32,12 @@ namespace BlaisePascal.SmartHouse.Domain
         }
 
         //Methods
+        public void OnValidator()
+        {
+            if (Status == DeviceStatus.Off)
+                throw new Exception("The device is off");
+            
+        }
         public virtual void Toggle()
         {
             if (Status == DeviceStatus.On)

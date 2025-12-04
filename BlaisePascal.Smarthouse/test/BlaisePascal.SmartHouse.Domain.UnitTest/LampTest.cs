@@ -1,3 +1,4 @@
+using BlaisePascal.SmartHouse.Domain.Device;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest
