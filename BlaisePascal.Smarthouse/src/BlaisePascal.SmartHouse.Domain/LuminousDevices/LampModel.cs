@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         //Methods
 
-        public void IncreaseBrightness()
+        public virtual void IncreaseBrightness()
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot increase brightness: the lamp is off");
@@ -40,7 +40,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public  void DecreaseBrightness()
+        public  virtual void DecreaseBrightness()
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot decrease brightness: the lamp is off");
@@ -48,7 +48,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
-        public void ChangeBrightness(int brightness)
+        public virtual void ChangeBrightness(int brightness)
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot change brightness: the lamp is off");

@@ -102,6 +102,42 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             Assert.Equal(3, lamp.Brightness);
         }
 
-   
+        [Fact]
+        public void checkAutoOff_WhenAutoOffTimeIsNotReached_LampRemainsOn()
+        {
+            EcoLamp lamp = new EcoLamp("a");
+            lamp.TurnOn();
+            lamp.CheckAutoOff();
+            Assert.Equal(DeviceStatus.On, lamp.Status);
+        }
+
+        [Fact]
+        public void changeBrightness_IncreasesAutoOffTime()
+        {
+            EcoLamp lamp = new EcoLamp("a");
+            lamp.TurnOn();
+            lamp.ChangeBrightness(2);
+            lamp.CheckAutoOff();
+            Assert.Equal(DeviceStatus.On, lamp.Status);
+        }
+        [Fact]
+        public void increaseBrightness_IncreasesAutoOffTime()
+        {
+            EcoLamp lamp = new EcoLamp("a");
+            lamp.TurnOn();
+            lamp.IncreaseBrightness();
+            lamp.CheckAutoOff();
+            Assert.Equal(DeviceStatus.On, lamp.Status);
+        }
+        [Fact]
+        public void decreaseBrightness_IncreasesAutoOffTime()
+        {
+            EcoLamp lamp = new EcoLamp("a");
+            lamp.TurnOn();
+            lamp.DecreaseBrightness();
+            lamp.CheckAutoOff();
+            Assert.Equal(DeviceStatus.On, lamp.Status);
+        }
+        
     }
 }
