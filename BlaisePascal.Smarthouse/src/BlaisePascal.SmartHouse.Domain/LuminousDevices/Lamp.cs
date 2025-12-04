@@ -14,23 +14,10 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         //Constructor
         
-        public Lamp(string name)
-        {
-            Status = DeviceStatus.Off;
-            Brightness = MaxBrightness;
-            ID = Guid.NewGuid();
-            Name = name;
-            CreatedAtUtc = DateTime.UtcNow;
+        public Lamp(string name): base(name) { }
+        
 
-        }
-
-        public Lamp(Guid newID, string name)
-        {
-            Status = DeviceStatus.Off;
-            Brightness = MaxBrightness;
-            ID = newID;
-            Name = name;
-            CreatedAtUtc = DateTime.UtcNow;
-        }
+        public Lamp(Guid newID, string name): base(newID, name) { }
+        
     }
 }

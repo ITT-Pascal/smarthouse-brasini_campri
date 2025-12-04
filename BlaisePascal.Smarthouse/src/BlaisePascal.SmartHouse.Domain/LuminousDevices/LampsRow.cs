@@ -57,7 +57,7 @@
         {
             for (int i = 0; i < Lamps.Count; i++)
             {
-                if (Lamps[i].ID == id)
+                if (Lamps[i].Id == id)
                 {
                     Lamps[i].Toggle();
                 }
@@ -86,7 +86,7 @@
         {
             for (int i = 0; i < Lamps.Count; i++)
             {
-                if (Lamps[i].ID == id)
+                if (Lamps[i].Id == id)
                     Lamps[i].ChangeBrightness(newBrightness);
             }
         }
@@ -181,7 +181,7 @@
             LampModel? lamp = null;
             foreach(LampModel l in Lamps)
             {
-                if(l.ID == id)
+                if(l.Id == id)
                 {
                     lamp = l;
                 }

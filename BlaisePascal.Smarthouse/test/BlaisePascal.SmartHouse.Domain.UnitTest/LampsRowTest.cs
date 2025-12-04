@@ -94,7 +94,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 Lamp lamp = new Lamp("A");
                 lampsrow.AddLamp(lamp);
             }
-            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
+            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].Id);
             //Assert
             Assert.Equal(DeviceStatus.On, lampsrow.Lamps[2].Status);
         }
@@ -111,7 +111,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 lampsrow.AddLamp(lamp);
             }
             lampsrow.SwitchAllOn();
-            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].ID);
+            lampsrow.ToggleOneLamp(lampsrow.Lamps[2].Id);
             //Assert
             Assert.Equal(DeviceStatus.Off, lampsrow.Lamps[2].Status);
         }
@@ -128,13 +128,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 lampsrow.AddLamp(lamp);
             }
             lampsrow.SwitchAllOn();
-            lampsrow.DecreaseeAllBrightness();
-            lampsrow.DecreaseeAllBrightness();
             lampsrow.IncreaseAllBrightness();
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.Equal(9, lampsrow.Lamps[i].Brightness);
+                Assert.Equal(2, lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -150,7 +148,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 lampsrow.AddLamp(lamp);
             }
             lampsrow.SwitchAllOn();
-            lampsrow.IncreaseAllBrightness();
+            for (int i = 0; i < 10; i++)
+            {
+                lampsrow.IncreaseAllBrightness();
+            }
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
@@ -170,7 +171,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 lampsrow.AddLamp(lamp);
             }
             lampsrow.SwitchAllOn();
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 8);
+            for (int i = 0; i < 10; i++)
+            {
+                lampsrow.IncreaseAllBrightness();
+            }
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].Id, 8);
             lampsrow.IncreaseAllBrightness();
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
@@ -192,11 +197,13 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 lampsrow.AddLamp(lamp);
             }
             lampsrow.SwitchAllOn();
+            lampsrow.IncreaseAllBrightness();
+            lampsrow.IncreaseAllBrightness();
             lampsrow.DecreaseeAllBrightness();
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.Equal(9, lampsrow.Lamps[i].Brightness);
+                Assert.Equal(2, lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -239,7 +246,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             {
                 lampsrow.DecreaseeAllBrightness();
             }
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 6);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].Id, 6);
             lampsrow.DecreaseeAllBrightness();
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
@@ -261,12 +268,12 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
                 lampsrow.AddLamp(lamp);
             }
             lampsrow.SwitchAllOn();
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].ID, 3);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].Id, 3);
             //Assert
             Assert.Equal(3, lampsrow.Lamps[4].Brightness);
             for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
             {
-                Assert.Equal(10, lampsrow.Lamps[i].Brightness);
+                Assert.Equal(1, lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -282,7 +289,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             }
             //Act & Assert
             lampsrow.SwitchAllOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 11));
+            Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].Id, 11));
         }
 
         [Fact]
@@ -303,8 +310,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             lampsrow.AddLamp(new Lamp("a"));
             lampsrow.AddLamp(new Lamp("b"));
             lampsrow.SwitchAllOn();
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 5);
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].ID, 6);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].Id, 5);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].Id, 6);
             //Assert
             Assert.Equal(lampsrow.Lamps[1], lampsrow.FindLampWithMaxBrightness());
         }
@@ -327,8 +334,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             lampsrow.AddLamp(new EcoLamp("a"));
             lampsrow.AddLamp(new Lamp("b"));
             lampsrow.SwitchAllOn();
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].ID, 4);
-            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].ID, 6);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].Id, 4);
+            lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[1].Id, 6);
             //Assert
             Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampWithMinBrightness());
         }
@@ -375,7 +382,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
 
             for (int i = 0; i < 3; i++)
             {
-                lampsrow.ToggleOneLamp(lampsrow.Lamps[i].ID);
+                lampsrow.ToggleOneLamp(lampsrow.Lamps[i].Id);
             }
             //Assert
             Assert.Equal(3, lampsrow.FindAllOn().Count);
@@ -423,7 +430,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
 
             for (int i = 0; i < 2; i++)
             {
-                lampsrow.ToggleOneLamp(lampsrow.Lamps[i].ID);
+                lampsrow.ToggleOneLamp(lampsrow.Lamps[i].Id);
             }
             //Assert
             Assert.Equal(3, lampsrow.FindAllOff().Count);
@@ -451,23 +458,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             }
 
             //Assert
-            Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampById(lampsrow.Lamps[0].ID));
+            Assert.Equal(lampsrow.Lamps[0], lampsrow.FindLampById(lampsrow.Lamps[0].Id));
         }
 
-        [Fact]
-        public void SortByBrightness_WhenTheFunctionIsCalled_ItReturnsAListInDescendingOrGrowingOrderBasedOnTheChoice()
-        {
-            LampsRow lampsrow = new LampsRow();
-            LampsRow newList = new LampsRow();
-            for (int i = 0; i < 5; i++)
-            {
-                lampsrow.AddLamp(new Lamp($"{i + 1}"));
-                lampsrow.Lamps[i].ChangeBrightness(i);
-            }
-
-
-            
-        }
+        
 
     }
 }

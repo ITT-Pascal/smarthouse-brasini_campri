@@ -18,23 +18,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
 
         //Constructor
-        public EcoLamp(string name )
-        {
-            Status = DeviceStatus.Off;
-            Brightness = MaxBrightness;
-            ID = Guid.NewGuid();
-            Name = name;
-            CreatedAtUtc = DateTime.UtcNow;
-        }
+        public EcoLamp(string name ): base( name ) { }
+        
 
-        public EcoLamp(Guid newID, string name)
-        {
-            Status = DeviceStatus.Off;
-            Brightness = MaxBrightness;
-            ID = newID;
-            Name = name;
-            CreatedAtUtc = DateTime.UtcNow;
-        }
+        public EcoLamp(Guid newID, string name): base( newID, name ) { }
+        
 
     }
 }

@@ -9,43 +9,27 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 {
-    public abstract class LampModel
+    public abstract class LampModel: AbstractDevice
     {
         //Properties
-        public DeviceStatus Status { get; protected set; } = DeviceStatus.Unkwnown;
         public int Brightness { get; protected set; }
-        public Guid ID { get; protected set; }
-        public string Name { get; protected set; }
-        public DateTime CreatedAtUtc { get; protected set; }
-        public DateTime LastModifiedAtUtc { get; protected set; }
-
+        
         public abstract int MaxBrightness { get; }
         public abstract int MinBrightness { get; }
 
+        //Constructor
+        protected LampModel(string name):base(name)
+        {
+            Brightness = MinBrightness; 
+        }
+        protected LampModel(Guid Id, string name): base(Id, name)
+        {
+            Brightness = MinBrightness;
+        }
+
+
 
         //Methods
-        public void Toggle()
-        {
-            if (Status == DeviceStatus.Off)
-                Status = DeviceStatus.On;
-            else if (Status == DeviceStatus.On)
-                Status = DeviceStatus.Off;
-            LastModifiedAtUtc = DateTime.UtcNow;
-        }
-
-        public void SwitchOn()
-        {
-            if (Status == DeviceStatus.On)
-                throw new Exception("The Lamp is already on");
-            Status = DeviceStatus.On;
-        }
-
-        public void SwitchOff()
-        {
-            if (Status == DeviceStatus.Off)
-                throw new Exception("The lamp is already off");
-            Status = DeviceStatus.Off;
-        }
 
         public void IncreaseBrightness()
         {

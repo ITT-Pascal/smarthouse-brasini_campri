@@ -14,9 +14,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void Constructor_WhenDoorIsCreated_StatusIsClosedLockingStatusIsUnlockedAndFunctioningStatusIsOn()
         {
             Door door = new Door("Front Door");
-            Assert.Equal(DoorStatus.Closed, door.Status);
+            Assert.Equal(DoorStatus.Closed, door.DoorStatus);
             Assert.Equal(DoorLockingStatus.Unlocked, door.LockingStatus);
-            Assert.Equal(DeviceStatus.On, door.FunctioningStatus);
+            Assert.Equal(DeviceStatus.On, door.Status);
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         {
             Door door = new Door("Front Door");
             door.OpenTheDoor();
-            Assert.Equal(DoorStatus.Open, door.Status);
+            Assert.Equal(DoorStatus.Open, door.DoorStatus);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             Door door = new Door("Front Door");
             door.OpenTheDoor();
             door.CloseTheDoor();
-            Assert.Equal(DoorStatus.Closed, door.Status);
+            Assert.Equal(DoorStatus.Closed, door.DoorStatus);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void CloseTheDoor_WhenDoorIsAlreadyClosed_StatusDoesNotChange()
         {
             Door door = new Door("Front Door");
-            Assert.Equal(DoorStatus.Closed, door.Status);
+            Assert.Equal(DoorStatus.Closed, door.DoorStatus);
         }
 
         [Fact]
@@ -100,31 +100,31 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         }
 
         [Fact]
-        public void TurnOn_WhenFunctioningStatusIsOff_ItChangesToOn()
+        public void TurnOn_WhenStatusIsOff_ItChangesToOn()
         {
             Door door = new Door("Front Door");
             door.TurnOff();
             door.TurnOn();
-            Assert.Equal(DeviceStatus.On, door.FunctioningStatus);
+            Assert.Equal(DeviceStatus.On, door.Status);
         }
 
         [Fact]
-        public void TurnOff_WhenFunctioningStatusIsOn_ItChangesToOff()
+        public void TurnOff_WhenStatusIsOn_ItChangesToOff()
         {
             Door door = new Door("Front Door");
             door.TurnOff();
-            Assert.Equal(DeviceStatus.Off, door.FunctioningStatus);
+            Assert.Equal(DeviceStatus.Off, door.Status);
         }
 
         [Fact]
-        public void TurnOn_WhenFunctioningStatusIsOn_ThrowAnException()
+        public void TurnOn_WhenStatusIsOn_ThrowAnException()
         {
             Door door = new Door("Front Door");
             Assert.Throws<Exception>(() => door.TurnOn());
         }
 
         [Fact]
-        public void TurnOff_WhenFunctioningStatusIsOff_StatusDoesNotChange()
+        public void TurnOff_WhenStatusIsOff_StatusDoesNotChange()
         {
             Door door = new Door("Front Door");
             door.TurnOff();
