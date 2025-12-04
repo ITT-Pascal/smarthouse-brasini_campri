@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void Constructor_AfterCreation_AirConditionerIsOff()
         {
             //Arrange & Act
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
             Assert.Null(cond.Degrees);
@@ -23,37 +23,37 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         }
 
         [Fact]
-        public void SwitchOn_WhenConditionerIsOff_ItTurnsOn()
+        public void TurnOn_WhenConditionerIsOff_ItTurnsOn()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             //Assert
             Assert.Equal(DeviceStatus.On, cond.Status);
-            Assert.Equal(20.0, cond.Degrees);
-            Assert.Equal(AirMode.Normal, cond.Mode);
+            Assert.Null( cond.Degrees);
+            Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
         [Fact]
-        public void SwitchOn_WhenConditionerIsOn_ThrowsError()
+        public void TurnOn_WhenConditionerIsOn_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             //Arrange
-            Assert.Throws<Exception>(() => cond.SwitchOn());
+            Assert.Throws<Exception>(() => cond.TurnOn());
         }
 
         [Fact]
-        public void SwitchOff_WhenConditionerIsOn_ItTurnsOff()
+        public void TurnOff_WhenConditionerIsOn_ItTurnsOff()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
-            cond.SwitchOff();
+            cond.TurnOn();
+            cond.TurnOff();
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
             Assert.Equal(null, cond.Degrees);
@@ -61,19 +61,19 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         }
 
         [Fact]
-        public void SwitchOff_WhenConditionerIsOff_ThrowsError()
+        public void TurnOff_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Arrange
-            Assert.Throws<Exception>(() => cond.SwitchOff());
+            Assert.Throws<Exception>(() => cond.TurnOff());
         }
 
         [Fact]
         public void SetNormalMode_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.SetNormalMode());
         }
@@ -82,9 +82,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNormalMode_WhenModeIsNormal_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
+            cond.SetNormalMode();
             //Assert
             Assert.Throws<Exception>(() => cond.SetNormalMode());
         }
@@ -93,9 +94,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetNormalMode_WhenModeIsNotNormal_SetIt()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetFanMode();
             cond.SetNormalMode();
             //Assert
@@ -106,7 +107,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetFanMode_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.SetNormalMode());
         }
@@ -115,9 +116,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetFanMode_WhenModeIsFan_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetFanMode();
             //Assert
             Assert.Throws<Exception>(() => cond.SetFanMode());
@@ -127,9 +128,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetFanMode_WhenModeIsNotFan_SetIt()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetFanMode();
             //Assert
             Assert.Equal(AirMode.Fan, cond.Mode);
@@ -139,7 +140,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDryMode_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.SetDryMode());
         }
@@ -148,9 +149,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDryMode_WhenModeIsAlreadyDry_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDryMode();
             //Assert
             Assert.Throws<Exception>(() => cond.SetDryMode());
@@ -160,9 +161,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDryMode_WhenModeIsNotDry_SetIt()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDryMode();
             //Assert
             Assert.Equal(AirMode.Dry, cond.Mode);
@@ -172,7 +173,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetMode_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange 
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.SetMode(AirMode.Normal));
         }
@@ -181,20 +182,20 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetMode_WhenModeIsAlreadyTheOneSelected_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             //Assert
-            Assert.Throws<ArgumentException>(() => cond.SetMode(AirMode.Normal));
+            Assert.Throws<ArgumentException>(() => cond.SetMode(AirMode.NoMode));
         }
 
         [Fact]
         public void SetMode_WhenModeIsNotTheOneSelected_ChangesIt()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetMode(AirMode.Fan);
             //Assert
             Assert.Equal(AirMode.Fan, cond.Mode);
@@ -204,7 +205,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDegrees_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.SetDegrees(24));
         }
@@ -213,9 +214,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDegrees_WhenDegreesAreUnderMinValue_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetDegrees(15));
         }
@@ -224,9 +225,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDegrees_WhenDegreesAreOverMaxValue_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetDegrees(28));
         }
@@ -235,9 +236,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDegrees_WhenModeIsDry_CannotChangeDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetMode(AirMode.Dry);
             //Assert
             Assert.Throws<Exception>(() => cond.SetDegrees(20));
@@ -247,9 +248,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDegrees_WhenModeIsFan_CannotChangeDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetMode(AirMode.Fan);
             //Assert
             Assert.Throws<Exception>(() => cond.SetDegrees(20));
@@ -259,9 +260,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void SetDegrees_WhenModeIsNormalAndDegreesAreInRange_SetToNewDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDegrees(20);
             //Assert
             Assert.Equal(20, cond.Degrees);
@@ -272,7 +273,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void IncreaseDegrees_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.IncreaseDegrees());
         }
@@ -281,9 +282,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void IncreaseDegrees_WhenModeIsDry_CannotIncreaseDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDryMode();
             //Assert
             Assert.Throws<Exception>(() => cond.IncreaseDegrees());
@@ -293,9 +294,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void IncreaseDegrees_WhenModeIsFan_CannotIncreaseDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetFanMode();
             //Assert
             Assert.Throws<Exception>(() => cond.IncreaseDegrees());
@@ -305,21 +306,21 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void IncreaseDegrees_WhenDegreesAreNotMax_IncreaseByHalfDegree()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.IncreaseDegrees();
             //Assert
-            Assert.Equal(20.5, cond.Degrees);
+            Assert.Equal(27, cond.Degrees);
         }
 
         [Fact]
         public void IncreaseDegrees_WhenDegreesAreMaxOrGetToMax_SetToMax()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDegrees(27);
             cond.IncreaseDegrees();
             //Assert
@@ -330,7 +331,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void DecreaseDegrees_WhenConditionerIsOff_ThrowsError()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
             Assert.Throws<Exception>(() => cond.DecreaseDegrees());
         }
@@ -339,9 +340,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void DecreaseDegrees_WhenModeIsDry_CannotDecreaseDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDryMode();
             //Assert
             Assert.Throws<Exception>(() => cond.DecreaseDegrees());
@@ -351,9 +352,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void DecreaseDegrees_WhenModeIsFan_CannotDecreaseDegrees()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetFanMode();
             //Assert
             Assert.Throws<Exception>(() => cond.DecreaseDegrees());
@@ -363,21 +364,21 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
         public void DecreaseDegrees_WhenDegreesAreNotMax_DecraseByHalfDegree()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.DecreaseDegrees();
             //Assert
-            Assert.Equal(19.5, cond.Degrees);
+            Assert.Equal(16, cond.Degrees);
         }
 
         [Fact]
         public void DecreaseDegrees_WhenDegreesAreMinOrGetToMin_SetToMin()
         {
             //Arrange
-            AirConditioner cond = new AirConditioner();
+            AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
-            cond.SwitchOn();
+            cond.TurnOn();
             cond.SetDegrees(16);
             cond.DecreaseDegrees();
             //Assert

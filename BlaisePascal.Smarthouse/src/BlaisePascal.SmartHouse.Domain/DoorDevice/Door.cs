@@ -6,62 +6,63 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 {
-    public class Door
+    public class Door:AbstractDevice
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public DoorStatus Status { get; set; }
-        public DoorLockingStatus LockingStatus { get; set; }
-        public DeviceStatus FunctioningStatus { get; set; }
+        public DoorStatus DoorStatus { get;private set; }
+        public DoorLockingStatus LockingStatus { get;private set; }
+ 
 
-        public Door()
+        
+
+        public Door(string name):base(name)
         {
-            Id = Guid.NewGuid();
-            Status = DoorStatus.Closed;
+            DoorStatus = DoorStatus.Closed;
             LockingStatus = DoorLockingStatus.Unlocked;
-            FunctioningStatus = DeviceStatus.On;
+            Status = DeviceStatus.On;
         }
 
-        public Door(string name)
+        public Door(Guid Id, string name): base(Id, name)
         {
-            Name = name;
-            Id = Guid.NewGuid();
-            Status = DoorStatus.Closed;
+            DoorStatus = DoorStatus.Closed;
             LockingStatus = DoorLockingStatus.Unlocked;
-            FunctioningStatus = DeviceStatus.On;
+            Status = DeviceStatus.On;
         }
 
         private void OnValidator()
         {
-            if (FunctioningStatus == DeviceStatus.Off)
+            if (Status == DeviceStatus.Off)
                 throw new Exception("The door is off");
+            LastModifiedAtUtc = DateTime.Now;
         }
         public void OpenTheDoor()
         {
             OnValidator();
-            if (Status == DoorStatus.Closed && LockingStatus == DoorLockingStatus.Unlocked)
-                Status = DoorStatus.Open;
+            if (DoorStatus == DoorStatus.Closed && LockingStatus == DoorLockingStatus.Unlocked)
+                DoorStatus = DoorStatus.Open;
 
             else
                 throw new Exception("cannot open the door");
+            LastModifiedAtUtc = DateTime.Now;
 
         }
 
         public void CloseTheDoor()
         {
             OnValidator();
-            Status = DoorStatus.Closed;
+            DoorStatus = DoorStatus.Closed;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void LockTheDoor()
         {
             OnValidator();
-            if (LockingStatus == DoorLockingStatus.Unlocked && Status == DoorStatus.Closed)
+            if (LockingStatus == DoorLockingStatus.Unlocked && DoorStatus == DoorStatus.Closed)
             {
                 LockingStatus = DoorLockingStatus.Locked;
             }
             else
                 throw new Exception("cannot lock the door");
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void UnlockTheDoor()
@@ -71,23 +72,7 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
                 LockingStatus = DoorLockingStatus.Unlocked;
             else
                 throw new Exception("cannot unlock the door");
-        }
-
-        public void TurnOff()
-        {
-            if (FunctioningStatus == DeviceStatus.Off)
-                throw new Exception("The door is already On");
-            FunctioningStatus = DeviceStatus.Off;
-            LockingStatus = DoorLockingStatus.Unknown;
-        }
-
-        public void TurnOn()
-        {
-            if (FunctioningStatus == DeviceStatus.On)
-                throw new Exception("The door is already On");
-            FunctioningStatus = DeviceStatus.On;
-            LockingStatus = DoorLockingStatus.Unlocked;
-            Status = DoorStatus.Closed;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetNewName(string newName)
@@ -99,6 +84,7 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
                 throw new Exception("name cannot be the same as the old one");
             }
             Name = newName;
+            LastModifiedAtUtc = DateTime.Now;
         }
     }
 }

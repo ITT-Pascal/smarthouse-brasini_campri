@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
 {
-    public class AirConditioner
+    public class AirConditioner: AbstractDevice
     {
         //Const
         private const double DefaultDegrees = 20.0;
@@ -16,26 +16,18 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
         private const double DegreeStep = 0.5;
 
         //Properties
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public DeviceStatus Status { get; private set; }
         public double? Degrees { get; private set; }
         public AirMode Mode { get; private set; }
 
         //Constructor
-        public AirConditioner()
+        public AirConditioner(Guid Id,string name): base(Id,name)
         {
-            Status = DeviceStatus.Off;
-            Id = Guid.NewGuid();
             Degrees = null;
             Mode = AirMode.NoMode;
         }
 
-        public AirConditioner(string name)
+        public AirConditioner(string name): base(name)
         {
-            Name = name;
-            Id = Guid.NewGuid();
-            Status = DeviceStatus.Off;
             Degrees = null;
             Mode = AirMode.NoMode;
         }
@@ -53,23 +45,6 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
 
 
         //Methods
-        public void SwitchOn()
-        {
-            if (Status == DeviceStatus.On)
-                throw new Exception("The conditioner is already On");
-            Status = DeviceStatus.On;
-            Mode = AirMode.Normal;
-            Degrees = DefaultDegrees;
-        }
-
-        public void SwitchOff()
-        {
-            if (Status == DeviceStatus.Off)
-                throw new Exception("The conditioner is already off");
-            Status = DeviceStatus.Off;
-            Mode = AirMode.NoMode;
-            Degrees = null;
-        }
 
         public void SetFanMode()
         {
@@ -77,6 +52,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             if (Mode == AirMode.Fan)
                 throw new Exception("The mode is already Fan");
             Mode = AirMode.Fan;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetNormalMode()
@@ -85,6 +61,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             if (Mode == AirMode.Normal)
                 throw new Exception("The mode is already Normal");
             Mode = AirMode.Normal;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetDryMode()
@@ -93,6 +70,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             if (Mode == AirMode.Dry)
                 throw new Exception("The mode is already Dry");
             Mode = AirMode.Dry;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetMode(AirMode mode)
@@ -101,6 +79,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             if (Mode == mode)
                 throw new ArgumentException($"The mode is already: {Mode}");
             Mode = mode;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
 
@@ -112,6 +91,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             if (Mode == AirMode.Dry || Mode == AirMode.Fan)
                 throw new Exception($"Cannot change degrees in mode {Mode}");
             Degrees = value;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void IncreaseDegrees()
@@ -125,6 +105,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             }
             else
                 Degrees = MaxDegrees;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void DecreaseDegrees()
@@ -138,6 +119,7 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
             }
             else
                 Degrees = MinDegrees;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
 
