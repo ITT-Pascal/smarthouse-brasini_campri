@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.Thermostat
+namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
 {
     public enum GradeMode
     {

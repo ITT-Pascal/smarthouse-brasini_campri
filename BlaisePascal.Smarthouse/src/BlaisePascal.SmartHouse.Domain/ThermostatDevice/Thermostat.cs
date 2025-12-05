@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Device;
 
-namespace BlaisePascal.SmartHouse.Domain.Thermostat
+namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
 {
     public class Thermostat: AbstractDevice
     {

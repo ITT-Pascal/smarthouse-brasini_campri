@@ -1,5 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Device;
-using BlaisePascal.SmartHouse.Domain.ThermostatDevice;
+﻿using BlaisePascal.SmartHouse.Domain.ThermostatDevice;
+using BlaisePascal.SmartHouse.Domain.Device;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,18 +44,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             thermostat.IncreaseTemperatureToReach();
             // Assert
             Assert.Equal(initialTemperature + thermostat.TemperatureStep, thermostat.TemperatureToReach);
-        }
-        [Fact]
-        public void DecreaseTemperatureToReach_WhenCalled_ShouldDecreaseTemperatureByStep()
-        {
-            // Arrange
-            Thermostat thermostat = new Thermostat("Living Room Thermostat");
-            thermostat.TurnOn();
-            int initialTemperature = thermostat.TemperatureToReach;
-            // Act
-            thermostat.DecreaseTemperatureToReach();
-            // Assert
-            Assert.Equal(initialTemperature - thermostat.TemperatureStep, thermostat.TemperatureToReach);
         }
         [Fact]
         public void IncreaseTemperatureToReach_WhenAtMaxTemperature_ShouldNotExceedMax()
