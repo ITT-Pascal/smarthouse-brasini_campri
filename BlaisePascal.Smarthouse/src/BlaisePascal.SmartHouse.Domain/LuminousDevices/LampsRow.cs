@@ -203,6 +203,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
                 {
                     lampToRemove = FindLampWithMaxBrightness();
                     sortedLamps.Add(lampToRemove);
+                    Lamps.Remove(lampToRemove);
                 }
             }
             else
@@ -211,9 +212,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
                 {
                     lampToRemove = FindLampWithMinBrightness();
                     sortedLamps.Add(lampToRemove);
+                    Lamps.Remove(lampToRemove);
                 }
             }
-            return sortedLamps;
+            Lamps = sortedLamps;
+            return Lamps;
         }
 
 
