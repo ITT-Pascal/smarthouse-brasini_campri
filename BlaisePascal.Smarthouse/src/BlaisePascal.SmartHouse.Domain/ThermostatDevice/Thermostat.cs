@@ -38,7 +38,21 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
                 TemperatureStep = 1;
             }
 
-
+            private void Converter(GradeMode mode)
+            {
+                if(GradeMode == GradeMode.Celsius)
+                { 
+                    MaxTemperature = (int)(MaxTemperature * 9 / 5) + 32;
+                    MinTemperature = (int)(MinTemperature * 9 / 5) + 32;
+                    TemperatureToReach = (int)(TemperatureToReach * 9 / 5) + 32;
+                }
+                else
+                {
+                MaxTemperature = (int)(MaxTemperature - 32) * 5 / 9;
+                MinTemperature = (int)(MinTemperature - 32) * 5 / 9;
+                TemperatureToReach = (int)(TemperatureToReach - 32) * 5 / 9;
+                }
+            }
             public void SetTemperatureToReach(int temperature)
             {
                 OnValidator();
@@ -66,10 +80,8 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
                 OnValidator();
                 if (GradeMode == GradeMode.Fahrenheit)
                     throw new Exception("The mode is already Fahrenheit");
-                GradeMode = GradeMode.Fahrenheit;
-                MaxTemperature = (int)(MaxTemperature * 9 / 5) + 32;
-                MinTemperature = (int)(MinTemperature * 9 / 5) + 32;
-                TemperatureToReach = (int)(TemperatureToReach * 9 / 5) + 32;
+            GradeMode = GradeMode.Fahrenheit;
+            Converter(GradeMode);
                 LastModifiedAtUtc = DateTime.Now;
             }
 
@@ -79,9 +91,7 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
                 if (GradeMode == GradeMode.Celsius)
                     throw new Exception("The mode is already Celsius");
                 GradeMode = GradeMode.Celsius;
-                MaxTemperature = (int)(MaxTemperature - 32) * 5 / 9;
-                MinTemperature = (int)(MinTemperature - 32) * 5 / 9;
-                TemperatureToReach = (int)(TemperatureToReach - 32) * 5 / 9;
+                Converter(GradeMode);
                 LastModifiedAtUtc = DateTime.Now;
            }
 
