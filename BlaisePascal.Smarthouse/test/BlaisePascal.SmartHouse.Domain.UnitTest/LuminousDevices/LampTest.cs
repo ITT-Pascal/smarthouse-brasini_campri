@@ -1,7 +1,7 @@
 using BlaisePascal.SmartHouse.Domain.Device;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 
-namespace BlaisePascal.SmartHouse.Domain.UnitTest
+namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
 {
     public class LampTest
     {

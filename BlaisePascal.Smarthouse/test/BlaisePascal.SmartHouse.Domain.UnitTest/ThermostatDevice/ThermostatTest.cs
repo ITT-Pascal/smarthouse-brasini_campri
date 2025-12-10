@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace BlaisePascal.SmartHouse.Domain.UnitTest
+namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
 {
     public class ThermostatTest
     {
@@ -123,7 +123,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             thermostat.SetFahrenheitMode();
             // Assert
-            int expectedTemperature = (int)(initialTemperature * 9 / 5) + 32;
+            int expectedTemperature = initialTemperature * 9 / 5 + 32;
             Assert.Equal(expectedTemperature, thermostat.TemperatureToReach);
         }
         [Fact]
@@ -137,7 +137,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest
             // Act
             thermostat.SetCelsiusMode();
             // Assert
-            int expectedTemperature = (int)((temperatureInFahrenheit - 32) * 5 / 9);
+            int expectedTemperature = (temperatureInFahrenheit - 32) * 5 / 9;
             Assert.Equal(expectedTemperature, thermostat.TemperatureToReach);
         }
         [Fact]
