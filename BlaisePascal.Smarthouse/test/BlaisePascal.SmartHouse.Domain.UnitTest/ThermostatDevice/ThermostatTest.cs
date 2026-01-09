@@ -39,7 +39,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            int initialTemperature = thermostat.TemperatureToReach;
+            double initialTemperature = thermostat.TemperatureToReach;
             // Act
             thermostat.IncreaseTemperatureToReach();
             // Assert
@@ -119,11 +119,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            int initialTemperature = thermostat.TemperatureToReach;
+            double initialTemperature = thermostat.TemperatureToReach;
             // Act
             thermostat.SetFahrenheitMode();
             // Assert
-            int expectedTemperature = initialTemperature * 9 / 5 + 32;
+            double expectedTemperature = (initialTemperature -32 ) *5/9;
             Assert.Equal(expectedTemperature, thermostat.TemperatureToReach);
         }
         [Fact]
@@ -133,11 +133,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
             thermostat.SetFahrenheitMode();
-            int temperatureInFahrenheit = thermostat.TemperatureToReach;
+            double temperatureInFahrenheit = thermostat.TemperatureToReach;
             // Act
             thermostat.SetCelsiusMode();
             // Assert
-            int expectedTemperature = (temperatureInFahrenheit - 32) * 5 / 9;
+            double expectedTemperature = (temperatureInFahrenheit * 9 / 5) + 32;
             Assert.Equal(expectedTemperature, thermostat.TemperatureToReach);
         }
         [Fact]
@@ -146,7 +146,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            int originalCelsiusTemperature = thermostat.TemperatureToReach;
+            double originalCelsiusTemperature = thermostat.TemperatureToReach;
             // Act
             thermostat.SetFahrenheitMode();
             thermostat.SetCelsiusMode();

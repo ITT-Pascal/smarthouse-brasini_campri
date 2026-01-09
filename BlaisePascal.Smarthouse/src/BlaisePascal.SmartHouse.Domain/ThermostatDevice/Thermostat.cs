@@ -14,43 +14,43 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
             public int MaxTemperature { get; private set; }
             public int TemperatureStep { get; private set; }
             public GradeMode GradeMode { get; private set; }
-            public int TemperatureToReach { get; private set; }
+            public double TemperatureToReach { get; private set; }
 
 
             //Constructor
             public Thermostat(string name) : base(name)
             {
+                DefaultTemperature = 20;
                 TemperatureToReach = DefaultTemperature;
                 GradeMode = GradeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
-                DefaultTemperature = 20;
                 TemperatureStep = 1;
             }
 
             public Thermostat(Guid guid, string name) : base(guid, name)
             {
+                DefaultTemperature = 20;
                 TemperatureToReach = DefaultTemperature;
                 GradeMode = GradeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
-                DefaultTemperature = 20;
                 TemperatureStep = 1;
             }
 
             private void Converter(GradeMode mode)
             {
-                if(GradeMode == GradeMode.Celsius)
+                if(mode == GradeMode.Celsius)
                 { 
                     MaxTemperature = (int)(MaxTemperature * 9 / 5) + 32;
                     MinTemperature = (int)(MinTemperature * 9 / 5) + 32;
-                    TemperatureToReach = (int)(TemperatureToReach * 9 / 5) + 32;
+                    TemperatureToReach = (double)(TemperatureToReach * 9 / 5) + 32;
                 }
                 else
                 {
-                MaxTemperature = (int)(MaxTemperature - 32) * 5 / 9;
-                MinTemperature = (int)(MinTemperature - 32) * 5 / 9;
-                TemperatureToReach = (int)(TemperatureToReach - 32) * 5 / 9;
+                    MaxTemperature = (int)(MaxTemperature - 32) * 5 / 9;
+                    MinTemperature = (int)(MinTemperature - 32) * 5 / 9;
+                    TemperatureToReach = (double)(TemperatureToReach - 32) * 5 / 9;
                 }
             }
             public void SetTemperatureToReach(int temperature)
@@ -80,8 +80,8 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
                 OnValidator();
                 if (GradeMode == GradeMode.Fahrenheit)
                     throw new Exception("The mode is already Fahrenheit");
-            GradeMode = GradeMode.Fahrenheit;
-            Converter(GradeMode);
+                GradeMode = GradeMode.Fahrenheit;
+                Converter(GradeMode);
                 LastModifiedAtUtc = DateTime.Now;
             }
 
