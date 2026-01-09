@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Device;
 
-namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
+namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 {
     public class Thermostat: AbstractDevice
     {
@@ -42,14 +42,14 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
             {
                 if(mode == GradeMode.Celsius)
                 { 
-                    MaxTemperature = (int)(MaxTemperature * 9 / 5) + 32;
-                    MinTemperature = (int)(MinTemperature * 9 / 5) + 32;
+                    MaxTemperature = MaxTemperature * 9 / 5 + 32;
+                    MinTemperature = MinTemperature * 9 / 5 + 32;
                     TemperatureToReach = (double)(TemperatureToReach * 9 / 5) + 32;
                 }
                 else
                 {
-                    MaxTemperature = (int)(MaxTemperature - 32) * 5 / 9;
-                    MinTemperature = (int)(MinTemperature - 32) * 5 / 9;
+                    MaxTemperature = (MaxTemperature - 32) * 5 / 9;
+                    MinTemperature = (MinTemperature - 32) * 5 / 9;
                     TemperatureToReach = (double)(TemperatureToReach - 32) * 5 / 9;
                 }
             }
@@ -85,21 +85,14 @@ namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
                 LastModifiedAtUtc = DateTime.Now;
             }
 
-           public void SetCelsiusMode()
-           {
+            public void SetCelsiusMode()
+            {
                 OnValidator();
                 if (GradeMode == GradeMode.Celsius)
                     throw new Exception("The mode is already Celsius");
                 GradeMode = GradeMode.Celsius;
                 Converter(GradeMode);
                 LastModifiedAtUtc = DateTime.Now;
-           }
-
-
-
-
-
-
-
+            }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Device;
 
-namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
+namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
 {
     public class AirConditioner: AbstractDevice
     {
@@ -19,18 +19,21 @@ namespace BlaisePascal.SmartHouse.Domain.AirConditionerDevice
         //Properties
         public double? Degrees { get; private set; }
         public AirMode Mode { get; private set; }
+        public GradeMode GradeMode { get; private set; }
 
         //Constructor
         public AirConditioner(Guid Id,string name): base(Id,name)
         {
             Degrees = null;
             Mode = AirMode.NoMode;
+            GradeMode = GradeMode.Celsius;
         }
 
         public AirConditioner(string name): base(name)
         {
             Degrees = null;
             Mode = AirMode.NoMode;
+            GradeMode = GradeMode.Celsius;
         }
         
         //Private Methods

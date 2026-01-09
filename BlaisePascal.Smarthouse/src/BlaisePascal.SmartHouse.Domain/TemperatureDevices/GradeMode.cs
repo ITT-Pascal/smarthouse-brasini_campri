@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.ThermostatDevice
+namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
 {
-    public static class GradeConverter
+    public enum GradeMode
     {
-        
+        Celsius,
+        Fahrenheit,
     }
 }

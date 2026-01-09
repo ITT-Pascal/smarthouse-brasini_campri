@@ -1,5 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.AirConditionerDevice;
-using BlaisePascal.SmartHouse.Domain.Device;
+﻿using BlaisePascal.SmartHouse.Domain.Device;
+using BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;

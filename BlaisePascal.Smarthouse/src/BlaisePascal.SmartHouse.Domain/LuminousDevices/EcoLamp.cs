@@ -18,14 +18,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         //Properties
         public override int MaxBrightness => EcoMax;
         public override int MinBrightness => EcoMin;
-        
         private DateTime? autoOffAtUtc;
-
 
         //Constructor
         public EcoLamp(string name ): base( name ) { }
-        
-
+       
         public EcoLamp(Guid newID, string name): base( newID, name ) { }
 
         public override void TurnOn()
@@ -72,8 +69,5 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             if (autoOffAtUtc.HasValue)
                 autoOffAtUtc = DateTime.UtcNow.AddMinutes(DefaultAutoOffMinutes);
         }
-
-        
-
     }
 }

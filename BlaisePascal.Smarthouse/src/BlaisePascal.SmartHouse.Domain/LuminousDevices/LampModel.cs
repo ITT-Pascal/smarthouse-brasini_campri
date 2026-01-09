@@ -6,11 +6,12 @@ using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Abstraction;
 using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 {
-    public abstract class LampModel: AbstractDevice
+    public abstract class LampModel: AbstractDevice, ILamp
     {
         //Properties
         public int Brightness { get; protected set; }

@@ -1,10 +1,10 @@
-﻿using BlaisePascal.SmartHouse.Domain.ThermostatDevice;
-using BlaisePascal.SmartHouse.Domain.Device;
+﻿using BlaisePascal.SmartHouse.Domain.Device;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice;
 
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
