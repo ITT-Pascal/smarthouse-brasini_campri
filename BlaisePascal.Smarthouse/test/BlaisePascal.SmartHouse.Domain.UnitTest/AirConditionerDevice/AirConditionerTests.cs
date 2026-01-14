@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(20.0, cond.Degrees);
+            Assert.Equal(20.0, cond.TemperatureToReach);
             Assert.Equal(AirMode.NoMode, cond.Mode);
             
         }
@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             //Assert
             Assert.Equal(DeviceStatus.On, cond.Status);
-            Assert.Equal(20.0, cond.Degrees);
+            Assert.Equal(20.0, cond.TemperatureToReach);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -57,7 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOff();
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(20.0, cond.Degrees);
+            Assert.Equal(20.0, cond.TemperatureToReach);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -208,7 +208,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             //Arrange
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
-            Assert.Throws<Exception>(() => cond.SetDegrees(24));
+            Assert.Throws<Exception>(() => cond.SetTemperatureToReach(24));
         }
 
         [Fact]
@@ -219,7 +219,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             //Act
             cond.TurnOn();
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetDegrees(15));
+            Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetTemperatureToReach(15));
         }
 
         [Fact]
@@ -230,7 +230,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             //Act
             cond.TurnOn();
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetDegrees(28));
+            Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetTemperatureToReach(28));
         }
 
         [Fact]
@@ -242,7 +242,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetMode(AirMode.Dry);
             //Assert
-            Assert.Throws<Exception>(() => cond.SetDegrees(20));
+            Assert.Throws<Exception>(() => cond.SetTemperatureToReach(20));
         }
 
         [Fact]
@@ -254,7 +254,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetMode(AirMode.Fan);
             //Assert
-            Assert.Throws<Exception>(() => cond.SetDegrees(20));
+            Assert.Throws<Exception>(() => cond.SetTemperatureToReach(20));
         }
 
         [Fact]
@@ -264,9 +264,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
-            cond.SetDegrees(20);
+            cond.SetTemperatureToReach(20);
             //Assert
-            Assert.Equal(20, cond.Degrees);
+            Assert.Equal(20, cond.TemperatureToReach);
         }
 
 
@@ -276,7 +276,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             //Arrange
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
-            Assert.Throws<Exception>(() => cond.IncreaseDegrees());
+            Assert.Throws<Exception>(() => cond.IncreaseTemperatureToReach());
         }
 
         [Fact]
@@ -288,7 +288,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetDryMode();
             //Assert
-            Assert.Throws<Exception>(() => cond.IncreaseDegrees());
+            Assert.Throws<Exception>(() => cond.IncreaseTemperatureToReach());
         }
 
         [Fact]
@@ -300,7 +300,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetFanMode();
             //Assert
-            Assert.Throws<Exception>(() => cond.IncreaseDegrees());
+            Assert.Throws<Exception>(() => cond.IncreaseTemperatureToReach());
         }
 
         [Fact]
@@ -310,9 +310,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
-            cond.IncreaseDegrees();
+            cond.IncreaseTemperatureToReach();
             //Assert
-            Assert.Equal(20.5, cond.Degrees);
+            Assert.Equal(20.5, cond.TemperatureToReach);
         }
 
         [Fact]
@@ -322,10 +322,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
-            cond.SetDegrees(27);
-            cond.IncreaseDegrees();
+            cond.SetTemperatureToReach(27);
+            cond.IncreaseTemperatureToReach();
             //Assert
-            Assert.Equal(27.0, cond.Degrees);
+            Assert.Equal(27.0, cond.TemperatureToReach);
         }
 
         [Fact]
@@ -334,7 +334,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             //Arrange
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act & Assert
-            Assert.Throws<Exception>(() => cond.DecreaseDegrees());
+            Assert.Throws<Exception>(() => cond.DecreaseTemperatureToReach());
         }
 
         [Fact]
@@ -346,7 +346,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetDryMode();
             //Assert
-            Assert.Throws<Exception>(() => cond.DecreaseDegrees());
+            Assert.Throws<Exception>(() => cond.DecreaseTemperatureToReach());
         }
 
         [Fact]
@@ -358,7 +358,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetFanMode();
             //Assert
-            Assert.Throws<Exception>(() => cond.DecreaseDegrees());
+            Assert.Throws<Exception>(() => cond.DecreaseTemperatureToReach());
         }
 
         [Fact]
@@ -368,9 +368,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
-            cond.DecreaseDegrees();
+            cond.DecreaseTemperatureToReach();
             //Assert
-            Assert.Equal(19.5, cond.Degrees);
+            Assert.Equal(19.5, cond.TemperatureToReach);
         }
 
         [Fact]
@@ -380,10 +380,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
-            cond.SetDegrees(16);
-            cond.DecreaseDegrees();
+            cond.SetTemperatureToReach(16);
+            cond.DecreaseTemperatureToReach();
             //Assert
-            Assert.Equal(16.0, cond.Degrees);
+            Assert.Equal(16.0, cond.TemperatureToReach);
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Abstraction;
 using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 {
-    public class Thermostat: AbstractDevice
+    public class Thermostat: AbstractDevice, ITemperatureDevices
     {
             public double DefaultTemperature { get; private set; }
             public double MinTemperature { get; private set; }
