@@ -11,27 +11,27 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
     public class AirConditioner: AbstractDevice
     {
         //Const
-        private const double DefaultDegrees = 20.0;
-        private const double MaxDegrees = 27.0;
-        private const double MinDegrees = 16.0;
-        private const double DegreeStep = 0.5;
+        private double DefaultDegrees = 20.0;
+        private double MaxDegrees = 27.0;
+        private double MinDegrees = 16.0;
+        private double DegreeStep = 0.5;
 
         //Properties
-        public double? Degrees { get; private set; }
+        public double Degrees { get; private set; }
         public AirMode Mode { get; private set; }
         public GradeMode GradeMode { get; private set; }
 
         //Constructor
         public AirConditioner(Guid Id,string name): base(Id,name)
         {
-            Degrees = null;
+            Degrees = DefaultDegrees;
             Mode = AirMode.NoMode;
             GradeMode = GradeMode.Celsius;
         }
 
         public AirConditioner(string name): base(name)
         {
-            Degrees = null;
+            Degrees = DefaultDegrees;
             Mode = AirMode.NoMode;
             GradeMode = GradeMode.Celsius;
         }
@@ -122,6 +122,28 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
             LastModifiedAtUtc = DateTime.Now;
         }
 
+        public void SetFahrenheitMode()
+        {
+            OnValidator();
+            if (GradeMode == GradeMode.Fahrenheit)
+                throw new Exception("The mode is already Fahrenheit");
+            GradeMode = GradeMode.Fahrenheit;
+            MinDegrees = GradeConverter.Converter(GradeMode, MinDegrees);
+            MaxDegrees = GradeConverter.Converter(GradeMode, MaxDegrees);
+            Degrees = GradeConverter.Converter(GradeMode, Degrees);
+            LastModifiedAtUtc = DateTime.Now;
+        }
 
+        public void SetCelsiusMode()
+        {
+            OnValidator();
+            if (GradeMode == GradeMode.Celsius)
+                throw new Exception("The mode is already Celsius");
+            GradeMode = GradeMode.Celsius;
+            MinDegrees = GradeConverter.Converter(GradeMode, MinDegrees);
+            MaxDegrees = GradeConverter.Converter(GradeMode, MaxDegrees);
+            Degrees = GradeConverter.Converter(GradeMode, Degrees);
+            LastModifiedAtUtc = DateTime.Now;
+        }
     }
 }

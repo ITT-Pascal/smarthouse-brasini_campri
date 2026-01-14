@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Null(cond.Degrees);
+            Assert.Equal(20.0, cond.Degrees);
             Assert.Equal(AirMode.NoMode, cond.Mode);
             
         }
@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             //Assert
             Assert.Equal(DeviceStatus.On, cond.Status);
-            Assert.Null( cond.Degrees);
+            Assert.Equal(20.0, cond.Degrees);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -57,7 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOff();
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(null, cond.Degrees);
+            Assert.Equal(20.0, cond.Degrees);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -312,7 +312,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.IncreaseDegrees();
             //Assert
-            Assert.Equal(27, cond.Degrees);
+            Assert.Equal(20.5, cond.Degrees);
         }
 
         [Fact]
@@ -370,7 +370,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.DecreaseDegrees();
             //Assert
-            Assert.Equal(16, cond.Degrees);
+            Assert.Equal(19.5, cond.Degrees);
         }
 
         [Fact]
