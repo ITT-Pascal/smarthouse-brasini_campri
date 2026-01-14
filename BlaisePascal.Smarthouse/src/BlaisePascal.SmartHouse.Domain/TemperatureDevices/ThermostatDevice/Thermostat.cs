@@ -9,9 +9,9 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 {
     public class Thermostat: AbstractDevice
     {
-            public int DefaultTemperature { get; private set; }
-            public int MinTemperature { get; private set; }
-            public int MaxTemperature { get; private set; }
+            public double DefaultTemperature { get; private set; }
+            public double MinTemperature { get; private set; }
+            public double MaxTemperature { get; private set; }
             public int TemperatureStep { get; private set; }
             public GradeMode GradeMode { get; private set; }
             public double TemperatureToReach { get; private set; }
@@ -38,22 +38,8 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 TemperatureStep = 1;
             }
 
-            private void Converter(GradeMode mode)
-            {
-                if(mode == GradeMode.Celsius)
-                { 
-                    MaxTemperature = MaxTemperature * 9 / 5 + 32;
-                    MinTemperature = MinTemperature * 9 / 5 + 32;
-                    TemperatureToReach = (double)(TemperatureToReach * 9 / 5) + 32;
-                }
-                else
-                {
-                    MaxTemperature = (MaxTemperature - 32) * 5 / 9;
-                    MinTemperature = (MinTemperature - 32) * 5 / 9;
-                    TemperatureToReach = (double)(TemperatureToReach - 32) * 5 / 9;
-                }
-            }
-            public void SetTemperatureToReach(int temperature)
+            
+            public void SetTemperatureToReach(double temperature)
             {
                 OnValidator();
                 if (temperature < MinTemperature || temperature > MaxTemperature)
@@ -81,7 +67,9 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 if (GradeMode == GradeMode.Fahrenheit)
                     throw new Exception("The mode is already Fahrenheit");
                 GradeMode = GradeMode.Fahrenheit;
-                Converter(GradeMode);
+                MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
+                MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
+                TemperatureToReach = GradeConverter.Converter(GradeMode, TemperatureToReach);
                 LastModifiedAtUtc = DateTime.Now;
             }
 
@@ -91,7 +79,9 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 if (GradeMode == GradeMode.Celsius)
                     throw new Exception("The mode is already Celsius");
                 GradeMode = GradeMode.Celsius;
-                Converter(GradeMode);
+                MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
+                MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
+                TemperatureToReach = GradeConverter.Converter(GradeMode, TemperatureToReach);
                 LastModifiedAtUtc = DateTime.Now;
             }
     }
