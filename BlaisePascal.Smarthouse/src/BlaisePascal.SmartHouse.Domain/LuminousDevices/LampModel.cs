@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.Abstraction;
 using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
