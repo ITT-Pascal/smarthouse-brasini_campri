@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 {
-    public interface ILamp
+    public interface ILuminous
     {
         void IncreaseBrightness();
         void DecreaseBrightness();

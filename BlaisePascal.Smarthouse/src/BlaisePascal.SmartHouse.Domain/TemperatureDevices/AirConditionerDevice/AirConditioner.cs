@@ -8,7 +8,7 @@ using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
 {
-    public class AirConditioner: AbstractDevice, ITemperatureDevices
+    public class AirConditioner: AbstractDevice, ITemperatureModifier
     {
         //Const
         private double DefaultTemperature = 20.0;
@@ -36,14 +36,6 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
             GradeMode = GradeMode.Celsius;
         }
         
-        //Private Methods
-        /// <summary>
-        /// Check if Device is On
-        /// </summary>
-        /// <exception cref="Exception"></exception>
-        
-
-
         //Methods
 
         public void SetFanMode()
@@ -81,7 +73,6 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
             Mode = mode;
             LastModifiedAtUtc = DateTime.Now;
         }
-
 
         public void SetTemperatureToReach(double value)
         {

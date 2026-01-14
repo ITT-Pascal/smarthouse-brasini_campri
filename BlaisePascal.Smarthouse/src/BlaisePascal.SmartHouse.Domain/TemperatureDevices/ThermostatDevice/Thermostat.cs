@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 {
-    public class Thermostat: AbstractDevice, ITemperatureDevices
+    public class Thermostat: AbstractDevice, ITemperatureModifier
     {
             public double DefaultTemperature { get; private set; }
             public double MinTemperature { get; private set; }

@@ -10,7 +10,7 @@ using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 {
-    public abstract class LampModel: AbstractDevice, ILamp
+    public abstract class LampModel: AbstractDevice, ILuminous
     {
         //Properties
         public int Brightness { get; protected set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
 {
-    public interface ITemperatureDevices
+    public interface ITemperatureModifier
     {
         void SetTemperatureToReach(double temperature);
         void IncreaseTemperatureToReach();
