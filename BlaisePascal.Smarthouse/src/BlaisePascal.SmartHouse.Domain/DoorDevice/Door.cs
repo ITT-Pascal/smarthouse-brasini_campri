@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 {
-    public class Door:AbstractDevice
+    public class Door:AbstractDevice, IOpenable, ILockable
     {
         public DoorStatus DoorStatus { get;private set; }
         public DoorLockingStatus LockingStatus { get;private set; }
@@ -29,7 +29,7 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
             Status = DeviceStatus.On;
         }
 
-        public void OpenTheDoor()
+        public void Open()
         {
             OnValidator();
             if (DoorStatus == DoorStatus.Closed && LockingStatus == DoorLockingStatus.Unlocked)
@@ -41,14 +41,14 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
 
         }
 
-        public void CloseTheDoor()
+        public void Close()
         {
             OnValidator();
             DoorStatus = DoorStatus.Closed;
             LastModifiedAtUtc = DateTime.Now;
         }
 
-        public void LockTheDoor()
+        public void Lock()
         {
             OnValidator();
             if (LockingStatus == DoorLockingStatus.Unlocked && DoorStatus == DoorStatus.Closed)
@@ -60,7 +60,7 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
             LastModifiedAtUtc = DateTime.Now;
         }
 
-        public void UnlockTheDoor()
+        public void Unlock()
         {
             OnValidator();
             if (LockingStatus == DoorLockingStatus.Locked)
@@ -70,16 +70,6 @@ namespace BlaisePascal.SmartHouse.Domain.DoorDevice
             LastModifiedAtUtc = DateTime.Now;
         }
 
-        public void SetNewName(string newName)
-        {
-            if (string.IsNullOrWhiteSpace(newName))
-                throw new Exception("name cannot be empty");
-            else if (newName == Name)
-            {
-                throw new Exception("name cannot be the same as the old one");
-            }
-            Name = newName;
-            LastModifiedAtUtc = DateTime.Now;
-        }
+        
     }
 }

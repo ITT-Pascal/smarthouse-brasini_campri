@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.CctvDevice
 {
-    public class CCTV: AbstractDevice
+    public class CCTV: AbstractDevice, ICCTV
     {
         //Properties
         public CCTVMode Mode { get; private set; }

@@ -63,6 +63,18 @@ namespace BlaisePascal.SmartHouse.Domain.Device
             Status = DeviceStatus.Off;
             LastModifiedAtUtc = DateTime.UtcNow;
         }
+
+        public virtual void SetNewName(string newName)
+        {
+            if (string.IsNullOrWhiteSpace(newName))
+                throw new Exception("name cannot be empty");
+            else if (newName == Name)
+            {
+                throw new Exception("name cannot be the same as the old one");
+            }
+            Name = newName;
+            LastModifiedAtUtc = DateTime.Now;
+        }
     }
 }
 

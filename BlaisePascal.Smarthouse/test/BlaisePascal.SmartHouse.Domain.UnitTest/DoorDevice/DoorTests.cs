@@ -24,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void OpenTheDoor_WhenDoorIsClosed_ItChangesStatusToOpen()
         {
             Door door = new Door("Front Door");
-            door.OpenTheDoor();
+            door.Open();
             Assert.Equal(DoorStatus.Open, door.DoorStatus);
         }
 
@@ -32,8 +32,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void CloseTheDoor_WhenDoorIsOpen_ItChangesStatusToClosed()
         {
             Door door = new Door("Front Door");
-            door.OpenTheDoor();
-            door.CloseTheDoor();
+            door.Open();
+            door.Close();
             Assert.Equal(DoorStatus.Closed, door.DoorStatus);
         }
 
@@ -41,7 +41,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void LockTheDoor_WhenDoorIsClosed_ItChangesLockingStatusToLocked()
         {
             Door door = new Door("Front Door");
-            door.LockTheDoor();
+            door.Lock();
             Assert.Equal(DoorLockingStatus.Locked, door.LockingStatus);
         }
 
@@ -49,8 +49,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void UnlockTheDoor_WhenDoorIsLocked_ItChangesLockingStatusToUnlocked()
         {
             Door door = new Door("Front Door");
-            door.LockTheDoor();
-            door.UnlockTheDoor();
+            door.Lock();
+            door.Unlock();
             Assert.Equal(DoorLockingStatus.Unlocked, door.LockingStatus);
         }
 
@@ -58,31 +58,31 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void OpenTheDoor_WhenDoorIsLocked_ItThrowsException()
         {
             Door door = new Door("Front Door");
-            door.LockTheDoor();
-            Assert.Throws<Exception>(() => door.OpenTheDoor());
+            door.Lock();
+            Assert.Throws<Exception>(() => door.Open());
         }
 
         [Fact]
         public void LockTheDoor_WhenDoorIsOpen_ItThrowsException()
         {
             Door door = new Door("Front Door");
-            door.OpenTheDoor();
-            Assert.Throws<Exception>(() => door.LockTheDoor());
+            door.Open();
+            Assert.Throws<Exception>(() => door.Lock());
         }
 
         [Fact]
         public void UnlockTheDoor_WhenDoorIsUnlocked_ItThrowsException()
         {
             Door door = new Door("Front Door");
-            Assert.Throws<Exception>(() => door.UnlockTheDoor());
+            Assert.Throws<Exception>(() => door.Unlock());
         }
 
         [Fact]
         public void OpenTheDoor_WhenDoorIsAlreadyOpen_ItThrowsException()
         {
             Door door = new Door("Front Door");
-            door.OpenTheDoor();
-            Assert.Throws<Exception>(() => door.OpenTheDoor());
+            door.Open();
+            Assert.Throws<Exception>(() => door.Open());
         }
 
         [Fact]
@@ -96,8 +96,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void LockTheDoor_WhenDoorIsAlreadyLocked_ItThrowsException()
         {
             Door door = new Door("Front Door");
-            door.LockTheDoor();
-            Assert.Throws<Exception>(() => door.LockTheDoor());
+            door.Lock();
+            Assert.Throws<Exception>(() => door.Lock());
         }
 
         [Fact]
