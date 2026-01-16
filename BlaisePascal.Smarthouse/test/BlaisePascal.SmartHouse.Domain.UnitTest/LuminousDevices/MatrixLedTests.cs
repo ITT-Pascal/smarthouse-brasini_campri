@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Act
             led.TurnAllOn();
             //Assert
-            for(int r=0; r<led.Raws; r++)
+            for(int r=0; r<led.Rows; r++)
             {
                 for(int c = 0; c<led.Columns; c++)
                 {
@@ -35,7 +35,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             led.TurnAllOn();
             led.TurnAllOff();
             //Assert
-            for (int r = 0; r < led.Raws; r++)
+            for (int r = 0; r < led.Rows; r++)
             {
                 for (int c = 0; c < led.Columns; c++)
                 {
@@ -49,7 +49,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Arrange
             MatrixLed led = new MatrixLed(5, 5);
             //Act
-            led.TurnRawOn(2);
+            led.TurnRowOn(2);
             //Assert
             for (int c = 0; c < led.Columns; c++)
             {
@@ -64,7 +64,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             MatrixLed led = new MatrixLed(5, 5);
             //Act
             led.TurnAllOn();
-            led.TurnRawOff(2);
+            led.TurnRowOff(2);
             //Assert
             for (int c = 0; c < led.Columns; c++)
             {
@@ -80,7 +80,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Act
             led.TurnColumnOn(2);
             //Assert
-            for (int r = 0; r < led.Raws; r++)
+            for (int r = 0; r < led.Rows; r++)
             {
                 Assert.Equal(DeviceStatus.On, led.Matrix[r,2].Status);
             }
@@ -95,7 +95,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             led.TurnAllOn();
             led.TurnColumnOff(2);
             //Assert
-            for (int r = 0; r < led.Raws; r++)
+            for (int r = 0; r < led.Rows; r++)
             {
                 Assert.Equal(DeviceStatus.Off, led.Matrix[r, 2].Status);
             }
@@ -110,7 +110,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             led.TurnAllOn();
             led.IncreaseAllBrightness();
             //Assert
-            for (int r = 0; r < led.Raws; r++)
+            for (int r = 0; r < led.Rows; r++)
             {
                 for (int c = 0; c < led.Columns; c++)
                 {
@@ -128,7 +128,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             led.IncreaseAllBrightness();
             led.DecreaseAllBrightness();
             //Assert
-            for (int r = 0; r < led.Raws; r++)
+            for (int r = 0; r < led.Rows; r++)
             {
                 for (int c = 0; c < led.Columns; c++)
                 {

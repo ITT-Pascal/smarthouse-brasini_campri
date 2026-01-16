@@ -10,23 +10,23 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
     {
         //Properties
         public LampModel[,] Matrix { get; private set; }
-        public int Raws { get; private set; }
+        public int Rows { get; private set; }
         public int Columns { get; private set; }
 
         //Constructor
         public MatrixLed() { }
 
-        public MatrixLed(int raws, int columns)
+        public MatrixLed(int rows, int columns)
         {
-            Matrix = new LampModel[raws, columns];
-            for(int r=0; r<raws; r++)
+            Matrix = new LampModel[rows, columns];
+            for(int r=0; r<rows; r++)
             {
                 for(int c=0; c<columns; c++)
                 {
                     Matrix[r, c] = new Lamp($"Lamp({r},{c}");
                 }
             }
-            Raws = raws;
+            Rows = rows;
             Columns = columns;
         }
 
@@ -38,7 +38,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         //Methods
         public void TurnAllOn()
         {
-            for (int r = 0; r <Raws; r++)
+            for (int r = 0; r <Rows; r++)
             {
                 for (int c = 0; c <Columns; c++)
                 {
@@ -50,7 +50,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void TurnAllOff()
         {
-            for (int r = 0; r < Raws; r++)
+            for (int r = 0; r < Rows; r++)
             {
                 for (int c = 0; c < Columns; c++)
                 {
@@ -60,27 +60,27 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             }
         }
 
-        public void TurnRawOn(int rawIdx)
+        public void TurnRowOn(int rowIdx)
         {
             for(int c=0; c<Columns; c++)
             {
-                if (Matrix[rawIdx, c].Status != Device.DeviceStatus.On)
-                    Matrix[rawIdx, c].TurnOn();
+                if (Matrix[rowIdx, c].Status != Device.DeviceStatus.On)
+                    Matrix[rowIdx, c].TurnOn();
             }
         }
 
-        public void TurnRawOff(int rawIdx)
+        public void TurnRowOff(int rowIdx)
         {
             for (int c = 0; c < Columns; c++)
             {
-                if (Matrix[rawIdx, c].Status != Device.DeviceStatus.Off)
-                    Matrix[rawIdx, c].TurnOff();
+                if (Matrix[rowIdx, c].Status != Device.DeviceStatus.Off)
+                    Matrix[rowIdx, c].TurnOff();
             }
         }
 
         public void TurnColumnOn(int colIdx)
         {
-            for (int r = 0; r<Raws; r++)
+            for (int r = 0; r<Rows; r++)
             {
                 if (Matrix[r, colIdx].Status != Device.DeviceStatus.On)
                     Matrix[r,colIdx].TurnOn();
@@ -89,7 +89,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void TurnColumnOff(int colIdx)
         {
-            for (int r = 0; r <Raws ; r++)
+            for (int r = 0; r <Rows ; r++)
             {
                 if (Matrix[r, colIdx].Status != Device.DeviceStatus.Off)
                     Matrix[r, colIdx].TurnOff();
@@ -98,7 +98,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void IncreaseAllBrightness()
         {
-            for (int r = 0; r < Raws; r++)
+            for (int r = 0; r < Rows; r++)
             {
                 for (int c = 0; c < Columns; c++)
                 {
@@ -109,13 +109,40 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void DecreaseAllBrightness()
         {
-            for (int r = 0; r < Raws; r++)
+            for (int r = 0; r < Rows; r++)
             {
                 for (int c = 0; c < Columns; c++)
                 {
                     Matrix[r, c].DecreaseBrightness();
                 }
             }
+        }
+
+        public void TurnOnSingleLamp(int rowIdx, int colIdx)
+        {
+            if (Matrix[rowIdx, colIdx].Status != Device.DeviceStatus.On)
+                Matrix[rowIdx, colIdx].TurnOn();
+        }
+
+        public void TurnOffSingleLamp(int rowIdx, int colIdx)
+        {
+            if (Matrix[rowIdx, colIdx].Status != Device.DeviceStatus.Off)
+                Matrix[rowIdx, colIdx].TurnOff();
+        }
+
+        public void IncreaseSingleLampBrightness(int rowIdx, int colIdx)
+        {
+            Matrix[rowIdx, colIdx].IncreaseBrightness();
+        }
+
+        public void DecreaseSingleLampBrightness(int rowIdx, int colIdx)
+        {
+            Matrix[rowIdx, colIdx].DecreaseBrightness();
+        }
+
+        public void ChangeSingleLampBrightness(int rowIdx, int colIdx, int brightness)
+        {
+            Matrix[rowIdx, colIdx].ChangeBrightness(brightness);
         }
     }
 }
