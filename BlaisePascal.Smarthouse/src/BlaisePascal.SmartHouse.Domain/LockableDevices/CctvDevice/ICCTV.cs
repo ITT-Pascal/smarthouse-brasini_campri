@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.CctvDevice
+namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
 {
     public interface ICCTV
     {

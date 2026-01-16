@@ -4,22 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Device;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
 
-namespace BlaisePascal.SmartHouse.Domain.CctvDevice
+namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
 {
-    public class CCTV: AbstractDevice, ICCTV
+    public class CCTV : AbstractDevice, ICCTV, ILockable
     {
         //Properties
         public CCTVMode Mode { get; private set; }
         public bool isRecording { get; private set; }
+        public LockingStatus LockingStatus { get; private set; }
+        public string? Password { get; private set; }
+        private bool PasswordSetted => !string.IsNullOrWhiteSpace(Password);
 
         //Constructor
-        public CCTV(string name): base(name)
+        public CCTV(string name) : base(name)
         {
             Mode = CCTVMode.NoMode;
             isRecording = false;
         }
-        public CCTV(string name, Guid id): base(id, name)
+        public CCTV(string name, Guid id) : base(id, name)
         {
             Mode = CCTVMode.NoMode;
             isRecording = false;
@@ -89,6 +93,36 @@ namespace BlaisePascal.SmartHouse.Domain.CctvDevice
                 throw new Exception("The cctv is not recording");
             isRecording = false;
             LastModifiedAtUtc = DateTime.UtcNow;
+        }
+
+        public void SetPassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be empty or whitespace");
+            Password = password;
+            LastModifiedAtUtc = DateTime.UtcNow;
+        }
+
+        public void Unlock(string key)
+        {
+            OnValidator();
+            if (LockingStatus == LockingStatus.Locked && Password == key || PasswordSetted == false)
+                LockingStatus = LockingStatus.Unlocked;
+            else
+                throw new Exception("cannot unlock the CCTV");
+            LastModifiedAtUtc = DateTime.Now;
+        }
+
+        public void Lock(string key)
+        {
+            OnValidator();
+            if (LockingStatus == LockingStatus.Unlocked && Password == key || PasswordSetted == false)
+            {
+                LockingStatus = LockingStatus.Locked;
+            }
+            else
+                throw new Exception("cannot lock the CCTV");
+            LastModifiedAtUtc = DateTime.Now;
         }
     }
 }
