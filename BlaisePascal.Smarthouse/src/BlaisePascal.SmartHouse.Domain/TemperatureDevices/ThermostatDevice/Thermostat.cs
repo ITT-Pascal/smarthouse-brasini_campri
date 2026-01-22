@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 {
     public class Thermostat: AbstractDevice, ITemperatureModifier
     {
-            public double DefaultTemperature { get; private set; }
+            public GradeRecord DefaultTemperature { get; private set; }
             public double MinTemperature { get; private set; }
             public double MaxTemperature { get; private set; }
             public int TemperatureStep { get; private set; }
@@ -20,8 +20,8 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
             //Constructor
             public Thermostat(string name) : base(name)
             {
-                DefaultTemperature = 20;
-                TemperatureToReach = DefaultTemperature;
+                DefaultTemperature = new GradeRecord(20);
+                TemperatureToReach = DefaultTemperature.Value;
                 GradeMode = GradeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
@@ -30,8 +30,8 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 
             public Thermostat(Guid guid, string name) : base(guid, name)
             {
-                DefaultTemperature = 20;
-                TemperatureToReach = DefaultTemperature;
+                DefaultTemperature = new GradeRecord(20);
+                TemperatureToReach = DefaultTemperature.Value;
                 GradeMode = GradeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;

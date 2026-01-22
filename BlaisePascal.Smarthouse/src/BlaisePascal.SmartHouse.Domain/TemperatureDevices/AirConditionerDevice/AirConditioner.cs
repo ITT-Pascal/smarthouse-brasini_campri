@@ -11,7 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
     public class AirConditioner: AbstractDevice, ITemperatureModifier
     {
         //Const
-        private double DefaultTemperature = 20.0;
+        private GradeRecord DefaultTemperature = new GradeRecord(20.0);
         private double MaxTemperature = 27.0;
         private double MinTemperature = 16.0;
         private double TemperatureStep = 0.5;
@@ -24,14 +24,14 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
         //Constructor
         public AirConditioner(Guid Id,string name): base(Id,name)
         {
-            TemperatureToReach = DefaultTemperature;
+            TemperatureToReach = DefaultTemperature.Value;
             Mode = AirMode.NoMode;
             GradeMode = GradeMode.Celsius;
         }
 
         public AirConditioner(string name): base(name)
         {
-            TemperatureToReach = DefaultTemperature;
+            TemperatureToReach = DefaultTemperature.Value;
             Mode = AirMode.NoMode;
             GradeMode = GradeMode.Celsius;
         }
