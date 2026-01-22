@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Device;
+﻿using BlaisePascal.SmartHouse.Domain.abstraction;
+using BlaisePascal.SmartHouse.Domain.Device;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 using System;
 using System.Collections.Generic;
@@ -114,7 +115,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             {
                 for (int c = 0; c < led.Columns; c++)
                 {
-                    Assert.Equal(2, led.Matrix[r, c].Brightness);
+                    Assert.Equal(new BrightnessRecord(2), led.Matrix[r, c].Brightness);
                 }
             }
         }
@@ -132,7 +133,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             {
                 for (int c = 0; c < led.Columns; c++)
                 {
-                    Assert.Equal(1, led.Matrix[r, c].Brightness);
+                    Assert.Equal(new BrightnessRecord(1), led.Matrix[r, c].Brightness);
                 }
             }
         }

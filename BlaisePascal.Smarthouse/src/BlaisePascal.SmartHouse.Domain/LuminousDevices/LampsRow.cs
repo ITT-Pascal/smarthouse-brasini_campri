@@ -106,9 +106,9 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
             foreach(LampModel l in Lamps)
             {
-                if(maxBrightness < l.Brightness)
+                if(maxBrightness < l.Brightness.Value)
                 {
-                    maxBrightness = l.Brightness;
+                    maxBrightness = l.Brightness.Value;
                     maxLamp = l;
                 }
             }
@@ -123,9 +123,9 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
             foreach(LampModel l in Lamps)
             {
-                if(minBrightness == 0 || minBrightness > l.Brightness)
+                if(minBrightness == 0 || minBrightness > l.Brightness.Value)
                 {
-                    minBrightness = l.Brightness;
+                    minBrightness = l.Brightness.Value;
                     minLamp = l;
                 }
             }
@@ -139,7 +139,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
             foreach(LampModel l in Lamps)
             {
-                if(l.Brightness >= min && l.Brightness <= max)
+                if(l.Brightness.Value >= min && l.Brightness.Value <= max)
                 {
                     lamps.Add(l);
                 }

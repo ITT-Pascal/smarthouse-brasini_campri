@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Device;
+﻿using BlaisePascal.SmartHouse.Domain.abstraction;
+using BlaisePascal.SmartHouse.Domain.Device;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
         {
             EcoLamp lamp = new EcoLamp("a");
             Assert.Equal(DeviceStatus.Off, lamp.Status);
-            Assert.Equal(1, lamp.Brightness);
+            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
         }
 
         [Fact]
@@ -41,7 +42,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             EcoLamp lamp = new EcoLamp("a");
             lamp.TurnOn();
             lamp.IncreaseBrightness();
-            Assert.Equal(2, lamp.Brightness);
+            Assert.Equal(new BrightnessRecord(2), lamp.Brightness);
         }
 
         [Fact]
@@ -51,7 +52,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lamp.TurnOn();
             lamp.DecreaseBrightness();
             lamp.IncreaseBrightness();
-            Assert.Equal(2, lamp.Brightness);
+            Assert.Equal(new BrightnessRecord(2), lamp.Brightness);
         }
 
         [Fact]
@@ -61,7 +62,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lamp.TurnOn();
             lamp.IncreaseBrightness();
             lamp.DecreaseBrightness();
-            Assert.Equal(1, lamp.Brightness);
+            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
         }
 
         [Fact]
@@ -74,7 +75,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
                 lamp.DecreaseBrightness();
             }
 
-            Assert.Equal(1, lamp.Brightness);
+            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
         }
 
         [Fact]
@@ -99,7 +100,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             EcoLamp lamp = new EcoLamp("a");
             lamp.TurnOn();
             lamp.ChangeBrightness(3);
-            Assert.Equal(3, lamp.Brightness);
+            Assert.Equal(new BrightnessRecord(3), lamp.Brightness);
         }
 
         [Fact]
