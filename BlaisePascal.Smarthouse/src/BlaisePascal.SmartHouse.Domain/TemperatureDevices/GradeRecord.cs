@@ -7,8 +7,20 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
 {
-    public record GradeRecord(double Value)
+    public record GradeRecord
     {
-      
+        public double Value { get; }
+        public double MaxValue{ get; } = 40.0;
+        public double MinValue { get; } = 0.0;
+        public double DefaultValue { get; } = 20.0;
+        private GradeRecord(double value)
+        {
+            Value = value;
+        }
+        public static GradeRecord Create(double value)
+        {
+
+            return new GradeRecord(value);
+        }
     }
 }
