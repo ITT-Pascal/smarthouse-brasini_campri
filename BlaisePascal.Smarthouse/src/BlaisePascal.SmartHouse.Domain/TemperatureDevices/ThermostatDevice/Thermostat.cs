@@ -9,19 +9,19 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 {
     public class Thermostat: AbstractDevice, ITemperatureModifier
     {
-            public GradeRecord DefaultTemperature { get; private set; }
+            public double DefaultTemperature { get; private set; }
             public double MinTemperature { get; private set; }
             public double MaxTemperature { get; private set; }
             public int TemperatureStep { get; private set; }
             public GradeMode GradeMode { get; private set; }
-            public double TemperatureToReach { get; private set; }
+            public GradeRecord TemperatureToReach { get; private set; }
 
 
             //Constructor
             public Thermostat(string name) : base(name)
             {
-                DefaultTemperature = new GradeRecord(20);
-                TemperatureToReach = DefaultTemperature.Value;
+                DefaultTemperature = 20;
+                TemperatureToReach = new GradeRecord(DefaultTemperature);
                 GradeMode = GradeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
@@ -30,8 +30,8 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
 
             public Thermostat(Guid guid, string name) : base(guid, name)
             {
-                DefaultTemperature = new GradeRecord(20);
-                TemperatureToReach = DefaultTemperature.Value;
+                DefaultTemperature = 20;
+                TemperatureToReach = new GradeRecord(DefaultTemperature);
                 GradeMode = GradeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
@@ -44,20 +44,20 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 OnValidator();
                 if (temperature < MinTemperature || temperature > MaxTemperature)
                     throw new ArgumentOutOfRangeException($"Temperatere must be between {MinTemperature} and {MaxTemperature}");
-                TemperatureToReach = temperature;
+                TemperatureToReach = new GradeRecord(temperature);
                 LastModifiedAtUtc = DateTime.Now;
             }
 
             public void IncreaseTemperatureToReach()
             {
                 OnValidator();
-                TemperatureToReach = Math.Min(MaxTemperature, TemperatureToReach + TemperatureStep);
+                TemperatureToReach = new GradeRecord(Math.Min(MaxTemperature, TemperatureToReach.Value + TemperatureStep));
                 LastModifiedAtUtc = DateTime.Now;
             }
             public void DecreaseTemperatureToReach()
             {
                 OnValidator();
-                TemperatureToReach = Math.Max(MinTemperature, TemperatureToReach - TemperatureStep);
+                TemperatureToReach = new GradeRecord( Math.Max(MinTemperature, TemperatureToReach.Value - TemperatureStep));
                 LastModifiedAtUtc = DateTime.Now;
             }
 
@@ -69,7 +69,7 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 GradeMode = GradeMode.Fahrenheit;
                 MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
                 MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
-                TemperatureToReach = GradeConverter.Converter(GradeMode, TemperatureToReach);
+                TemperatureToReach =new GradeRecord( GradeConverter.Converter(GradeMode, TemperatureToReach.Value));
                 LastModifiedAtUtc = DateTime.Now;
             }
 
@@ -81,7 +81,7 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 GradeMode = GradeMode.Celsius;
                 MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
                 MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
-                TemperatureToReach = GradeConverter.Converter(GradeMode, TemperatureToReach);
+                TemperatureToReach =new GradeRecord( GradeConverter.Converter(GradeMode, TemperatureToReach.Value));
                 LastModifiedAtUtc = DateTime.Now;
             }
     }

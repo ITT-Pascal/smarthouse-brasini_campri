@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(20.0, cond.TemperatureToReach);
+            Assert.Equal(20.0, cond.TemperatureToReach.Value);
             Assert.Equal(AirMode.NoMode, cond.Mode);
             
         }
@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             //Assert
             Assert.Equal(DeviceStatus.On, cond.Status);
-            Assert.Equal(20.0, cond.TemperatureToReach);
+            Assert.Equal(20.0, cond.TemperatureToReach.Value);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -57,7 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOff();
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(20.0, cond.TemperatureToReach);
+            Assert.Equal(20.0, cond.TemperatureToReach.Value);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -266,7 +266,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetTemperatureToReach(20);
             //Assert
-            Assert.Equal(20, cond.TemperatureToReach);
+            Assert.Equal(20, cond.TemperatureToReach.Value);
         }
 
 
@@ -312,7 +312,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.IncreaseTemperatureToReach();
             //Assert
-            Assert.Equal(20.5, cond.TemperatureToReach);
+            Assert.Equal(20.5, cond.TemperatureToReach.Value);
         }
 
         [Fact]
@@ -325,7 +325,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.SetTemperatureToReach(27);
             cond.IncreaseTemperatureToReach();
             //Assert
-            Assert.Equal(27.0, cond.TemperatureToReach);
+            Assert.Equal(27.0, cond.TemperatureToReach.Value);
         }
 
         [Fact]
@@ -370,7 +370,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.DecreaseTemperatureToReach();
             //Assert
-            Assert.Equal(19.5, cond.TemperatureToReach);
+            Assert.Equal(20.5, cond.TemperatureToReach.Value);
         }
 
         [Fact]
@@ -383,7 +383,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.SetTemperatureToReach(16);
             cond.DecreaseTemperatureToReach();
             //Assert
-            Assert.Equal(16.0, cond.TemperatureToReach);
+            Assert.Equal(16.0, cond.TemperatureToReach.Value);
         }
     }
 }
