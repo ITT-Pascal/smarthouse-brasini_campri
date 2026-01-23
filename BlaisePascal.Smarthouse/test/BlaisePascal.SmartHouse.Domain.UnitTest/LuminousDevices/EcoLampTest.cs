@@ -83,7 +83,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
         {
             EcoLamp lamp = new EcoLamp("a");
             lamp.TurnOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(6));
+            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(11));
         }
 
         [Fact]

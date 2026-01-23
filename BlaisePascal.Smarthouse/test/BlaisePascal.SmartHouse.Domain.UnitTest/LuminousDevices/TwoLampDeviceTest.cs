@@ -190,13 +190,13 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
             // Act
             device.TurnBothOn();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 device.IncreaseOneBrightness(lamp1.Id);
             }
             device.IncreaseBothBrightness();
             // Assert
-            Assert.Equal(new BrightnessRecord(5), lamp1.Brightness);
+            Assert.Equal(new BrightnessRecord(10), lamp1.Brightness);
             Assert.Equal(new BrightnessRecord(2), lamp2.Brightness);
         }
 

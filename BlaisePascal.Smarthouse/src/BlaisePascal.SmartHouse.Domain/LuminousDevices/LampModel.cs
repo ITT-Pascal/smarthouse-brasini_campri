@@ -15,30 +15,24 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
     {
         //Properties
         public BrightnessRecord Brightness { get; protected set; }
-        
-        public abstract int MaxBrightness { get; }
-        public abstract int MinBrightness { get; }
-
+       
         //Constructor
         protected LampModel(string name):base(name)
         {
-            Brightness = new BrightnessRecord(MinBrightness); 
+            Brightness = new BrightnessRecord(BrightnessRecord.Min);
         }
         protected LampModel(Guid Id, string name): base(Id, name)
         {
-            Brightness = new BrightnessRecord(MinBrightness);
+            Brightness = new BrightnessRecord(BrightnessRecord.Min);
         }
 
-
-
         //Methods
-
         public virtual void IncreaseBrightness()
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot increase brightness: the lamp is off");
             int newValue = Brightness.Value + 1;
-            Brightness = new BrightnessRecord(Math.Min(newValue, MaxBrightness));
+            Brightness = new BrightnessRecord(newValue);
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
@@ -47,7 +41,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot decrease brightness: the lamp is off");
             int newValue = Brightness.Value - 1;
-            Brightness = new BrightnessRecord(Math.Max(newValue, MinBrightness));
+            Brightness = new BrightnessRecord(newValue);
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
@@ -55,14 +49,14 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot change brightness: the lamp is off");
-            if (brightness > MinBrightness && brightness < MaxBrightness)
+            if (brightness > BrightnessRecord.Min && brightness < BrightnessRecord.Max)
             {
                 Brightness = new BrightnessRecord(brightness);
                 LastModifiedAtUtc = DateTime.UtcNow;
             }
             else
             {
-                throw new ArgumentOutOfRangeException($"Brightness cannot be below {MinBrightness} or above {MaxBrightness}");
+                throw new ArgumentOutOfRangeException($"Brightness cannot be below {BrightnessRecord.Min} or above {BrightnessRecord.Max}");
             }
         }
 
