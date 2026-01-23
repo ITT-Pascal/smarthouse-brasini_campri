@@ -10,14 +10,10 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
     public class EcoLamp: LampModel
     {
         //Const
-        private const int EcoMax = 5;
-        private const int EcoMin = 1;
         private const int DefaultAutoOffMinutes = 10;
         private const int MinAutoOffMinutes = 1;
 
         //Properties
-        public override int MaxBrightness => EcoMax;
-        public override int MinBrightness => EcoMin;
         private DateTime? autoOffAtUtc;
 
         //Constructor

@@ -11,7 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
         {
             Lamp lamp = new Lamp("a");
             Assert.Equal(DeviceStatus.Off, lamp.Status);
-            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(1), lamp.Brightness);
 
         }
 
@@ -40,7 +40,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lamp.TurnOn();
             lamp.DecreaseBrightness();
             lamp.IncreaseBrightness();
-            Assert.Equal(new BrightnessRecord(2), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(2), lamp.Brightness);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             Lamp lamp = new Lamp("a");
             lamp.TurnOn();
             lamp.IncreaseBrightness();
-            Assert.Equal(new BrightnessRecord(2), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(2), lamp.Brightness);
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lamp.TurnOn();
             lamp.IncreaseBrightness();
             lamp.DecreaseBrightness();
-            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(1), lamp.Brightness);
         }
         
         [Fact]
@@ -71,7 +71,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             {
                 lamp.DecreaseBrightness();
             }
-            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(1), lamp.Brightness);
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             Lamp lamp = new Lamp("a");
             lamp.TurnOn();
             lamp.ChangeBrightness(7);
-            Assert.Equal(new BrightnessRecord(7), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(7), lamp.Brightness);
         }
 
         [Fact]

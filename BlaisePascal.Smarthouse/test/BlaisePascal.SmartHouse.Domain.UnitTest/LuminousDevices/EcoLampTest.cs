@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
         {
             EcoLamp lamp = new EcoLamp("a");
             Assert.Equal(DeviceStatus.Off, lamp.Status);
-            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(1), lamp.Brightness);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             EcoLamp lamp = new EcoLamp("a");
             lamp.TurnOn();
             lamp.IncreaseBrightness();
-            Assert.Equal(new BrightnessRecord(2), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(2), lamp.Brightness);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lamp.TurnOn();
             lamp.DecreaseBrightness();
             lamp.IncreaseBrightness();
-            Assert.Equal(new BrightnessRecord(2), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(2), lamp.Brightness);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lamp.TurnOn();
             lamp.IncreaseBrightness();
             lamp.DecreaseBrightness();
-            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(1), lamp.Brightness);
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
                 lamp.DecreaseBrightness();
             }
 
-            Assert.Equal(new BrightnessRecord(1), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(1), lamp.Brightness);
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
         {
             EcoLamp lamp = new EcoLamp("a");
             lamp.TurnOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(6));
+            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(11));
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             EcoLamp lamp = new EcoLamp("a");
             lamp.TurnOn();
             lamp.ChangeBrightness(3);
-            Assert.Equal(new BrightnessRecord(3), lamp.Brightness);
+            Assert.Equal(BrightnessRecord.Create(3), lamp.Brightness);
         }
 
         [Fact]
