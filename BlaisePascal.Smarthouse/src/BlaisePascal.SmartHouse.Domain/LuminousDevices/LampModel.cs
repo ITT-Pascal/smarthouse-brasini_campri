@@ -19,11 +19,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         //Constructor
         protected LampModel(string name):base(name)
         {
-            Brightness = new BrightnessRecord(BrightnessRecord.Min);
+            Brightness = BrightnessRecord.Create(BrightnessRecord.Min);
         }
         protected LampModel(Guid Id, string name): base(Id, name)
         {
-            Brightness = new BrightnessRecord(BrightnessRecord.Min);
+            Brightness = BrightnessRecord.Create(BrightnessRecord.Min);
         }
 
         //Methods
@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot increase brightness: the lamp is off");
             int newValue = Brightness.Value + 1;
-            Brightness = new BrightnessRecord(newValue);
+            Brightness = BrightnessRecord.Create(newValue);
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
@@ -41,7 +41,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot decrease brightness: the lamp is off");
             int newValue = Brightness.Value - 1;
-            Brightness = new BrightnessRecord(newValue);
+            Brightness = BrightnessRecord.Create(newValue);
             LastModifiedAtUtc = DateTime.UtcNow;
         }
 
@@ -51,7 +51,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
                 throw new Exception("Cannot change brightness: the lamp is off");
             if (brightness > BrightnessRecord.Min && brightness < BrightnessRecord.Max)
             {
-                Brightness = new BrightnessRecord(brightness);
+                Brightness = BrightnessRecord.Create(brightness);
                 LastModifiedAtUtc = DateTime.UtcNow;
             }
             else

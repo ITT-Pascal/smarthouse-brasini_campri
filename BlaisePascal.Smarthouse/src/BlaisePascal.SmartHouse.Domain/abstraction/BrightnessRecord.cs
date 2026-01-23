@@ -8,12 +8,15 @@ namespace BlaisePascal.SmartHouse.Domain.abstraction
 {
     public record BrightnessRecord
     {
+        //Properties
         public int Value { get; }
 
+        //Constants
         public const int Max = 10;
         public const int Min = 1;
 
-        public BrightnessRecord(int v)
+        //Constructor
+        private BrightnessRecord(int v)
         {
             if (v >= Min && v <= Max)
                 Value = v;
@@ -22,5 +25,8 @@ namespace BlaisePascal.SmartHouse.Domain.abstraction
             else
                 Value = Max;
         }
+
+        //Methods
+        public static BrightnessRecord Create(int value) => new BrightnessRecord(value);
     }
 }
