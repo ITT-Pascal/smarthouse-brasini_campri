@@ -11,6 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
 {
     public class ThermostatTest
     {
+        //TODO debug 3 tests
         [Fact]
         public void SetTemperatureToReach_WhenTemperatureIsWithinRange_ShouldSetTemperature()
         {

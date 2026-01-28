@@ -22,6 +22,11 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
             return new GradeRecord(value);
         }
 
+        public void ChangeMaxValue(double value)
+        {
+
+        }
+
 
     }
 }
