@@ -138,21 +138,21 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         {
             Door door = new Door("Front Door");
             door.SetNewName("Back Door");
-            Assert.Equal("Back Door", door.Name);
+            Assert.Equal("Back Door", door.Name.String);
         }
 
         [Fact]
         public void SetNewName_WhenNewNameIsEmpty_ThrowsException()
         {
             Door door = new Door("Front Door");
-            Assert.Throws<Exception>(() => door.SetNewName(""));
+            Assert.Throws<ArgumentException>(() => door.SetNewName(""));
         }
 
         [Fact]
         public void SetNewName_WhenNewNameIsNull_ThrowsException()
         {
             Door door = new Door("Front Door");
-            Assert.Throws<Exception>(() => door.SetNewName(null));
+            Assert.Throws<ArgumentException>(() => door.SetNewName(null));
         }
 
         [Fact]

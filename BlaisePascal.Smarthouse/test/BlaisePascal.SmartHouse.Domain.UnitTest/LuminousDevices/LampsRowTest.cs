@@ -134,7 +134,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(2), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(2), lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -157,7 +157,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(10), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(10), lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -182,9 +182,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(10), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(10), lampsrow.Lamps[i].Brightness);
             }
-            Assert.Equal(BrightnessRecord.Create(9), lampsrow.Lamps[4].Brightness);
+            Assert.Equal(Brightness.Create(9), lampsrow.Lamps[4].Brightness);
         }
 
         [Fact]
@@ -205,7 +205,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(2), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(2), lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -228,7 +228,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(1), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(1), lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -253,9 +253,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             //Assert
             for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(1), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(1), lampsrow.Lamps[i].Brightness);
             }
-            Assert.Equal(BrightnessRecord.Create(5), lampsrow.Lamps[4].Brightness);
+            Assert.Equal(Brightness.Create(5), lampsrow.Lamps[4].Brightness);
         }
 
         [Fact]
@@ -272,10 +272,10 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lampsrow.SwitchAllOn();
             lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[4].Id, 3);
             //Assert
-            Assert.Equal(BrightnessRecord.Create(3), lampsrow.Lamps[4].Brightness);
+            Assert.Equal(Brightness.Create(3), lampsrow.Lamps[4].Brightness);
             for (int i = 0; i < lampsrow.Lamps.Count - 1; i++)
             {
-                Assert.Equal(BrightnessRecord.Create(1), lampsrow.Lamps[i].Brightness);
+                Assert.Equal(Brightness.Create(1), lampsrow.Lamps[i].Brightness);
             }
         }
 
@@ -480,9 +480,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[2].Id, 9);
             lampsrow.SortByBrightness(true);
             //Assert
-            Assert.Equal(BrightnessRecord.Create(9), lampsrow.Lamps[0].Brightness);
-            Assert.Equal(BrightnessRecord.Create(4), lampsrow.Lamps[1].Brightness);
-            Assert.Equal(BrightnessRecord.Create(2), lampsrow.Lamps[2].Brightness);
+            Assert.Equal(Brightness.Create(9), lampsrow.Lamps[0].Brightness);
+            Assert.Equal(Brightness.Create(4), lampsrow.Lamps[1].Brightness);
+            Assert.Equal(Brightness.Create(2), lampsrow.Lamps[2].Brightness);
         }
 
         [Fact]
@@ -501,9 +501,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[2].Id, 9);
             lampsrow.SortByBrightness(false);
             //Assert
-            Assert.Equal(BrightnessRecord.Create(2), lampsrow.Lamps[0].Brightness);
-            Assert.Equal(BrightnessRecord.Create(4), lampsrow.Lamps[1].Brightness);
-            Assert.Equal(BrightnessRecord.Create(9), lampsrow.Lamps[2].Brightness);
+            Assert.Equal(Brightness.Create(2), lampsrow.Lamps[0].Brightness);
+            Assert.Equal(Brightness.Create(4), lampsrow.Lamps[1].Brightness);
+            Assert.Equal(Brightness.Create(9), lampsrow.Lamps[2].Brightness);
         }
     }
 }

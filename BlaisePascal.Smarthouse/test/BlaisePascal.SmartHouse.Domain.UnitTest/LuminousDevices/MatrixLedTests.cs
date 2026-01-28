@@ -115,7 +115,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             {
                 for (int c = 0; c < led.Columns; c++)
                 {
-                    Assert.Equal(BrightnessRecord.Create(2), led.Matrix[r, c].Brightness);
+                    Assert.Equal(Brightness.Create(2), led.Matrix[r, c].Brightness);
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             {
                 for (int c = 0; c < led.Columns; c++)
                 {
-                    Assert.Equal(BrightnessRecord.Create(1), led.Matrix[r, c].Brightness);
+                    Assert.Equal(Brightness.Create(1), led.Matrix[r, c].Brightness);
                 }
             }
         }
