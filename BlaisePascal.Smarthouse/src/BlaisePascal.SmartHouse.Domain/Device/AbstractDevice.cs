@@ -1,15 +1,17 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.abstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BlaisePascal.SmartHouse.Domain.Device
 {
     public abstract class AbstractDevice : ISwitchable
     {
         public Guid Id { get; protected set; }
-        public string Name { get; protected set; }
+        public Name Name { get; protected set; }
         public DeviceStatus Status { get; protected set; }
         public DateTime CreatedAtUtc { get; protected set; }
         public DateTime LastModifiedAtUtc { get; protected set; }
@@ -17,7 +19,7 @@ namespace BlaisePascal.SmartHouse.Domain.Device
         protected AbstractDevice(string name)
         {
             Id = Guid.NewGuid();
-            Name = name;
+            Name = Name.Create(name);
             Status = DeviceStatus.Off;
             CreatedAtUtc = DateTime.Now;
             LastModifiedAtUtc = DateTime.Now;
@@ -28,7 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain.Device
             LastModifiedAtUtc = DateTime.Now;
             Status = DeviceStatus.Off;
             Id = guid;
-            Name = name;
+            Name = Name.Create(name);
         }
 
         //Methods
@@ -66,15 +68,12 @@ namespace BlaisePascal.SmartHouse.Domain.Device
 
         public virtual void SetNewName(string newName)
         {
-            if (string.IsNullOrWhiteSpace(newName))
-                throw new Exception("name cannot be empty");
-            else if (newName == Name)
+             if (newName == Name.String)
             {
                 throw new Exception("name cannot be the same as the old one");
             }
-            Name = newName;
+            Name = Name.Create(newName);
             LastModifiedAtUtc = DateTime.Now;
         }
     }
 }
-

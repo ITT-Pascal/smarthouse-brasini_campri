@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.abstraction
 {
-    public record BrightnessRecord
+    public record Brightness
     {
         //Properties
         public int Value { get; }
@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.abstraction
         public const int Min = 1;
 
         //Constructor
-        private BrightnessRecord(int v)
+        private Brightness(int v)
         {
             if (v >= Min && v <= Max)
                 Value = v;
@@ -27,6 +27,6 @@ namespace BlaisePascal.SmartHouse.Domain.abstraction
         }
 
         //Methods
-        public static BrightnessRecord Create(int value) => new BrightnessRecord(value);
+        public static Brightness Create(int value) => new Brightness(value);
     }
 }

@@ -108,8 +108,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.IncreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(2), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(2), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(2), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(2), lamp2.Brightness);
         }
 
         [Fact]
@@ -124,8 +124,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.IncreaseBothBrightness();
             device.DecreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -143,8 +143,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             }
 
                 // Assert
-            Assert.Equal(BrightnessRecord.Create(10), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(10), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(10), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(10), lamp2.Brightness);
         }
 
         [Fact]
@@ -158,8 +158,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.DecreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -177,8 +177,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             }
             device.IncreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(10), lamp2.Brightness);
-            Assert.Equal(BrightnessRecord.Create(2), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(10), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(2), lamp1.Brightness);
         }
 
         [Fact]
@@ -196,8 +196,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             }
             device.IncreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(10), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(2), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(10), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(2), lamp2.Brightness);
         }
 
         [Fact]
@@ -212,8 +212,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.IncreaseOneBrightness(lamp1.Id);
             device.DecreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
 
         }
 
@@ -229,8 +229,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.IncreaseOneBrightness(lamp2.Id);
             device.DecreaseBothBrightness();
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -244,7 +244,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.IncreaseOneBrightness(lamp1.Id);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(2), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(2), lamp1.Brightness);
         }
 
         [Fact]
@@ -258,7 +258,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.IncreaseOneBrightness(lamp2.Id);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(2), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(2), lamp2.Brightness);
         }
 
         [Fact]
@@ -273,7 +273,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.IncreaseOneBrightness(lamp1.Id);
             device.DecreaseOneBrightness(lamp1.Id);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
         }
 
         [Fact]
@@ -288,7 +288,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.IncreaseOneBrightness(lamp2.Id);
             device.DecreaseOneBrightness(lamp2.Id);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -303,8 +303,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.DecreaseOneBrightness(guid);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -319,8 +319,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.IncreaseOneBrightness(guid);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -338,8 +338,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
                 device.IncreaseOneBrightness(lamp2.Id);
             }
             // Assert
-            Assert.Equal(BrightnessRecord.Create(10), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(10), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(10), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(10), lamp2.Brightness);
         }
 
         [Fact]
@@ -357,8 +357,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
                 device.DecreaseOneBrightness(lamp2.Id);
             }
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]
@@ -372,7 +372,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.ChangeOneBrightness(lamp1.Id, 4);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(4), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(4), lamp1.Brightness);
         }
 
         [Fact]
@@ -386,7 +386,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.ChangeOneBrightness(lamp2.Id, 6);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(6), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(6), lamp2.Brightness);
         }
 
         [Fact]
@@ -401,8 +401,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             device.TurnBothOn();
             device.ChangeOneBrightness(guid, 7);
             // Assert
-            Assert.Equal(BrightnessRecord.Create(1), lamp1.Brightness);
-            Assert.Equal(BrightnessRecord.Create(1), lamp2.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp1.Brightness);
+            Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
         [Fact]

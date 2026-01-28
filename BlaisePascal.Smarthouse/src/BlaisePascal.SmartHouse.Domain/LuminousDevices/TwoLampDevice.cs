@@ -36,11 +36,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void ToggleOneLamp(string name)
         {
-            if (Lamp1.Name == name)
+            if (Lamp1.Name.String == name)
             {
                 Lamp1.Toggle();
             }
-            else if (Lamp2.Name == name)
+            else if (Lamp2.Name.String == name)
             {
                 Lamp2.Toggle();
             }
@@ -88,11 +88,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void IncreaseOneBrightness(string name)
         {
-            if (Lamp1.Name == name)
+            if (Lamp1.Name.String == name)
             {
                 Lamp1.IncreaseBrightness();
             }
-            else if (Lamp2.Name == name)
+            else if (Lamp2.Name.String == name)
             {
                 Lamp2.IncreaseBrightness();
             }
@@ -112,11 +112,11 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void DecreaseOneBrightness(string name)
         {
-            if (Lamp1.Name == name)
+            if (Lamp1.Name.String == name)
             {
                 Lamp1.IncreaseBrightness();
             }
-            else if (Lamp2.Name == name)
+            else if (Lamp2.Name.String == name)
             {
                 Lamp2.IncreaseBrightness();
             }
@@ -132,9 +132,9 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
 
         public void ChangeOneBrightness(string name, int newBrightness)
         {
-            if (Lamp1.Name == name)
+            if (Lamp1.Name.String == name)
                 Lamp1.ChangeBrightness(newBrightness);
-            else if (Lamp2.Name == name)
+            else if (Lamp2.Name.String == name)
                 Lamp2.ChangeBrightness(newBrightness);
         }
     }
