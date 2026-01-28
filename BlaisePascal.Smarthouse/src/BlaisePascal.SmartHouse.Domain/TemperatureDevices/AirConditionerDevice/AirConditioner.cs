@@ -17,23 +17,23 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
         private double TemperatureStep = 0.5;
 
         //Properties
-        public GradeRecord TemperatureToReach { get; private set; }
+        public Degree TemperatureToReach { get; private set; }
         public AirMode Mode { get; private set; }
-        public GradeMode GradeMode { get; private set; }
+        public DegreeMode DegreeMode { get; private set; }
 
         //Constructor
         public AirConditioner(Guid Id,string name): base(Id,name)
         {
-            TemperatureToReach = GradeRecord.Create(DefaultTemperature);
+            TemperatureToReach = Degree.Create(DefaultTemperature);
             Mode = AirMode.NoMode;
-            GradeMode = GradeMode.Celsius;
+            DegreeMode = DegreeMode.Celsius;
         }
 
         public AirConditioner(string name): base(name)
         {
-            TemperatureToReach = GradeRecord.Create(DefaultTemperature);
+            TemperatureToReach = Degree.Create(DefaultTemperature);
             Mode = AirMode.NoMode;
-            GradeMode = GradeMode.Celsius;
+            DegreeMode = DegreeMode.Celsius;
         }
         
         //Methods
@@ -81,7 +81,7 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
             OnValidator();
             if (Mode == AirMode.Dry || Mode == AirMode.Fan)
                 throw new Exception($"Cannot change degrees in mode {Mode}");
-            TemperatureToReach = GradeRecord.Create(value);
+            TemperatureToReach = Degree.Create(value);
             LastModifiedAtUtc = DateTime.Now;
         }
 
@@ -92,10 +92,10 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
                 throw new Exception($"Cannot change degrees in mode {Mode}");
             if (TemperatureStep + TemperatureToReach.Value <= MaxTemperature)
             {
-                TemperatureToReach = GradeRecord.Create(TemperatureToReach.Value + TemperatureStep);
+                TemperatureToReach = Degree.Create(TemperatureToReach.Value + TemperatureStep);
             }
             else
-                TemperatureToReach = GradeRecord.Create(MaxTemperature);
+                TemperatureToReach = Degree.Create(MaxTemperature);
             LastModifiedAtUtc = DateTime.Now;
         }
 
@@ -106,34 +106,34 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
                 throw new Exception($"Cannot change degrees in mode {Mode}");
             if (TemperatureToReach.Value - TemperatureStep >= MinTemperature)
             {
-                TemperatureToReach = GradeRecord.Create(TemperatureToReach.Value + TemperatureStep);
+                TemperatureToReach = Degree.Create(TemperatureToReach.Value + TemperatureStep);
             }
             else
-                TemperatureToReach = GradeRecord.Create(MinTemperature);
+                TemperatureToReach = Degree.Create(MinTemperature);
             LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetFahrenheitMode()
         {
             OnValidator();
-            if (GradeMode == GradeMode.Fahrenheit)
+            if (DegreeMode == DegreeMode.Fahrenheit)
                 throw new Exception("The mode is already Fahrenheit");
-            GradeMode = GradeMode.Fahrenheit;
-            MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
-            MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
-            TemperatureToReach = GradeRecord.Create(GradeConverter.Converter(GradeMode, TemperatureToReach.Value));
+            DegreeMode = DegreeMode.Fahrenheit;
+            MinTemperature = DegreeConverter.Converter(DegreeMode, MinTemperature);
+            MaxTemperature = DegreeConverter.Converter(DegreeMode, MaxTemperature);
+            TemperatureToReach = Degree.Create(DegreeConverter.Converter(DegreeMode, TemperatureToReach.Value));
             LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetCelsiusMode()
         {
             OnValidator();
-            if (GradeMode == GradeMode.Celsius)
+            if (DegreeMode == DegreeMode.Celsius)
                 throw new Exception("The mode is already Celsius");
-            GradeMode = GradeMode.Celsius;
-            MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
-            MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
-            TemperatureToReach = GradeRecord.Create(GradeConverter.Converter(GradeMode, TemperatureToReach.Value));
+            DegreeMode = DegreeMode.Celsius;
+            MinTemperature = DegreeConverter.Converter(DegreeMode, MinTemperature);
+            MaxTemperature = DegreeConverter.Converter(DegreeMode, MaxTemperature);
+            TemperatureToReach = Degree.Create(DegreeConverter.Converter(DegreeMode, TemperatureToReach.Value));
             LastModifiedAtUtc = DateTime.Now;
         }
     }

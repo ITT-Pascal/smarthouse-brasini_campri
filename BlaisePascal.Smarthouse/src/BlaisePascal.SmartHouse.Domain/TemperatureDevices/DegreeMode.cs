@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
 {
-    public enum GradeMode
+    public enum DegreeMode
     {
         Celsius,
         Fahrenheit,

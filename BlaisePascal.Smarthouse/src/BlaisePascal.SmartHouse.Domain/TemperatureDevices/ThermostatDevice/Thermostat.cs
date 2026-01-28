@@ -13,16 +13,16 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
             public double MinTemperature { get; private set; }
             public double MaxTemperature { get; private set; }
             public int TemperatureStep { get; private set; }
-            public GradeMode GradeMode { get; private set; }
-            public GradeRecord TemperatureToReach { get; private set; }
+            public DegreeMode DegreeMode { get; private set; }
+            public Degree TemperatureToReach { get; private set; }
 
 
             //Constructor
             public Thermostat(string name) : base(name)
             {
                 DefaultTemperature = 20;
-                TemperatureToReach = GradeRecord.Create(DefaultTemperature);
-                GradeMode = GradeMode.Celsius;
+                TemperatureToReach = Degree.Create(DefaultTemperature);
+                DegreeMode = DegreeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
                 TemperatureStep = 1;
@@ -31,8 +31,8 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
             public Thermostat(Guid guid, string name) : base(guid, name)
             {
                 DefaultTemperature = 20;
-                TemperatureToReach = GradeRecord.Create(DefaultTemperature);
-                GradeMode = GradeMode.Celsius;
+                TemperatureToReach = Degree.Create(DefaultTemperature);
+                DegreeMode = DegreeMode.Celsius;
                 MaxTemperature = 40;
                 MinTemperature = 5;
                 TemperatureStep = 1;
@@ -44,44 +44,44 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
                 OnValidator();
                 if (temperature < MinTemperature || temperature > MaxTemperature)
                     throw new ArgumentOutOfRangeException($"Temperatere must be between {MinTemperature} and {MaxTemperature}");
-                TemperatureToReach = GradeRecord.Create(temperature);
+                TemperatureToReach = Degree.Create(temperature);
                 LastModifiedAtUtc = DateTime.Now;
             }
 
             public void IncreaseTemperatureToReach()
             {
                 OnValidator();
-                TemperatureToReach = GradeRecord.Create(Math.Min(TemperatureStep + TemperatureToReach.Value, MaxTemperature));
+                TemperatureToReach = Degree.Create(Math.Min(TemperatureStep + TemperatureToReach.Value, MaxTemperature));
                 LastModifiedAtUtc = DateTime.Now;
             }
             public void DecreaseTemperatureToReach()
             {
                 OnValidator();
-                TemperatureToReach = GradeRecord.Create(Math.Max(TemperatureToReach.Value - TemperatureStep, MinTemperature));
+                TemperatureToReach = Degree.Create(Math.Max(TemperatureToReach.Value - TemperatureStep, MinTemperature));
                 LastModifiedAtUtc = DateTime.Now;
             }
 
             public void SetFahrenheitMode()
             {
                 OnValidator();
-                if (GradeMode == GradeMode.Fahrenheit)
+                if (DegreeMode == DegreeMode.Fahrenheit)
                     throw new Exception("The mode is already Fahrenheit");
-                GradeMode = GradeMode.Fahrenheit;
-                MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
-                MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
-                TemperatureToReach = GradeRecord.Create( GradeConverter.Converter(GradeMode, TemperatureToReach.Value));
+                DegreeMode = DegreeMode.Fahrenheit;
+                MinTemperature = DegreeConverter.Converter(DegreeMode, MinTemperature);
+                MaxTemperature = DegreeConverter.Converter(DegreeMode, MaxTemperature);
+                TemperatureToReach = Degree.Create( DegreeConverter.Converter(DegreeMode, TemperatureToReach.Value));
                 LastModifiedAtUtc = DateTime.Now;
             }
 
             public void SetCelsiusMode()
             {
                 OnValidator();
-                if (GradeMode == GradeMode.Celsius)
+                if (DegreeMode == DegreeMode.Celsius)
                     throw new Exception("The mode is already Celsius");
-                GradeMode = GradeMode.Celsius;
-                MinTemperature = GradeConverter.Converter(GradeMode, MinTemperature);
-                MaxTemperature = GradeConverter.Converter(GradeMode, MaxTemperature);
-                TemperatureToReach = GradeRecord.Create( GradeConverter.Converter(GradeMode, TemperatureToReach.Value));
+                DegreeMode = DegreeMode.Celsius;
+                MinTemperature = DegreeConverter.Converter(DegreeMode, MinTemperature);
+                MaxTemperature = DegreeConverter.Converter(DegreeMode, MaxTemperature);
+                TemperatureToReach = Degree.Create( DegreeConverter.Converter(DegreeMode, TemperatureToReach.Value));
                 LastModifiedAtUtc = DateTime.Now;
             }
     }
