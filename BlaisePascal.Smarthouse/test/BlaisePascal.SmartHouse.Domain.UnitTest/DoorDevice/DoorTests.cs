@@ -11,7 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
 {
     public class DoorTests
     {
-        //TODO debug 4 tests
+        
         [Fact]
         public void Constructor_WhenDoorIsCreated_StatusIsClosedLockingStatusIsUnlockedAndFunctioningStatusIsOn()
         {
@@ -42,7 +42,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
         public void LockTheDoor_WhenDoorIsClosed_ItChangesLockingStatusToLocked()
         {
             Door door = new Door("Front Door");
-            door.Lock(null);
+            door.Lock("password1");
             Assert.Equal(LockingStatus.Locked, door.LockingStatus);
         }
 
