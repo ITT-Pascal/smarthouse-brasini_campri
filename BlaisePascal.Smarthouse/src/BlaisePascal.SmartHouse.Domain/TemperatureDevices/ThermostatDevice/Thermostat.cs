@@ -51,13 +51,13 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice
             public void IncreaseTemperatureToReach()
             {
                 OnValidator();
-            TemperatureToReach = GradeRecord.Create(TemperatureStep + TemperatureToReach.Value);
+                TemperatureToReach = GradeRecord.Create(Math.Min(TemperatureStep + TemperatureToReach.Value, MaxTemperature));
                 LastModifiedAtUtc = DateTime.Now;
             }
             public void DecreaseTemperatureToReach()
             {
                 OnValidator();
-                TemperatureToReach = GradeRecord.Create(TemperatureStep - TemperatureToReach.Value);
+                TemperatureToReach = GradeRecord.Create(Math.Max(TemperatureToReach.Value - TemperatureStep, MinTemperature));
                 LastModifiedAtUtc = DateTime.Now;
             }
 

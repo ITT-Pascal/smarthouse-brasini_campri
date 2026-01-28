@@ -10,12 +10,10 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
     public record GradeRecord
     {
         public double Value { get; }
-        public double MaxValue{ get; } = 40.0;
-        public double MinValue { get; } = 0.0;
-        public double DefaultValue { get; } = 20.0;
+
         private GradeRecord(double value)
         {
-            Value = Math.Clamp(value, MinValue, MaxValue);
+            Value = value;
         }
         public static GradeRecord Create(double value)
         {
