@@ -22,17 +22,18 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Act
             thermostat.SetTemperatureToReach(validTemperature);
             // Assert
-            Assert.Equal(validTemperature, thermostat.TemperatureToReach.Value);
+            Assert.Equal(validTemperature, thermostat.Temperature.Value);
         }
         [Fact]
-        public void SetTemperatureToReach_WhenTemperatureIsOutOfRange_ShouldThrowArgumentOutOfRangeException()
+        public void SetTemperatureToReach_WhenTemperatureIsOutOfRange_SetToMax()
         {
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
             int invalidTemperature = 50; // Assuming max temperature is 40
+            thermostat.SetTemperatureToReach(invalidTemperature);
             // Act & Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => thermostat.SetTemperatureToReach(invalidTemperature));
+            Assert.Equal(thermostat.Temperature.Max, thermostat.Temperature.Value);
         }
         [Fact]
         public void IncreaseTemperatureToReach_WhenCalled_ShouldIncreaseTemperatureByStep()
@@ -40,11 +41,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            double initialTemperature = thermostat.TemperatureToReach.Value ;
+            double initialTemperature = thermostat.Temperature.Value ;
             // Act
             thermostat.IncreaseTemperatureToReach();
             // Assert
-            Assert.Equal(initialTemperature + thermostat.TemperatureStep, thermostat.TemperatureToReach.Value);
+            Assert.Equal(initialTemperature + thermostat.TemperatureStep, thermostat.Temperature.Value);
         }
         [Fact]
         public void IncreaseTemperatureToReach_WhenAtMaxTemperature_ShouldNotExceedMax()
@@ -52,11 +53,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            thermostat.SetTemperatureToReach(thermostat.MaxTemperature);
+            thermostat.SetTemperatureToReach(thermostat.Temperature.Max);
             // Act
             thermostat.IncreaseTemperatureToReach();
             // Assert
-            Assert.Equal(thermostat.MaxTemperature, thermostat.TemperatureToReach.Value);
+            Assert.Equal(thermostat.Temperature.Max, thermostat.Temperature.Value);
         }
         [Fact]
         public void DecreaseTemperatureToReach_WhenAtMinTemperature_ShouldNotGoBelowMin()
@@ -64,11 +65,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            thermostat.SetTemperatureToReach(thermostat.MinTemperature);
+            thermostat.SetTemperatureToReach(thermostat.Temperature.Min);
             // Act
             thermostat.DecreaseTemperatureToReach();
             // Assert
-            Assert.Equal(thermostat.MinTemperature, thermostat.TemperatureToReach.Value);
+            Assert.Equal(thermostat.Temperature.Min, thermostat.Temperature.Value);
         }
         [Fact]
         public void SetTemperatureToReach_WhenDeviceIsOff_ShouldThrowException()
@@ -120,12 +121,12 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            double initialTemperature = thermostat.TemperatureToReach.Value;
+            double initialTemperature = thermostat.Temperature.Value;
             // Act
             thermostat.SetFahrenheitMode();
             // Assert
             double expectedTemperature = (initialTemperature -32 ) *5/9;
-            Assert.Equal(expectedTemperature, thermostat.TemperatureToReach.Value);
+            Assert.Equal(expectedTemperature, thermostat.Temperature.Value);
         }
         [Fact]
         public void SetCelsiusMode_WhenCalled_ShouldConvertTemperaturesToCelsius()
@@ -134,12 +135,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
             thermostat.SetFahrenheitMode();
-            double temperatureInFahrenheit = thermostat.TemperatureToReach.Value;
             // Act
+            double expectedTemperature = (thermostat.Temperature.Value * 9 / 5) + 32;
             thermostat.SetCelsiusMode();
             // Assert
-            double expectedTemperature = (temperatureInFahrenheit * 9 / 5) + 32;
-            Assert.Equal(expectedTemperature, thermostat.TemperatureToReach.Value);
+            Assert.Equal(expectedTemperature, thermostat.Temperature.Value);
         }
         [Fact]
         public void SetCelsiusMode_AfterSettingFahrenheit_ShouldRestoreOriginalCelsiusTemperature()
@@ -147,12 +147,12 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.ThermostatDevice
             // Arrange
             Thermostat thermostat = new Thermostat("Living Room Thermostat");
             thermostat.TurnOn();
-            double originalCelsiusTemperature = thermostat.TemperatureToReach.Value;
+            double originalCelsiusTemperature = thermostat.Temperature.Value;
             // Act
             thermostat.SetFahrenheitMode();
             thermostat.SetCelsiusMode();
             // Assert
-            Assert.Equal(originalCelsiusTemperature, thermostat.TemperatureToReach.Value);
+            Assert.Equal(originalCelsiusTemperature, thermostat.Temperature.Value);
         }
         [Fact]
         public void SetFahrenheitMode_WhenDeviceIsOff_ShouldThrowException()

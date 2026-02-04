@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(20.0, cond.TemperatureToReach.Value);
+            Assert.Equal(20.0, cond.Temperature.Value);
             Assert.Equal(AirMode.NoMode, cond.Mode);
             
         }
@@ -32,7 +32,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             //Assert
             Assert.Equal(DeviceStatus.On, cond.Status);
-            Assert.Equal(20.0, cond.TemperatureToReach.Value);
+            Assert.Equal(20.0, cond.Temperature.Value);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -57,7 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOff();
             //Assert
             Assert.Equal(DeviceStatus.Off, cond.Status);
-            Assert.Equal(20.0, cond.TemperatureToReach.Value);
+            Assert.Equal(20.0, cond.Temperature.Value);
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
@@ -212,25 +212,27 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
         }
 
         [Fact]
-        public void SetDegrees_WhenDegreesAreUnderMinValue_ThrowsError()
+        public void SetDegrees_WhenDegreesAreUnderMinValue_SetMinValue()
         {
             //Arrange
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
+            cond.SetTemperatureToReach(15);
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetTemperatureToReach(15));
+            Assert.Equal(cond.Temperature.Min, cond.Temperature.Value);
         }
 
         [Fact]
-        public void SetDegrees_WhenDegreesAreOverMaxValue_ThrowsError()
+        public void SetDegrees_WhenDegreesAreOverMaxValue_SetToMaxValue()
         {
             //Arrange
             AirConditioner cond = new AirConditioner("Air Conditioner");
             //Act
             cond.TurnOn();
+            cond.SetTemperatureToReach(28);
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => cond.SetTemperatureToReach(28));
+            Assert.Equal(cond.Temperature.Max, cond.Temperature.Value);
         }
 
         [Fact]
@@ -266,7 +268,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.SetTemperatureToReach(20);
             //Assert
-            Assert.Equal(20, cond.TemperatureToReach.Value);
+            Assert.Equal(20, cond.Temperature.Value);
         }
 
 
@@ -312,7 +314,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.IncreaseTemperatureToReach();
             //Assert
-            Assert.Equal(20.5, cond.TemperatureToReach.Value);
+            Assert.Equal(20.5, cond.Temperature.Value);
         }
 
         [Fact]
@@ -325,7 +327,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.SetTemperatureToReach(27);
             cond.IncreaseTemperatureToReach();
             //Assert
-            Assert.Equal(27.0, cond.TemperatureToReach.Value);
+            Assert.Equal(27.0, cond.Temperature.Value);
         }
 
         [Fact]
@@ -370,7 +372,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.TurnOn();
             cond.DecreaseTemperatureToReach();
             //Assert
-            Assert.Equal(20.5, cond.TemperatureToReach.Value);
+            Assert.Equal(19.5, cond.Temperature.Value);
         }
 
         [Fact]
@@ -383,7 +385,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             cond.SetTemperatureToReach(16);
             cond.DecreaseTemperatureToReach();
             //Assert
-            Assert.Equal(16.0, cond.TemperatureToReach.Value);
+            Assert.Equal(16.0, cond.Temperature.Value);
         }
     }
 }
