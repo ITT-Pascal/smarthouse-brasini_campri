@@ -1,0 +1,24 @@
+﻿using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlaisePascal.SmartHouse.Application.LockableDevices.DoorUses.Command
+{
+    public class RemoveDoorCommand
+    {
+        private readonly IDoorRepository _doorRepository;
+
+        public RemoveDoorCommand(IDoorRepository doorRepository)
+        {
+            _doorRepository = doorRepository;
+        }
+
+        public void Execute(Guid id)
+        {
+            _doorRepository.Remove(id);
+        }
+    }
+}
