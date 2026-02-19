@@ -23,7 +23,7 @@ namespace BlaisePascal.SmartHouse.Application.LockableDevices.CCTVUses.Command
             if(cctv != null)
             {
                 cctv.Toggle();
-                _cctvRepository.Update();
+                _cctvRepository.Update(cctv);
             }
         }
     }

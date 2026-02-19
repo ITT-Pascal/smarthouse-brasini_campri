@@ -1,0 +1,30 @@
+﻿using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlaisePascal.SmartHouse.Application.LockableDevices.CCTVUses.Command
+{
+    public class SwitchOffCCTVCommand
+    {
+        private readonly ICCTVRepsotitory _cctvRepository;
+
+        public SwitchOffCCTVCommand(ICCTVRepsotitory cctvRepsotitory)
+        {
+            _cctvRepository = cctvRepsotitory;
+        }
+
+        public void Execute(Guid id)
+        {
+            CCTV cctv = _cctvRepository.GetById(id);
+            if (cctv != null)
+            {
+                cctv.TurnOff();
+                _cctvRepository.Update(cctv);
+            }
+        }
+    }
+}
