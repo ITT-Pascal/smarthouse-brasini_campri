@@ -6,20 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Application.LuminousDevices.Lamp.Commands
+namespace BlaisePascal.SmartHouse.Application.LuminousDevices.LampUses.Queries
 {
-    public class AddLampCommand
+    public class GetLampByIdQuery
     {
         private readonly ILampRepository _lampRepository;
 
-        public AddLampCommand(ILampRepository lampRepository) 
+        public GetLampByIdQuery(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }
 
-        public void Execute(string lampName)
+        public Lamp Execute(Guid id)
         {
-            _lampRepository.Add(new Lamp(lampName));
+            return _lampRepository.GetById(id);
         }
     }
 }

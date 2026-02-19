@@ -5,15 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Application.LuminousDevices.Lamp.Queries
+namespace BlaisePascal.SmartHouse.Application.LuminousDevices.LampUses.Commands
 {
-    public class GetLampByIdQuery
+    public class RemoveLampCommand
     {
         private readonly ILampRepository _lampRepository;
 
-        public GetLampByIdQuery(ILampRepository lampRepository)
+        public RemoveLampCommand(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
+        }
+
+        public void Execute(Guid id)
+        {
+            _lampRepository.Remove(id);
         }
     }
 }

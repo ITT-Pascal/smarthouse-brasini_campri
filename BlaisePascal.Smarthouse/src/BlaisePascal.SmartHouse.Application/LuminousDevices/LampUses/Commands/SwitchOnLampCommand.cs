@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Application.LuminousDevices.Lamp.Commands
+namespace BlaisePascal.SmartHouse.Application.LuminousDevices.LampUses.Commands
 {
     public class SwitchOnLampCommand
     {
@@ -22,7 +22,7 @@ namespace BlaisePascal.SmartHouse.Application.LuminousDevices.Lamp.Commands
             Lamp lamp = _lampRepository.GetById(id);
             if(lamp != null)
             {
-                lamp.SwitchOn();
+                lamp.TurnOn();
                 _lampRepository.Update(lamp);
             }
 
