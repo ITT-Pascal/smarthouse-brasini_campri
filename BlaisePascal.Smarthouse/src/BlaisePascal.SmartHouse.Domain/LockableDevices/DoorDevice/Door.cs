@@ -15,7 +15,6 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice
         private bool PasswordSetted => Password != null && !string.IsNullOrWhiteSpace(Password.Key);
 
 
-
         public Door(string name):base(name)
         {
             DoorStatus = DoorStatus.Closed;
@@ -35,7 +34,6 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice
             OnValidator();
             if (DoorStatus == DoorStatus.Closed && LockingStatus == LockingStatus.Unlocked)
                 DoorStatus = DoorStatus.Open;
-
             else
                 throw new Exception("cannot open the door");
             LastModifiedAtUtc = DateTime.Now;
