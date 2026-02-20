@@ -18,5 +18,15 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Abstraction.Mappers
                 CCTVMode.Normal => "NORMAL"
             };
         }
+
+        public static CCTVMode ToDomain(string mode)
+        {
+            return mode switch
+            {
+                "NOMODE" => CCTVMode.NoMode,
+                "NIGHT" => CCTVMode.Night,
+                "NORMAL" => CCTVMode.Normal,
+            };
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,13 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
         {
             Mode = CCTVMode.NoMode;
             isRecording = false;
+        }
+        public CCTV(string name, Guid id, DeviceStatus status, CCTVMode mode, bool recording, LockingStatus lockingStatus, string password, DateTime created, DateTime modified): base(name, id, status, created, modified)
+        {
+            Mode = mode;
+            isRecording = recording;
+            LockingStatus = lockingStatus;
+            Password = Password.Create(password);
         }
 
         //Methods
