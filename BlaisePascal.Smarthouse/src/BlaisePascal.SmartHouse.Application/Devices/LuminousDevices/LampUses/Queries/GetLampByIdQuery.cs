@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Dto;
+using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Mappers;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Queries
 {
@@ -17,9 +19,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Q
             _lampRepository = lampRepository;
         }
 
-        public Lamp Execute(Guid id)
+        public LampDto Execute(Guid id)
         {
-            return _lampRepository.GetById(id);
+            return LampMapper.ToDto(_lampRepository.GetById(id));
         }
     }
 }

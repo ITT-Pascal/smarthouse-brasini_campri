@@ -32,6 +32,16 @@ namespace BlaisePascal.SmartHouse.Domain.Device
             Id = guid;
             Name = Name.Create(name);
         }
+        public AbstractDevice() { }
+
+        public AbstractDevice(string name, Guid id, DeviceStatus status, DateTime created, DateTime modified)
+        {
+            Name = Name.Create(name);
+            Id = id;
+            Status = status;
+            CreatedAtUtc = created;
+            LastModifiedAtUtc = modified;
+        }
 
         //Methods
         public void OnValidator()

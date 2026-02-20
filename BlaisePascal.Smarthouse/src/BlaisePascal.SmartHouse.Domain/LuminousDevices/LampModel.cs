@@ -17,6 +17,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         public Brightness Brightness { get; protected set; }
        
         //Constructor
+        protected LampModel() { }
         protected LampModel(string name):base(name)
         {
             Brightness = Brightness.Create(Brightness.Min);
@@ -24,6 +25,10 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         protected LampModel(Guid Id, string name): base(Id, name)
         {
             Brightness = Brightness.Create(Brightness.Min);
+        }
+        protected LampModel(string name, Guid id, DeviceStatus status, DateTime created, DateTime modified, int brightness): base(name, id, status, created, modified)
+        {
+            Brightness = Brightness.Create(brightness);
         }
 
         //Methods
