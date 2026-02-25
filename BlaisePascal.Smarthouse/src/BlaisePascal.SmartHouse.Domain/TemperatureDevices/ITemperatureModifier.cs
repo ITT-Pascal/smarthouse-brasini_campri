@@ -13,5 +13,6 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices
         void DecreaseTemperatureToReach();
         void SetFahrenheitMode();
         void SetCelsiusMode();
+
     }
 }
