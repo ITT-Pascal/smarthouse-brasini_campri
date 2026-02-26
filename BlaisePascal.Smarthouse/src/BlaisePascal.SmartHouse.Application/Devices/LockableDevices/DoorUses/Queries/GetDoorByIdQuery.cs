@@ -1,4 +1,7 @@
-﻿using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
+﻿
+using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Dto;
+using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Mapper;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,9 +18,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Q
         {
             _doorRepository = doorRepository;
         }
-        public Door Execute(Guid id)
+        public DoorDto Execute(Guid id)
         {
-            return _doorRepository.GetById(id);
+            return DoorMapper.ToDto(_doorRepository.GetById(id));
         }
     }
 }

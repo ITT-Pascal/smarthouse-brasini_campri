@@ -1,4 +1,7 @@
-﻿using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
+﻿
+using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Dto;
+using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Mapper;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
 using System;
 using System.Collections.Generic;
@@ -17,9 +20,16 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Q
                 _doorRepository = doorRepository;
             }
 
-            public List<Door> Execute()
+            public List<DoorDto> Execute()
             {
-                return _doorRepository.GetAll();
+                List<DoorDto> result = new List<DoorDto>();
+
+                foreach (Door d in _doorRepository.GetAll())
+                {
+                result.Add(DoorMapper.ToDto(d));
+                }
+
+                return result;
             }
     }
 }

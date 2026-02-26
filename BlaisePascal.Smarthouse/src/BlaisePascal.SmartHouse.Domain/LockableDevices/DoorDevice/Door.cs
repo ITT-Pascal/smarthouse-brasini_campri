@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.Device;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.Device;
 
 namespace BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice
 {
@@ -27,6 +28,14 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice
             DoorStatus = DoorStatus.Closed;
             LockingStatus = LockingStatus.Unlocked;
             Status = DeviceStatus.On;
+        }
+
+        public Door(string name, Guid id, DeviceStatus status, LockingStatus lockingStatus,DoorStatus doorStatus, string password, DateTime created, DateTime modified) : base(name, id, status, created, modified)
+        {
+
+            DoorStatus = doorStatus;
+            LockingStatus = lockingStatus;
+            Password = Password.Create(password);
         }
 
         public void Open()
