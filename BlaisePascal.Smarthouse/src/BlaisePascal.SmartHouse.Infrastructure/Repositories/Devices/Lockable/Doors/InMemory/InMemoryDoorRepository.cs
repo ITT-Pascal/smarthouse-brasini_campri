@@ -44,7 +44,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.D
 
         }
 
-        public void Update(Door lamp)
+        public void Update(Door door)
         {
             //Todo: implement update logic
         }
