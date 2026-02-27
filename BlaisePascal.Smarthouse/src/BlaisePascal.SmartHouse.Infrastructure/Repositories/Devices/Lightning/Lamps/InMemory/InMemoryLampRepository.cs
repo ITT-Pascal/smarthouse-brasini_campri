@@ -35,7 +35,6 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.
             Lamp lamp = GetById(id);
             if(lamp != null)
                 _lamps.Remove(lamp);
-
         }
 
         public void Update(Lamp lamp)

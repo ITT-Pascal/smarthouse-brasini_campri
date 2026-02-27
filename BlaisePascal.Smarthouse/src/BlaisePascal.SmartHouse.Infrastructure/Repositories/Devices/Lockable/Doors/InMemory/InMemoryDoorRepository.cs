@@ -41,7 +41,6 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.D
             Door door = GetById(id);
             if (door != null)
                 _doors.Remove(door);
-
         }
 
         public void Update(Door door)
