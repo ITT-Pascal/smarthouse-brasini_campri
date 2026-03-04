@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Commands;
 using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Dto;
 using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Queries;
+using BlaisePascal.SmartHouse.Domain.abstraction;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices.Repository;
 
-// Correggi il namespace per evitare conflitti con 'Console'
 namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampController
 {
     public class LampController
@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
             _repository = repository;
         }
 
-        // Add new lamp obj to injected specific repo
+        
         public void AddLamp()
         {
             Console.Write("Lamp name: ");
@@ -37,7 +37,7 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
             Console.WriteLine("Lamp added!");
         }
 
-        // Mostra lampade
+        
         public void ShowLamps()
         {
             List<LampDto> lamps = new GetAllLampsQuery(_repository).Execute();
@@ -67,43 +67,35 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
             Console.WriteLine("Lamp removed!");
         }
 
-        public LampDto SelectLamp()
+        private LampDto SelectLamp()
         {
             List<LampDto> lamps = new GetAllLampsQuery(_repository).Execute();
 
-            if (lamps.Count == 0) return null;
-
-            ShowLamps();
-            Console.Write("\nInserisci il numero della lampada: ");
-
-            string risposta = Console.ReadLine();
-
-            // Conversione da stringa a intero 
-            int scelta = int.Parse(risposta);
-
-            if (scelta > 0 && scelta <= lamps.Count)
+            if (lamps.Count == 0)
             {
-                return lamps[scelta - 1];
+                Console.WriteLine("No lamps available");
+                return null;
             }
 
-            Console.WriteLine("Selezione non valida.");
-            return null;
+            Console.Write("Lamp number: ");
+            int index;
+
+            if (!int.TryParse(Console.ReadLine(), out index))
+            {
+                Console.WriteLine("Invalid number");
+                return null;
+            }
+
+            if (index < 1 || index > lamps.Count)
+            {
+                Console.WriteLine("Lamp not found");
+                return null;
+            }
+
+            return lamps[index - 1];
         }
 
-        public void ShowMenu()
-        {
-            Console.WriteLine("LAMP CONTROLLER");
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("1. Show lamps");
-            Console.WriteLine("2. Add lamp");
-            Console.WriteLine("3. Remove lamp");
-            Console.WriteLine("4. Increase brightness");
-            Console.WriteLine("5. Decrease brightness");
-            Console.WriteLine("8. Change brightness");
-            Console.WriteLine("6. Switch on");
-            Console.WriteLine("7. Switch off");
-            Console.WriteLine("0. Back");
-        }
+        
 
         public void IncreaseLampBrightness()
         {
@@ -137,14 +129,18 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
             Console.WriteLine("Lamp toggled!");
         }
 
-        public void ChangeBrightnessLamp()
+        public void ChangeLampBrightness()
         {
             LampDto lamp = SelectLamp();
             if (lamp == null) return;
             Console.Write("Enter new brightness (0-100): ");
-            string input = Console.ReadLine();
-            // Conversione da stringa a intero
-            int newBrightness = int.Parse(input);
+           
+            if(!int.TryParse(Console.ReadLine(), out int newBrightness) || newBrightness < Brightness.Min || newBrightness > Brightness.Max)
+            {
+                Console.WriteLine($"Invalid brightness value. Please enter a number between {Brightness.Min} and 100.");
+                return;
+            }
+
             new ChangeBrightnessLampCommand(_repository).Execute(lamp.Id, newBrightness);
             Console.WriteLine("Brightness changed!");
         }
