@@ -133,11 +133,11 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
         {
             LampDto lamp = SelectLamp();
             if (lamp == null) return;
-            Console.Write("Enter new brightness (0-100): ");
+            Console.Write($"Enter new brightness ({Brightness.Min}-{Brightness.Max}): ");
            
             if(!int.TryParse(Console.ReadLine(), out int newBrightness) || newBrightness < Brightness.Min || newBrightness > Brightness.Max)
             {
-                Console.WriteLine($"Invalid brightness value. Please enter a number between {Brightness.Min} and 100.");
+                Console.WriteLine($"Invalid brightness value. Please enter a number between {Brightness.Min} and {Brightness.Max}");
                 return;
             }
 

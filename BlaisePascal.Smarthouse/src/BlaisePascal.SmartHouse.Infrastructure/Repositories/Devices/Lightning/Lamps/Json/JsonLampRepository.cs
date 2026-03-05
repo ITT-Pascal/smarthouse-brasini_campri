@@ -16,7 +16,11 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.
 
         public JsonLampRepository()
         {
-            _lamps = Path.Combine(AppContext.BaseDirectory, "data", "lamps.json");
+           
+            string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\..\\"));
+            _lamps = Path.Combine(projectRoot, "data", "Lamps.json");
+
+            Directory.CreateDirectory(Path.GetDirectoryName(_lamps)!);
 
             if (!File.Exists(_lamps))
             {
@@ -53,11 +57,12 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.
         public void Remove(Guid id)
         {
             List<Lamp> lamps = GetAll();
-            Lamp lamp = GetById(id);
-            if (lamp != null)
-                lamps.Remove(lamp);
-            SaveData(lamps);
-            
+            Lamp lampToRemove = lamps.First(l => l.Id == id);
+            if (lampToRemove != null)
+            {
+                lamps.Remove(lampToRemove);
+                SaveData(lamps);
+            }
         }
 
         public void Update(Lamp lamp)

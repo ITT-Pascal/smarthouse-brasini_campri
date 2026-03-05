@@ -1,6 +1,7 @@
 ﻿using BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampController;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices.Repository;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.Lamps.InMemory;
+using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.Lamps.Json;
 
 class Program
 {

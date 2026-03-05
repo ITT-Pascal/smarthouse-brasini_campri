@@ -10,7 +10,9 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.
         {
             _lamps = new List<Lamp>()
             {
-                new Lamp("Lamp1")
+                new Lamp("Lamp1"),
+                new Lamp("Lamp2"),
+                new Lamp("Lamp3")
             };
         }
         public List<Lamp> GetAll()
