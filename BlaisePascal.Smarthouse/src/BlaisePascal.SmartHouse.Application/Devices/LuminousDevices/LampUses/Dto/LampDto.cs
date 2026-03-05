@@ -14,5 +14,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.D
         public Guid Id { get; set; }
         public DateTime CreatedAtUtc { get; set; }
         public DateTime LastModifiedAtUtc { get; set; }
+
+        public override string ToString()
+        {
+            return $"[Stato: {Status} | Luminosità: {Brightness} | Creato Il: {CreatedAtUtc:g} Modificato: {LastModifiedAtUtc:g}]\n";
+        }
     }
 }
