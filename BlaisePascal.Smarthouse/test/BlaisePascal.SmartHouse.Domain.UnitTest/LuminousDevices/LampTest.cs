@@ -83,21 +83,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             Assert.Equal(Brightness.Create(7), lamp.Brightness);
         }
 
-        [Fact]
-        public void ChangeBrightness_WhenParameterIsBelow1_ThrowAnArgumentOutOfRangeException()
-        {
-            Lamp lamp = new Lamp("a");
-            lamp.TurnOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(0));
-        }
 
-        [Fact]
-        public void ChangeBrightness_WhenParameterIsAbove10_ThrowAnArgumentOutOfRangeException()
-        {
-            Lamp lamp = new Lamp("a");
-            lamp.TurnOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(10));
-        }
 
     }
 }

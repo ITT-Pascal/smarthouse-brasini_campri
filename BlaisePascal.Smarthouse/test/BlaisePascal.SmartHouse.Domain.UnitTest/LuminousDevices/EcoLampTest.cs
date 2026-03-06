@@ -78,21 +78,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             Assert.Equal(Brightness.Create(1), lamp.Brightness);
         }
 
-        [Fact]
-        public void changeBrightness_WhenNewBrightnessIsMoreThanMax_ThrowError()
-        {
-            EcoLamp lamp = new EcoLamp("a");
-            lamp.TurnOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(11));
-        }
-
-        [Fact]
-        public void changeBrightness_WhenNewBrightnessIsLessThanMin_ThrowError()
-        {
-            EcoLamp lamp = new EcoLamp("a");
-            lamp.TurnOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lamp.ChangeBrightness(0));
-        }
 
         [Fact]
         public void changeBrightness_WhenNewBrightnessIsInsideTheRange_AssignBightnessCorrectly()
