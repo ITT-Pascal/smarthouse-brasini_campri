@@ -118,20 +118,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.DoorDevice
             Assert.Equal(DeviceStatus.Off, door.Status);
         }
 
-        [Fact]
-        public void TurnOn_WhenStatusIsOn_ThrowAnException()
-        {
-            Door door = new Door("Front Door");
-            Assert.Throws<Exception>(() => door.TurnOn());
-        }
 
-        [Fact]
-        public void TurnOff_WhenStatusIsOff_StatusDoesNotChange()
-        {
-            Door door = new Door("Front Door");
-            door.TurnOff();
-            Assert.Throws<Exception>(() => door.TurnOff());
-        }
 
         [Fact]
         public void SetNewName_WhenCalled_NameIsUpdated()

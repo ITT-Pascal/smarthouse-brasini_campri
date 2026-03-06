@@ -37,17 +37,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
         }
 
         [Fact]
-        public void TurnOn_WhenConditionerIsOn_ThrowsError()
-        {
-            //Arrange
-            AirConditioner cond = new AirConditioner("Air Conditioner");
-            //Act
-            cond.TurnOn();
-            //Arrange
-            Assert.Throws<Exception>(() => cond.TurnOn());
-        }
-
-        [Fact]
         public void TurnOff_WhenConditionerIsOn_ItTurnsOff()
         {
             //Arrange
@@ -61,14 +50,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.AirConditionerDevice
             Assert.Equal(AirMode.NoMode, cond.Mode);
         }
 
-        [Fact]
-        public void TurnOff_WhenConditionerIsOff_ThrowsError()
-        {
-            //Arrange
-            AirConditioner cond = new AirConditioner("Air Conditioner");
-            //Act & Arrange
-            Assert.Throws<Exception>(() => cond.TurnOff());
-        }
+
 
         [Fact]
         public void SetNormalMode_WhenConditionerIsOff_ThrowsError()

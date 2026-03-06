@@ -60,18 +60,12 @@ namespace BlaisePascal.SmartHouse.Domain.Device
         }
         public virtual void TurnOn()
         {
-            if (Status == DeviceStatus.On)
-                throw new Exception("The device is already on");
-
             Status = DeviceStatus.On;
             LastModifiedAtUtc = DateTime.Now;
         }
 
         public virtual void TurnOff()
         {
-            if (Status == DeviceStatus.Off)
-                throw new Exception("The device is already on");
-
             Status = DeviceStatus.Off;
             LastModifiedAtUtc = DateTime.Now;
         }

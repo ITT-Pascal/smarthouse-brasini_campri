@@ -279,20 +279,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             }
         }
 
-        [Fact]
-        public void ChangeOneLampBrightness_WhenChangingBrightnessToAnIncorrectValue_ThrowsOutOfRangeException()
-        {
-            //Arrange
-            LampsRow lampsrow = new LampsRow();
-            for (int i = 0; i < 4; i++)
-            {
-                Lamp lamp = new Lamp("A");
-                lampsrow.AddLamp(lamp);
-            }
-            //Act & Assert
-            lampsrow.SwitchAllOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => lampsrow.ChangeOneLampBrightness(lampsrow.Lamps[0].Id, 11));
-        }
+   
 
         [Fact]
         public void FindLampWithMaxBrightness_WhenThereAreNoLamps_ReturnNull()

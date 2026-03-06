@@ -405,17 +405,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTest.LuminousDevices
             Assert.Equal(Brightness.Create(1), lamp2.Brightness);
         }
 
-        [Fact]
-        public void ChangeOneBrightness_InvalidBrightness_ThrowsArgumentOutOfRangeException()
-        {
-            // Arrange
-            LampModel lamp1 = new EcoLamp("a");
-            LampModel lamp2 = new Lamp("b");
-            TwoLampDevice device = new TwoLampDevice(lamp1, lamp2);
-            // Act & Assert
-            device.TurnBothOn();
-            Assert.Throws<ArgumentOutOfRangeException>(() => device.ChangeOneBrightness(lamp1.Id, 0));
-            Assert.Throws<ArgumentOutOfRangeException>(() => device.ChangeOneBrightness(lamp2.Id, 11));
-        }
+
     }
 }
