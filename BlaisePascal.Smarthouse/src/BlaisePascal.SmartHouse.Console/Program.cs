@@ -28,7 +28,7 @@ class Program
         {
             Console.Clear();
             controller.ShowLamps();
-            ShowMenu();
+            ShowLampMenu();
 
 
             Console.Write("Choose an option: ");
@@ -53,7 +53,7 @@ class Program
         } 
     }
 
-    public static void ShowMenu()
+    public static void ShowLampMenu()
     {
         Console.WriteLine("LAMP CONTROLLER");
         Console.WriteLine("--------------------------------------------");
@@ -64,6 +64,26 @@ class Program
         Console.WriteLine("5. Change brightness");
         Console.WriteLine("6. Switch on");
         Console.WriteLine("7. Switch off");
+        Console.WriteLine("0. Exit");
+    }
+
+    public static void ShowCCTVMenu()
+    {
+        Console.WriteLine("CCTV CONTROLLER");
+        Console.WriteLine("--------------------------------------------");
+        Console.WriteLine("1. Add CCTV");
+        Console.WriteLine("2. Remove CCTV");
+        Console.WriteLine("3. Swtich on");
+        Console.WriteLine("4. Swtich off");
+        Console.WriteLine("5. Toggle");
+        Console.WriteLine("6. Set night mode");
+        Console.WriteLine("7. Set normal mode");
+        Console.WriteLine("8. Set choosed mode");
+        Console.WriteLine("9. Start recording");
+        Console.WriteLine("10. Stop recording");
+        Console.WriteLine("11. Set password");
+        Console.WriteLine("12. Lock CCTV");
+        Console.WriteLine("13. Unlock CCTV");
         Console.WriteLine("0. Exit");
     }
 }
