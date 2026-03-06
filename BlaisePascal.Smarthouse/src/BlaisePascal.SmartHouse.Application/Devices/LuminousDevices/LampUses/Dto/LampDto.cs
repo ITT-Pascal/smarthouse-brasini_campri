@@ -17,7 +17,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.D
 
         public override string ToString()
         {
-            return $"[Stato: {Status} | Luminosità: {Brightness} | Creato Il: {CreatedAtUtc:g} Modificato: {LastModifiedAtUtc:g}]\n";
+            return $"Id: {Id} \n[Stato: {Status} | Luminosità: {Brightness} | Creato Il: {CreatedAtUtc:g} Modificato: {LastModifiedAtUtc:g}]\n";
         }
     }
 }

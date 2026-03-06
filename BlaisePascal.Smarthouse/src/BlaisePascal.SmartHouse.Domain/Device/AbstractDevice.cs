@@ -26,7 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain.Device
         }
         public AbstractDevice(Guid guid, string name)
         {
-            CreatedAtUtc = DateTime.UtcNow;
+            CreatedAtUtc = DateTime.Now;
             LastModifiedAtUtc = DateTime.Now;
             Status = DeviceStatus.Off;
             Id = guid;
@@ -64,7 +64,7 @@ namespace BlaisePascal.SmartHouse.Domain.Device
                 throw new Exception("The device is already on");
 
             Status = DeviceStatus.On;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public virtual void TurnOff()
@@ -73,7 +73,7 @@ namespace BlaisePascal.SmartHouse.Domain.Device
                 throw new Exception("The device is already on");
 
             Status = DeviceStatus.Off;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public virtual void SetNewName(string newName)
