@@ -38,7 +38,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
                 throw new Exception("Cannot increase brightness: the lamp is off");
             int newValue = Brightness.Value + 1;
             Brightness = Brightness.Create(newValue);
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public  virtual void DecreaseBrightness()
@@ -47,7 +47,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
                 throw new Exception("Cannot decrease brightness: the lamp is off");
             int newValue = Brightness.Value - 1;
             Brightness = Brightness.Create(newValue);
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public virtual void ChangeBrightness(int brightness)
@@ -57,7 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
             if (brightness > Brightness.Min && brightness < Brightness.Max)
             {
                 Brightness = Brightness.Create(brightness);
-                LastModifiedAtUtc = DateTime.UtcNow;
+                LastModifiedAtUtc = DateTime.Now;
             }
             else
             {
