@@ -24,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         public override void TurnOn()
         {
             base.TurnOn();
-            autoOffAtUtc = DateTime.UtcNow.AddMinutes(DefaultAutoOffMinutes);
+            autoOffAtUtc = DateTime.Now.AddMinutes(DefaultAutoOffMinutes);
         }
         
         public override void TurnOff()
@@ -54,7 +54,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         {
             if (Status == DeviceStatus.On &&
                 autoOffAtUtc.HasValue &&
-                DateTime.UtcNow >= autoOffAtUtc.Value)
+                DateTime.Now >= autoOffAtUtc.Value)
             {
                 TurnOff();
             }
@@ -63,7 +63,7 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         private void ResetAutoOffIfNeeded()
         {
             if (autoOffAtUtc.HasValue)
-                autoOffAtUtc = DateTime.UtcNow.AddMinutes(DefaultAutoOffMinutes);
+                autoOffAtUtc = DateTime.Now.AddMinutes(DefaultAutoOffMinutes);
         }
     }
 }

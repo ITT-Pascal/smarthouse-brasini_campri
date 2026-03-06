@@ -45,7 +45,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
 
             Status = DeviceStatus.On;
             Mode = CCTVMode.Normal;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public override void TurnOff()
@@ -55,7 +55,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
 
             Status = DeviceStatus.Off;
             Mode = CCTVMode.NoMode;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetNormalMode()
@@ -64,7 +64,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
             if (Mode == CCTVMode.Normal)
                 throw new Exception("The mode is already normal");
             Mode = CCTVMode.Normal;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetNightMode()
@@ -73,7 +73,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
             if (Mode == CCTVMode.Night)
                 throw new Exception("The mode is already night");
             Mode = CCTVMode.Night;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetMode(CCTVMode mode)
@@ -82,7 +82,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
             if (Mode == mode)
                 throw new ArgumentException($"The mode is already {mode}");
             Mode = mode;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void StartRecording()
@@ -91,7 +91,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
             if (isRecording)
                 throw new Exception("The cctv is already recording");
             isRecording = true;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void StopRecording()
@@ -100,7 +100,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
             if (!isRecording)
                 throw new Exception("The cctv is not recording");
             isRecording = false;
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void SetPassword(string password)
@@ -108,7 +108,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Password cannot be empty or whitespace");
             Password = Password.Create(password);
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
         public void Unlock(string key)

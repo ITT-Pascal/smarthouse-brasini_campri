@@ -104,7 +104,7 @@ namespace BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Password cannot be empty or whitespace");
             Password = Password.Create(password);
-            LastModifiedAtUtc = DateTime.UtcNow;
+            LastModifiedAtUtc = DateTime.Now;
         }
 
 
