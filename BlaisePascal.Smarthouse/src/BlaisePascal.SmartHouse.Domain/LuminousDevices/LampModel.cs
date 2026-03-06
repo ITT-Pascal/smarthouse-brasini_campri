@@ -54,15 +54,8 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
         {
             if (Status == DeviceStatus.Off)
                 throw new Exception("Cannot change brightness: the lamp is off");
-            if (brightness > Brightness.Min && brightness < Brightness.Max)
-            {
-                Brightness = Brightness.Create(brightness);
-                LastModifiedAtUtc = DateTime.Now;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException($"Brightness cannot be below {Brightness.Min} or above {Brightness.Max}");
-            }
+             Brightness = Brightness.Create(brightness);
+             LastModifiedAtUtc = DateTime.Now;
         }
 
 

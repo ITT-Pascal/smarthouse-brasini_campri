@@ -76,7 +76,7 @@ namespace BlaisePascal.SmartHouse.Domain.Device
             LastModifiedAtUtc = DateTime.Now;
         }
 
-        /*public virtual void SetNewName(string newName)
+        public virtual void SetNewName(string newName)
         {
              if (newName == Name.String)
             {
@@ -84,6 +84,6 @@ namespace BlaisePascal.SmartHouse.Domain.Device
             }
             Name = Name.Create(newName);
             LastModifiedAtUtc = DateTime.Now;
-        }*/
+        }
     }
 }
