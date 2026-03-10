@@ -3,20 +3,19 @@ using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Dto;
 using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Queries;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice.Repository;
-using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVController.Consoles
+namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.CCTVController
 {
     public class CCTVController
     {
-        private readonly ICCTVRepsotitory _repository;
+        private readonly ICCTVRepository _repository;
 
-        public CCTVController(ICCTVRepsotitory repository)
+        public CCTVController(ICCTVRepository repository)
         {
             _repository = repository;
         }

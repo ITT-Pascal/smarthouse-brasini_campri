@@ -10,9 +10,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.C
 {
     public class AddCCTVCommand
     {
-        private readonly ICCTVRepsotitory _cctvRepository;
+        private readonly ICCTVRepository _cctvRepository;
 
-        public AddCCTVCommand(ICCTVRepsotitory cctvRepository)
+        public AddCCTVCommand(ICCTVRepository cctvRepository)
         {
             _cctvRepository = cctvRepository;
         }

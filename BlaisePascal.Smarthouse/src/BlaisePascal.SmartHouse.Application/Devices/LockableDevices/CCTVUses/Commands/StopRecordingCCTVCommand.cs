@@ -10,9 +10,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.C
 {
     public class StopRecordingCCTVCommand
     {
-        private readonly ICCTVRepsotitory _cctvRepository;
+        private readonly ICCTVRepository _cctvRepository;
 
-        public StopRecordingCCTVCommand(ICCTVRepsotitory cctvRepsotitory)
+        public StopRecordingCCTVCommand(ICCTVRepository cctvRepsotitory)
         {
             _cctvRepository = cctvRepsotitory;
         }

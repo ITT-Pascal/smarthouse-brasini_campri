@@ -10,9 +10,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.C
 {
     public class SetNewNameCCTVCommand
     {
-        private readonly ICCTVRepsotitory _cctvRepository;
+        private readonly ICCTVRepository _cctvRepository;
 
-        public SetNewNameCCTVCommand(ICCTVRepsotitory cctvRepsotitory)
+        public SetNewNameCCTVCommand(ICCTVRepository cctvRepsotitory)
         {
             _cctvRepository = cctvRepsotitory;
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.CCTVs.InMemory
 {
-    public class InMemoryCCTVRepository: ICCTVRepsotitory
+    public class InMemoryCCTVRepository: ICCTVRepository
     {
         private readonly List<CCTV> _cctvs;
 

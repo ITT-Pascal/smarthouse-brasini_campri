@@ -12,9 +12,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Q
 {
     public class GetCCTVByIdQuery
     {
-        private readonly ICCTVRepsotitory _cctvRepository;
+        private readonly ICCTVRepository _cctvRepository;
 
-        public GetCCTVByIdQuery(ICCTVRepsotitory cctvRepository)
+        public GetCCTVByIdQuery(ICCTVRepository cctvRepository)
         {
             _cctvRepository = cctvRepository;
         }

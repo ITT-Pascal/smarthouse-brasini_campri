@@ -10,6 +10,7 @@ using BlaisePascal.SmartHouse.Domain.abstraction;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices.Repository;
 
+
 namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampController
 {
     public class LampController
