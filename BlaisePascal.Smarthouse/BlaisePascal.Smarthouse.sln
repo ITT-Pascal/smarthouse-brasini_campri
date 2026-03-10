@@ -21,11 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.Infrastructure", "src\BlaisePascal.SmartHouse.Infrastructure\BlaisePascal.SmartHouse.Infrastructure.csproj", "{FC92B27A-3B1C-437C-93E3-CAA4901F64FD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{2BEFC930-7ABB-4213-A881-185009851118}"
-	ProjectSection(SolutionItems) = preProject
-		Lamps.json = Lamps.json
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.Console", "src\BlaisePascal.SmartHouse.Console\BlaisePascal.SmartHouse.Console.csproj", "{EC7E250A-3C93-4E43-BCDC-313FF098CF9B}"
 EndProject
 Global
