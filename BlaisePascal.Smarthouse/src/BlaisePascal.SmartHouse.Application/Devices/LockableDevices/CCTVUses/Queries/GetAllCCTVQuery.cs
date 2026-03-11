@@ -25,7 +25,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Q
 
             foreach(CCTV c in _cctvRepository.GetAll())
             {
-                result.Add(CCTVMapper.ToDto(c));
+                if(c != null)
+                    result.Add(CCTVMapper.ToDto(c));
             }
 
             return result;

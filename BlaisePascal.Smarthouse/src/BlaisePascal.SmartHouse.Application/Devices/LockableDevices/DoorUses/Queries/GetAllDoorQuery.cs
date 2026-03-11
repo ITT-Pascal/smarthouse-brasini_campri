@@ -24,12 +24,15 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Q
             {
                 List<DoorDto> result = new List<DoorDto>();
 
-                foreach (Door d in _doorRepository.GetAll())
+            foreach (Door d in _doorRepository.GetAll())
+            {
+                if (d != null) 
                 {
-                result.Add(DoorMapper.ToDto(d));
+                    result.Add(DoorMapper.ToDto(d));
                 }
+            }
 
-                return result;
+            return result;
             }
     }
 }

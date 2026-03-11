@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.M
                 Status = door.Status.ToString(),
                 LockingStatus = door.LockingStatus.ToString(),
                 DoorStatus = door.DoorStatus.ToString(),
-                Password = door.Password.Key,
+                Password = door.Password?.Key ?? "NoPassword",
                 CreatedAtUtc = door.CreatedAtUtc,
                 LastModifiedAtUtc = door.LastModifiedAtUtc
             };

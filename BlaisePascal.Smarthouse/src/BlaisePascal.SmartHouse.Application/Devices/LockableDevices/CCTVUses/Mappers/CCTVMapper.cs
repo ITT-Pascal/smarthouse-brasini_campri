@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.M
                 Id = cctv.Id,
                 Status = DeviceStatusMappers.ToDto(cctv.Status),
                 LockingStatus = LockingStatusMapper.ToDto(cctv.LockingStatus),
-                Password = cctv.Password.Key,
+                Password = cctv.Password?.Key ?? "NoPassword",
                 IsRecording = cctv.isRecording,
                 Mode = CCTVModeMapper.ToDto(cctv.Mode),
                 CreatedAtUtc = cctv.CreatedAtUtc,

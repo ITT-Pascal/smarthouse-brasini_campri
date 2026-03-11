@@ -41,7 +41,7 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
             for (int i = 0; i < doors.Count; i++)
             {
                 DoorDto door = doors[i];
-                Console.WriteLine($"{i + 1}. {door.Name}/n{door}");
+                Console.WriteLine($"{i + 1}. {door.Name}\n{door}");
             }
         }
 
