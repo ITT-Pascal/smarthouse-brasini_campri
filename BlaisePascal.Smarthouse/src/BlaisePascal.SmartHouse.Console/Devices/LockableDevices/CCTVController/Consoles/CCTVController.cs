@@ -51,7 +51,7 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             for(int i=0; i<cctvs.Count; i++)
             {
                 CCTVDto cctv = cctvs[i];
-                Console.WriteLine($"{i + 1}. {cctv.Name}/n{cctv}");
+                Console.WriteLine($"{i + 1}. {cctv.Name}\n{cctv}");
             }
         }
 
