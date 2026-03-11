@@ -98,9 +98,17 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             CCTVDto cctv = SelectCCTV();
 
             if (cctv == null) return;
-
-            new SetNightModeCCTVCommand(_repository).Execute(cctv.Id);
-            Console.WriteLine("Night mode setted!");
+            try
+            {
+                new SetNightModeCCTVCommand(_repository).Execute(cctv.Id);
+                Console.WriteLine("Night mode setted!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
+            
         }
 
         public void SetNormalMode()
@@ -109,8 +117,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
 
             if (cctv == null) return;
 
-            new SetNormalModeCCTVCommand(_repository).Execute(cctv.Id);
-            Console.WriteLine("Normal mode setted!");
+            try
+            {
+                new SetNormalModeCCTVCommand(_repository).Execute(cctv.Id);
+                Console.WriteLine("Normal mode setted!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void SetMode()
@@ -126,8 +142,22 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
                 return;
             }
 
-            new SetModeCCTVCommand(_repository).Execute(cctv.Id, mode);
-            Console.WriteLine("Mode setted!");
+            try
+            {
+                new SetModeCCTVCommand(_repository).Execute(cctv.Id, mode);
+                Console.WriteLine("Mode setted!");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
+            
         }
 
         public void StartRecording()
