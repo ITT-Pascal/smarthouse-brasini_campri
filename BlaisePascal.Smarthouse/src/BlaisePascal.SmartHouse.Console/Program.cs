@@ -4,8 +4,6 @@ using BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampController;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice.Repository;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
 using BlaisePascal.SmartHouse.Domain.LuminousDevices.Repository;
-using BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice.Repository;
-using BlaisePascal.SmartHouse.Domain.TemperatureDevices.ThermostatDevice.Repository;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.Lamps.InMemory;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.CCTVs.InMemory;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.Doors.InMemory;

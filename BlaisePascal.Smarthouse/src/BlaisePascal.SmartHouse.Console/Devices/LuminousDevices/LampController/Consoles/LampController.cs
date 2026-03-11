@@ -141,9 +141,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
                 Console.WriteLine($"Invalid brightness value.");
                 return;
             }
-
-            new ChangeBrightnessLampCommand(_repository).Execute(lamp.Id, newBrightness);
-            Console.WriteLine("Brightness changed!");
+            try
+            {
+                new ChangeBrightnessLampCommand(_repository).Execute(lamp.Id, newBrightness);
+                Console.WriteLine("Brightness changed!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
     }
 }

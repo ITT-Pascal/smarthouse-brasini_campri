@@ -13,16 +13,16 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Q
 {
     public class GetAllDoorQuery
     {
-            private readonly IDoorRepository _doorRepository;
+        private readonly IDoorRepository _doorRepository;
     
-            public GetAllDoorQuery(IDoorRepository doorRepository)
-            {
-                _doorRepository = doorRepository;
-            }
+        public GetAllDoorQuery(IDoorRepository doorRepository)
+        {
+            _doorRepository = doorRepository;
+        }
 
-            public List<DoorDto> Execute()
-            {
-                List<DoorDto> result = new List<DoorDto>();
+        public List<DoorDto> Execute()
+        {
+            List<DoorDto> result = new List<DoorDto>();
 
             foreach (Door d in _doorRepository.GetAll())
             {
@@ -33,6 +33,6 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Q
             }
 
             return result;
-            }
+        }
     }
 }

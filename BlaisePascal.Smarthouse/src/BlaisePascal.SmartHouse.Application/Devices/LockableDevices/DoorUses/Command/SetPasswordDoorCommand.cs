@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
+﻿using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Dto;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

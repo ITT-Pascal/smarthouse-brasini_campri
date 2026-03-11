@@ -57,7 +57,5 @@ namespace BlaisePascal.SmartHouse.Domain.LuminousDevices
              Brightness = Brightness.Create(brightness);
              LastModifiedAtUtc = DateTime.Now;
         }
-
-
     }
 }
