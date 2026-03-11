@@ -64,99 +64,55 @@ class Program
 
         bool exit = false;
         bool finished = false;
-        while (!finished) 
+        while (!finished)
         {
             Console.Clear();
-            Console.Write("\x1b[3J");
-
-            Console.WriteLine("0 - Exit \n" +
-                          "1 - Lamps \n" +
-                          "2 - CCTVS \n" +
-                          "3 - Door \n");
-
+            Console.WriteLine("0 - Exit\n1 - Lamps\n2 - CCTVS\n3 - Door\n");
             Console.Write("Choose an option: ");
             string choice = Console.ReadLine();
+
+            if (choice == "0")
+            {
+                finished = true;
+                break;
+            }
+
+            exit = false; 
             while (!exit)
             {
-
-
                 switch (choice)
                 {
-                    case "0":
-                        exit = true;
-                        break;
                     case "1":
                         lampController.ShowLamps();
                         ShowLampMenu();
-                        Console.Write("Choose an option: ");
-                        string lampchoice = Console.ReadLine();
-                        if (Lampactions.ContainsKey(lampchoice))
-                        {
-                            Lampactions[choice].Invoke();
-                        }
-                        else if (choice == "0")
-                        {
-                            exit = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid option. Press any key to continue...");
-                            Console.ReadKey();
-                        }
+                        Console.Write("Choose (0 to Go Back): ");
+                        string lChoice = Console.ReadLine();
+                        if (lChoice == "0") exit = true;
+                        else if (Lampactions.ContainsKey(lChoice)) Lampactions[lChoice].Invoke();
                         break;
+
                     case "2":
                         cctvController.ShowCCTVs();
                         ShowCCTVMenu();
-                        Console.Write("Choose an option: ");
-                        string cctvchoice = Console.ReadLine();
-                        if (CCTVactions.ContainsKey(cctvchoice))
-                        {
-                            CCTVactions[choice].Invoke();
-                        }
-                        else if (choice == "0")
-                        {
-                            exit = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid option. Press any key to continue...");
-                            Console.ReadKey();
-                        }
+                        Console.Write("Choose (0 to Go Back): ");
+                        string cChoice = Console.ReadLine();
+                        if (cChoice == "0") exit = true;
+                        else if (CCTVactions.ContainsKey(cChoice)) CCTVactions[cChoice].Invoke();
                         break;
-                    case "3":
 
+                    case "3":
                         doorController.ShowDoors();
                         ShowDoorMenu();
-                        Console.Write("Choose an option: ");
-                        string doorchoice = Console.ReadLine();
-                        if (Dooractions.ContainsKey(doorchoice))
-                        {
-                            Dooractions[choice].Invoke();
-                        }
-                        else if (choice == "0")
-                        {
-                            exit = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid option. Press any key to continue...");
-                            Console.ReadKey();
-                        }
+                        Console.Write("Choose (0 to Go Back): ");
+                        string dChoice = Console.ReadLine();
+                        if (dChoice == "0") exit = true;
+                        else if (Dooractions.ContainsKey(dChoice)) Dooractions[dChoice].Invoke();
                         break;
+
                     default:
-                        Console.WriteLine("Invalid option. Press any key to continue...");
+                        exit = true; 
                         break;
                 }
-            }
-            Console.WriteLine("Do you want to exit the program? (y/n)");
-            string exitChoice = Console.ReadLine();
-            if (exitChoice.ToLower() == "y")
-            {
-                finished = true;
-            }
-            else
-            {
-                exit = false;
             }
         }
     }
