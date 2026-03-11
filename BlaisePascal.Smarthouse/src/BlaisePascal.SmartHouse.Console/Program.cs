@@ -1,5 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Console.Devices.LockableDevices.CCTVController;
-using BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController.Consoles;
+﻿using BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVController;
+using BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorController.Consoles;
 using BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampController;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice.Repository;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
