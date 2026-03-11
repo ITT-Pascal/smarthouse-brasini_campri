@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Commands;
-using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Dto;
-using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Command;
+﻿using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Command;
 using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Dto;
 using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Queries;
-using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Dto;
-using BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.Queries;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
 
-namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController.Consoles
+namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorController.Consoles
 {
     public class DoorController
     {
@@ -24,24 +15,24 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
 
         public void AddDoor()
         {
-            System.Console.Write("Door name: ");
-            string name = System.Console.ReadLine();
+            Console.Write("Door name: ");
+            string name = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(name))
             {
-                System.Console.WriteLine("Invalid name");
+                Console.WriteLine("Invalid name");
                 return;
             }
 
             new AddDoorCommand(_repository).Execute(name);
-            System.Console.WriteLine("CCTV added!");
+            Console.WriteLine("CCTV added!");
         }
 
         public void ShowDoors()
         {
             List<DoorDto> doors = new GetAllDoorQuery(_repository).Execute();
-            System.Console.WriteLine("DOORS: ");
-            System.Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("DOORS: ");
+            Console.WriteLine("--------------------------------------------");
             if (doors.Count == 0)
             {
                 System.Console.WriteLine("No doors available");
@@ -50,7 +41,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             for (int i = 0; i < doors.Count; i++)
             {
                 DoorDto door = doors[i];
-                System.Console.WriteLine($"{i + 1}. {door.Name}/n{door}");
+                Console.WriteLine($"{i + 1}. {door.Name}/n{door}");
             }
         }
 
@@ -60,22 +51,22 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
 
             if (doors.Count == 0)
             {
-                System.Console.WriteLine("No doors available");
+                Console.WriteLine("No doors available");
                 return null;
             }
 
-            System.Console.Write("Door number: ");
+            Console.Write("Door number: ");
             int index;
 
-            if (!int.TryParse(System.Console.ReadLine(), out index))
+            if (!int.TryParse(Console.ReadLine(), out index))
             {
-                System.Console.WriteLine("Invalid number");
+                Console.WriteLine("Invalid number");
                 return null;
             }
 
             if (index < 1 || index > doors.Count)
             {
-                System.Console.WriteLine("Door not found");
+                Console.WriteLine("Door not found");
                 return null;
             }
 
@@ -88,7 +79,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             if (door == null) return;
 
             new SwitchOnDoorCommand(_repository).Execute(door.Id);
-            System.Console.WriteLine("Switched on!");
+            Console.WriteLine("Switched on!");
         }
 
         public void SwitchOff()
@@ -97,7 +88,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             if (door == null) return;
 
             new SwitchOffDoorCommand(_repository).Execute(door.Id);
-            System.Console.WriteLine("Switched off!");
+            Console.WriteLine("Switched off!");
         }
 
         public void RemoveDoor()
@@ -106,7 +97,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             if (door == null) return;
 
             new RemoveDoorCommand(_repository).Execute(door.Id);
-            System.Console.WriteLine("Door removed!");
+            Console.WriteLine("Door removed!");
         }
 
         public void CloseDoor()
@@ -115,7 +106,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             if (door == null) return;
 
             new CloseDoorCommand(_repository).Execute(door.Id);
-            System.Console.WriteLine("Door closed!");
+            Console.WriteLine("Door closed!");
         }
 
         public void OpenDoor()
@@ -124,7 +115,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             if (door == null) return;
 
             new OpenDoorCommand(_repository).Execute(door.Id);
-            System.Console.WriteLine("Door opened!");
+            Console.WriteLine("Door opened!");
         }
 
         public void LockDoor()
@@ -132,10 +123,10 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             DoorDto door = SelectDoor();
             if (door == null) return;
 
-            System.Console.WriteLine("Insert Password");
-            string key = System.Console.ReadLine();
+            Console.WriteLine("Insert Password");
+            string key = Console.ReadLine();
             new LockDoorCommand(_repository).Execute(door.Id, key);
-            System.Console.WriteLine("Door locked!");
+            Console.WriteLine("Door locked!");
         }
 
         public void UnlockDoor()
@@ -143,10 +134,10 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
             DoorDto door = SelectDoor();
             if (door == null) return;
 
-            System.Console.WriteLine("Insert Password");
-            string key = System.Console.ReadLine();
+            Console.WriteLine("Insert Password");
+            string key = Console.ReadLine();
             new UnlockDoorCommand(_repository).Execute(door.Id, key);
-            System.Console.WriteLine("Door unlocked!");
+            Console.WriteLine("Door unlocked!");
 
         }
 
@@ -154,18 +145,18 @@ namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.DoorController
         {
             DoorDto door = SelectDoor();
             if (door == null) return;
-            System.Console.WriteLine("Insert Password");
-            string key = System.Console.ReadLine();
+            Console.WriteLine("Insert Password");
+            string key = Console.ReadLine();
             if (key == door.Password)
             {
-                System.Console.WriteLine("Insert new Password");
-                string newkey = System.Console.ReadLine();
+                Console.WriteLine("Insert new Password");
+                string newkey = Console.ReadLine();
                 new SetPassworDoorCommand(_repository).Execute(door.Id, key);
-                System.Console.WriteLine("Password set!");
+                Console.WriteLine("Password set!");
             }
             else
             {
-                System.Console.WriteLine("Wrong password");
+                Console.WriteLine("Wrong password");
             }
 
         }

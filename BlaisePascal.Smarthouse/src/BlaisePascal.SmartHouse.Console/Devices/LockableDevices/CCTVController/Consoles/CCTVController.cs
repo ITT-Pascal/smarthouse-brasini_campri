@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Console.Devices.LockableDevices.CCTVController
+namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVController
 {
     public class CCTVController
     {
