@@ -43,8 +43,10 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
         {
             List<LampDto> lamps = new GetAllLampsQuery(_repository).Execute();
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("LAMPS:");
             Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
 
             if (lamps.Count == 0)
             {

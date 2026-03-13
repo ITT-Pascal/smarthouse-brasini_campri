@@ -1,8 +1,10 @@
 ﻿using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Commands;
 using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Dto;
 using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Queries;
+using BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Command;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice;
 using BlaisePascal.SmartHouse.Domain.LockableDevices.CctvDevice.Repository;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,10 +41,12 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
         {
             List<CCTVDto> cctvs = new GetAllCCTVQuery(_repository).Execute();
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("CCTVS: ");
             Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
 
-            if(cctvs.Count == 0)
+            if (cctvs.Count == 0)
             {
                 Console.WriteLine("No cctvs available");
                 return;
@@ -286,20 +290,30 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             Console.Write("Enter new password: ");
             string password = Console.ReadLine();
 
-            try
+            if (password == cctv.Password)
             {
+                Console.WriteLine("Insert new Password");
+                string newkey = Console.ReadLine();
+                try
+                {
+                    new SetPasswordCCTVCommand(_repository).Execute(cctv.Id, password);
+                    Console.WriteLine("Password set!");
+                }
+                catch (ArgumentException Aex)
+                {
+                    Console.WriteLine($"Error: {Aex.Message}");
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    return;
+                }
                 new SetPasswordCCTVCommand(_repository).Execute(cctv.Id, password);
-                Console.WriteLine("Password setted!");
             }
-            catch (ArgumentException ex)
+            else
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                return;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                return;
+                Console.WriteLine("Wrong password");
             }
         }
 

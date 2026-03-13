@@ -7,6 +7,7 @@ using BlaisePascal.SmartHouse.Domain.LuminousDevices.Repository;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lightning.Lamps.InMemory;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.CCTVs.InMemory;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Lockable.Doors.InMemory;
+using System.Drawing;
 
 class Program
 {
@@ -65,8 +66,12 @@ class Program
         while (!finished)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("SMART HOUSE OPTIONS"); 
+            Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
             Console.WriteLine("0 - Exit\n1 - Lamps\n2 - CCTVS\n3 - Door\n");
-            Console.Write("Choose an option: ");
+            Console.Write("Choose the devices you want to control: ");
             string choice = Console.ReadLine();
 
             if (choice == "0")
@@ -82,7 +87,7 @@ class Program
                 {
                     case "1":
                         lampController.ShowLamps();
-                        ShowLampMenu();
+                        LampController.ShowLampMenu();
                         Console.Write("Choose (0 to Go Back): ");
                         string lChoice = Console.ReadLine();
                         if (lChoice == "0") exit = true;
@@ -91,7 +96,7 @@ class Program
 
                     case "2":
                         cctvController.ShowCCTVs();
-                        ShowCCTVMenu();
+                        CCTVController.ShowCCTVMenu();
                         Console.Write("Choose (0 to Go Back): ");
                         string cChoice = Console.ReadLine();
                         if (cChoice == "0") exit = true;
@@ -100,7 +105,7 @@ class Program
 
                     case "3":
                         doorController.ShowDoors();
-                        ShowDoorMenu();
+                        DoorController.ShowDoorMenu();
                         Console.Write("Choose (0 to Go Back): ");
                         string dChoice = Console.ReadLine();
                         if (dChoice == "0") exit = true;
@@ -111,58 +116,9 @@ class Program
                         exit = true; 
                         break;
                 }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
         }
-    }
-
-    public static void ShowLampMenu()
-    {
-        Console.WriteLine("LAMP CONTROLLER");
-        Console.WriteLine("--------------------------------------------");
-        Console.WriteLine("1. Add lamp");
-        Console.WriteLine("2. Remove lamp");
-        Console.WriteLine("3. Increase brightness");
-        Console.WriteLine("4. Decrease brightness");
-        Console.WriteLine("5. Change brightness");
-        Console.WriteLine("6. Switch on");
-        Console.WriteLine("7. Switch off");
-        Console.WriteLine("0. Back");
-
-    }
-
-    public static void ShowCCTVMenu()
-    {
-        Console.WriteLine("CCTV CONTROLLER");
-        Console.WriteLine("--------------------------------------------");
-        Console.WriteLine("1. Add CCTV");
-        Console.WriteLine("2. Remove CCTV");
-        Console.WriteLine("3. Swtich on");
-        Console.WriteLine("4. Swtich off");
-        Console.WriteLine("5. Toggle");
-        Console.WriteLine("6. Set night mode");
-        Console.WriteLine("7. Set normal mode");
-        Console.WriteLine("8. Set choosed mode");
-        Console.WriteLine("9. Start recording");
-        Console.WriteLine("10. Stop recording");
-        Console.WriteLine("11. Set password");
-        Console.WriteLine("12. Lock CCTV");
-        Console.WriteLine("13. Unlock CCTV");
-        Console.WriteLine("0. Back");
-    }
-
-    public static void ShowDoorMenu()
-    {
-        Console.WriteLine("DOOR CONTROLLER");
-        Console.WriteLine("--------------------------------------------");
-        Console.WriteLine("1. Add door");
-        Console.WriteLine("2. Remove door");
-        Console.WriteLine("3. Lock door");
-        Console.WriteLine("4. Unlock door");
-        Console.WriteLine("5. Open Door");
-        Console.WriteLine("5. Close Door");
-        Console.WriteLine("7. Switch on");
-        Console.WriteLine("8. Switch off");
-        Console.WriteLine("9. Set Password");
-        Console.WriteLine("0. Back");
-    }
+    }      
 }

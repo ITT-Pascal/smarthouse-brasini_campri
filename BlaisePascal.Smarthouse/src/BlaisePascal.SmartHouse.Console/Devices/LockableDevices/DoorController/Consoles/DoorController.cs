@@ -25,14 +25,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
             }
 
             new AddDoorCommand(_repository).Execute(name);
-            Console.WriteLine("CCTV added!");
+            Console.WriteLine("Door added!");
         }
 
         public void ShowDoors()
         {
             List<DoorDto> doors = new GetAllDoorQuery(_repository).Execute();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("DOORS: ");
             Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
             if (doors.Count == 0)
             {
                 System.Console.WriteLine("No doors available");
@@ -197,7 +199,7 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
                     Console.WriteLine($"Error: {ex.Message}");
                     return;
                 }
-
+                new SetPassworDoorCommand(_repository).Execute(door.Id, newkey);
             }
             else
             {
@@ -213,7 +215,7 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
             Console.WriteLine("3. Lock door");
             Console.WriteLine("4. Unlock door");
             Console.WriteLine("5. Open Door");
-            Console.WriteLine("5. Close Door");
+            Console.WriteLine("6. Close Door");
             Console.WriteLine("7. Switch on");
             Console.WriteLine("8. Switch off");
             Console.WriteLine("9. Set Password");
