@@ -165,8 +165,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             CCTVDto cctv = SelectCCTV();
             if (cctv == null) return;
 
-            new StartRecordingCCTVCommand(_repository).Execute(cctv.Id);
-            Console.WriteLine("Started recording!");
+            try
+            {
+                new StartRecordingCCTVCommand(_repository).Execute(cctv.Id);
+                Console.WriteLine("Started recording!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void StopRecording()
@@ -174,8 +182,17 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             CCTVDto cctv = SelectCCTV();
             if (cctv == null) return;
 
-            new StopRecordingCCTVCommand(_repository).Execute(cctv.Id);
-            Console.WriteLine("Stopped recording!");
+            try
+            {
+                new StopRecordingCCTVCommand(_repository).Execute(cctv.Id);
+                Console.WriteLine("Stopped recording!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
+           
         }
 
         public void SwitchOn()
@@ -183,8 +200,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             CCTVDto cctv = SelectCCTV();
             if (cctv == null) return;
 
-            new SwitchOnCCTVCommand(_repository).Execute(cctv.Id);
-            Console.WriteLine("Switched on!");
+            try
+            {
+                new SwitchOnCCTVCommand(_repository).Execute(cctv.Id);
+                Console.WriteLine("Switched on!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void SwitchOff()
@@ -192,8 +217,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             CCTVDto cctv = SelectCCTV();
             if (cctv == null) return;
 
-            new SwitchOffCCTVCommand(_repository).Execute(cctv.Id);
-            Console.WriteLine("Switched off!");
+            try
+            {
+                new SwitchOffCCTVCommand(_repository).Execute(cctv.Id);
+                Console.WriteLine("Switched off!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }  
         }
 
         public void Toggle()
@@ -213,8 +246,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
 
-            new LockCCTVCommand(_repository).Execute(cctv.Id, password);
-            Console.WriteLine("CCTV locked!");
+            try
+            {
+                new LockCCTVCommand(_repository).Execute(cctv.Id, password);
+                Console.WriteLine("CCTV locked!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void Unlock()
@@ -224,9 +265,17 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
 
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
-
-            new UnlockCCTVCommand(_repository).Execute(cctv.Id, password);
-            Console.WriteLine("CCTV unlocked!");
+            
+            try
+            {
+                new UnlockCCTVCommand(_repository).Execute(cctv.Id, password);
+                Console.WriteLine("CCTV unlocked!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void SetPassword()
@@ -237,7 +286,21 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
             Console.Write("Enter new password: ");
             string password = Console.ReadLine();
 
-            new SetPasswordCCTVCommand(_repository).Execute(cctv.Id, password);
+            try
+            {
+                new SetPasswordCCTVCommand(_repository).Execute(cctv.Id, password);
+                Console.WriteLine("Password setted!");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
     }
 }
