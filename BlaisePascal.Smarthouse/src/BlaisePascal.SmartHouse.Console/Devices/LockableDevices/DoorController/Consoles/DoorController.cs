@@ -104,9 +104,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
         {
             DoorDto door = SelectDoor();
             if (door == null) return;
-
-            new CloseDoorCommand(_repository).Execute(door.Id);
-            Console.WriteLine("Door closed!");
+            try
+            {
+                new CloseDoorCommand(_repository).Execute(door.Id);
+                Console.WriteLine("Door closed!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }            
         }
 
         public void OpenDoor()
@@ -114,8 +121,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
             DoorDto door = SelectDoor();
             if (door == null) return;
 
-            new OpenDoorCommand(_repository).Execute(door.Id);
-            Console.WriteLine("Door opened!");
+            try
+            {
+                new OpenDoorCommand(_repository).Execute(door.Id);
+                Console.WriteLine("Door closed!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void LockDoor()
@@ -125,8 +140,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
 
             Console.WriteLine("Insert Password");
             string key = Console.ReadLine();
-            new LockDoorCommand(_repository).Execute(door.Id, key);
-            Console.WriteLine("Door locked!");
+            try
+            {
+                new LockDoorCommand(_repository).Execute(door.Id, key);
+                Console.WriteLine("Door closed!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void UnlockDoor()
@@ -136,8 +159,16 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
 
             Console.WriteLine("Insert Password");
             string key = Console.ReadLine();
-            new UnlockDoorCommand(_repository).Execute(door.Id, key);
-            Console.WriteLine("Door unlocked!");
+            try
+            {
+                new UnlockDoorCommand(_repository).Execute(door.Id, key);
+                Console.WriteLine("Door closed!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
 
         }
 
@@ -151,8 +182,22 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
             {
                 Console.WriteLine("Insert new Password");
                 string newkey = Console.ReadLine();
-                new SetPassworDoorCommand(_repository).Execute(door.Id, key);
-                Console.WriteLine("Password set!");
+                try
+                {
+                    new SetPassworDoorCommand(_repository).Execute(door.Id, key);
+                    Console.WriteLine("Password set!");
+                }
+                catch (ArgumentException Aex)
+                {
+                    Console.WriteLine($"Error: {Aex.Message}");
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    return;
+                }
+
             }
             else
             {

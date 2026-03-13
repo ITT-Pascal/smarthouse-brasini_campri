@@ -102,16 +102,32 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
         {
             LampDto lamp = SelectLamp();
             if (lamp == null) return;
-            new IncreaseBrightnessLampCommand(_repository).Execute(lamp.Id);
-            Console.WriteLine("Brightness increased!");
+            try
+            {
+                new IncreaseBrightnessLampCommand(_repository).Execute(lamp.Id);
+                Console.WriteLine("Brightness decreased!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void DecreaseLampBrightness()
         {
             LampDto lamp = SelectLamp();
             if (lamp == null) return;
-            new DecreaseBrightnessLampCommand(_repository).Execute(lamp.Id);
-            Console.WriteLine("Brightness decreased!");
+            try 
+            {
+                new DecreaseBrightnessLampCommand(_repository).Execute(lamp.Id);
+                Console.WriteLine("Brightness decreased!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return;
+            }
         }
 
         public void SwitchOnLamp()

@@ -20,10 +20,5 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LuminousDevices.LampUses.C
         {
             _lampRepository.Remove(id);
         }
-
-        public void Execute(object id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
