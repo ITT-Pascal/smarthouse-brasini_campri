@@ -158,7 +158,21 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
             {
                 Console.WriteLine("Wrong password");
             }
-
+        }
+        public static void ShowDoorMenu()
+        {
+            Console.WriteLine("DOOR CONTROLLER");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("1. Add door");
+            Console.WriteLine("2. Remove door");
+            Console.WriteLine("3. Lock door");
+            Console.WriteLine("4. Unlock door");
+            Console.WriteLine("5. Open Door");
+            Console.WriteLine("5. Close Door");
+            Console.WriteLine("7. Switch on");
+            Console.WriteLine("8. Switch off");
+            Console.WriteLine("9. Set Password");
+            Console.WriteLine("0. Back");
         }
     }
 }

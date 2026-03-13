@@ -152,6 +152,21 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
                 return;
             }
         }
+
+        public static void ShowLampMenu()
+        {
+            Console.WriteLine("LAMP CONTROLLER");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("1. Add lamp");
+            Console.WriteLine("2. Remove lamp");
+            Console.WriteLine("3. Increase brightness");
+            Console.WriteLine("4. Decrease brightness");
+            Console.WriteLine("5. Change brightness");
+            Console.WriteLine("6. Switch on");
+            Console.WriteLine("7. Switch off");
+            Console.WriteLine("0. Back");
+
+        }
     }
 }
 
