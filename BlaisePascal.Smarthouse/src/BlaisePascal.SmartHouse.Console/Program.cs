@@ -70,7 +70,7 @@ class Program
             Console.WriteLine("SMART HOUSE OPTIONS"); 
             Console.WriteLine("--------------------------------------------");
             Console.ResetColor();
-            Console.WriteLine("0 - Exit\n1 - Lamps\n2 - CCTVS\n3 - Door\n");
+            Console.WriteLine("0 - Exit\n1 - Lamps\n2 - CCTVS\n3 - Doors\n");
             Console.Write("Choose the devices you want to control: ");
             string choice = Console.ReadLine();
 

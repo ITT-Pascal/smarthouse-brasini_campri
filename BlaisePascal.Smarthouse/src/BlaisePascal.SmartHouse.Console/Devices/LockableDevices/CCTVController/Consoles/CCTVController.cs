@@ -319,8 +319,10 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.CCTVControlle
 
         public static void ShowCCTVMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("CCTV CONTROLLER");
             Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
             Console.WriteLine("1. Add CCTV");
             Console.WriteLine("2. Remove CCTV");
             Console.WriteLine("3. Swtich on");

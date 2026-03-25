@@ -208,8 +208,10 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LockableDevices.DoorControlle
         }
         public static void ShowDoorMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("DOOR CONTROLLER");
             Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
             Console.WriteLine("1. Add door");
             Console.WriteLine("2. Remove door");
             Console.WriteLine("3. Lock door");

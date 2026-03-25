@@ -173,8 +173,10 @@ namespace BlaisePascal.SmartHouse.Consoles.Devices.LuminousDevices.LampControlle
 
         public static void ShowLampMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("LAMP CONTROLLER");
             Console.WriteLine("--------------------------------------------");
+            Console.ResetColor();
             Console.WriteLine("1. Add lamp");
             Console.WriteLine("2. Remove lamp");
             Console.WriteLine("3. Increase brightness");

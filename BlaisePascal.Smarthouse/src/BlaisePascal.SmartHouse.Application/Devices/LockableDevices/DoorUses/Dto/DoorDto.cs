@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.D
 
         public override string ToString()
         {
-            return $" Id: {Id} \n Status: {Status} | DoorStatus: {DoorStatus} | LockingStatus: {LockingStatus} | Password:{HidePassword(Password)} | Created: {CreatedAtUtc} | Modified: {LastModifiedAtUtc} \n";
+            return $"Id: {Id} \n[ Status: {Status} | DoorStatus: {DoorStatus} | LockingStatus: {LockingStatus} | Password:{HidePassword(Password)} | Created: {CreatedAtUtc} | Modified: {LastModifiedAtUtc} ]\n";
         }
 
         private string HidePassword(string password)
