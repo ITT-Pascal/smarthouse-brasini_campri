@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.abstraction
         public int Value { get; }
 
         //Constants
-        public const int Max = 10;
+        public const int Max = 100;
         public const int Min = 1;
 
         //Constructor
