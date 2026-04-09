@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice;
+using BlaisePascal.SmartHouse.Domain.LockableDevices.DoorDevice.Repository;
+
+namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.DoorUses.Command
+{
+    public class SwitchOnDoorCommand
+    {
+        private readonly IDoorRepository _doorRepository;
+
+        public SwitchOnDoorCommand(IDoorRepository doorRepsotitory)
+        {
+            _doorRepository = doorRepsotitory;
+        }
+
+        public void Execute(Guid id)
+        {
+            Door door = _doorRepository.GetById(id);
+            if (door != null)
+            {
+                door.TurnOn();
+                _doorRepository.Update(door);
+            }
+        }
+    }
+}
