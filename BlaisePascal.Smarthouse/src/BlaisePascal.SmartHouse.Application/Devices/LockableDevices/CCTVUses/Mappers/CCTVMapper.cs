@@ -8,9 +8,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.M
 {
     public class CCTVMapper
     {
-        public static CCTVDto ToDto(CCTV cctv)
+        public static AirConditionerDto ToDto(CCTV cctv)
         {
-            return new CCTVDto
+            return new AirConditionerDto
             {
                 Name = cctv.Name.String,
                 Id = cctv.Id,
@@ -24,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.M
             };
         }
 
-        public static CCTV ToDomain(CCTVDto cctvDto)
+        public static CCTV ToDomain(AirConditionerDto cctvDto)
         {
             return new CCTV
                 (
