@@ -17,6 +17,24 @@ namespace BlaisePascal.SmartHouse.Application.Devices.TermostatDevices.AirCondit
 {
     public class GetAllAirConditionerQuery
     {
-        
+        private readonly IAirConditionerRepository _repository;
+
+        public GetAllAirConditionerQuery(IAirConditionerRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public List<AirConditionerDto> Execute()
+        {
+            List<AirConditionerDto> result = new List<Dto.AirConditionerDto>();
+            foreach(AirConditioner a in _repository.GetAll())
+            {
+                if(a != null)
+                {
+                    result.Add(AirConditionerMapper.ToDto(a));
+                }
+            }
+            return result;
+        }
     }
 }

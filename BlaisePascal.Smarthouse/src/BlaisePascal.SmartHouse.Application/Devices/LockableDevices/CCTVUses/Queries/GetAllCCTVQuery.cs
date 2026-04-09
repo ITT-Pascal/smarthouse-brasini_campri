@@ -19,9 +19,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Q
             _cctvRepository = cctvRepsotitory;
         }
 
-        public List<AirConditionerDto> Execute()
+        public List<CCTVDto> Execute()
         {
-            List<AirConditionerDto> result = new List<AirConditionerDto>();
+            List<CCTVDto> result = new List<CCTVDto>();
 
             foreach(CCTV c in _cctvRepository.GetAll())
             {

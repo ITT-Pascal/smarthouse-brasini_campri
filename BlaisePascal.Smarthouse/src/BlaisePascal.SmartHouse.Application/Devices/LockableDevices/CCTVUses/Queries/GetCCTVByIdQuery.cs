@@ -19,7 +19,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Q
             _cctvRepository = cctvRepository;
         }
 
-        public AirConditionerDto Execute(Guid id)
+        public CCTVDto Execute(Guid id)
         {
             return CCTVMapper.ToDto(_cctvRepository.GetById(id));
         }
