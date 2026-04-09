@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.Dto
 {
-    public class AirConditionerDto
+    public class CCTVDto
     {
         public string Name { get; set; }
         public Guid Id { get; set; }
