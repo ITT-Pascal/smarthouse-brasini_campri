@@ -5,12 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlaisePascal.SmartHouse.WPF"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesignxaml.net/winfx/xaml/themes"
-        Title="Lamp Manager" Height="600" Width="900">
-    <Grid>
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Lamp Manager" Height="600" Width="900"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Grid Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>    
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:Card Grid.Column="0" Padding="10" Margin="5" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="Lamps"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Margin="5"/>
+                <ListBox x:Name="LampsList"
+                         Margin="5"
+                         Height="450">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <materialDesign:Card Padding="10" Margin="5">
+                                <StackPanel>
+
+                                    <TextBlock Text="{Binding Name}"
+                                               FontSize="18"
+                                               FontWeight="Bold"/>
+
+                                    <TextBlock Text="{Binding Status}"/>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Intensity: "/>
+                                        <TextBlock Text="{Binding Brightness}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </Window>
