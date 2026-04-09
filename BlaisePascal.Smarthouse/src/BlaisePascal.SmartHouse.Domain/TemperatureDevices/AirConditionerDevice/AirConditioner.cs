@@ -33,7 +33,13 @@ namespace BlaisePascal.SmartHouse.Domain.TemperatureDevices.AirConditionerDevice
             Mode = AirMode.NoMode;
             DegreeMode = DegreeMode.Celsius;
         }
-        
+
+        public AirConditioner(string name, Guid id, DeviceStatus status, AirMode mode, double temperature, DegreeMode degreeMode, DateTime created, DateTime modified): base(name, id, status, created, modified)
+        {
+            Mode = mode;
+            Temperature = Degree.Create(temperature, Temperature.Min, Temperature.Max);
+            DegreeMode = degreeMode;
+        }
         //Methods
 
         public void SetFanMode()

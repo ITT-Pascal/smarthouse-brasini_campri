@@ -23,7 +23,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.LockableDevices.CCTVUses.D
 
         public override string ToString()
         {
-            return $"Id: {Id} \n[Status: {Status} | Mode: {Mode} | LockingStatus: {LockingStatus} | IsRecording: {IsRecording} | Password: {HidePassword(Password)} | Created At: {CreatedAtUtc} | Modified At: {LastModifiedAtUtc} \n";
+            return $"Id: {Id} \n | Status: {Status} | Mode: {Mode} | LockingStatus: {LockingStatus} | IsRecording: {IsRecording} | Password: {HidePassword(Password)} | Created At: {CreatedAtUtc} | Modified At: {LastModifiedAtUtc} \n";
         }
 
         private string HidePassword(string password)
